@@ -1,0 +1,198 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=20mm]{geometry}
+\usepackage{newtxtext,newtxmath,booktabs,longtable,array,graphicx,microtype}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{StableShift: Supplementary Information}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thetable}{S\arabic{table}}
+\newcommand{\R}{\mathbb{R}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Supplementary Information}\par\vspace{5mm}
+{\Large Anchored electricity-demand forecasting with bounded label-free adaptation}\par\vspace{4mm}
+Yanbo Bian\\Computer Science and Technology, Weihai International Academy,\\Beijing Jiaotong University, Weihai, China\\\href{mailto:24722081@bjtu.edu.cn}{24722081@bjtu.edu.cn}
+\end{center}
+\vspace{5mm}
+This supplement contains the sensitivity proof, data preparation and split definitions, implementation settings, complete paired intervention results, secondary experiments and the Source Data guide. All empirical tables are generated from the saved observed-label deployment streams.
+\tableofcontents
+
+\section{Sensitivity of an adapter update}
+\subsection{Proof of Proposition 1}
+For a fixed context, write the forecaster as
+\begin{equation}
+ f_{U,V}(x)=a(x)+\rho W_o\sigma\big(c(x)+W_d(I+UV)z(x)\big),\quad \rho=0.5.
+\end{equation}
+The frozen seasonal reference, linear correction and adapter-independent head inputs are absorbed into $a$ and $c$. In evaluation mode, dropout is disabled. The mean absolute displacement in $n=Hd$ output coordinates is bounded by
+\begin{align}
+\frac{\|f_{U',V'}(x)-f_{U,V}(x)\|_1}{n}
+&\leq \frac{\|f_{U',V'}(x)-f_{U,V}(x)\|_2}{\sqrt n}\\
+&\leq \frac{\rho L_\sigma}{\sqrt n}\|W_o\|_2\|W_d\|_2
+\|(U'V'-UV)z(x)\|_2\\
+&\leq \frac{\rho L_\sigma}{\sqrt n}\|W_o\|_2\|W_d\|_2
+\|U'V'-UV\|_2\|z(x)\|_2.
+\end{align}
+For exact GELU, $\sigma'(u)=\Phi(u)+u\varphi(u)$. Its extrema occur where $\sigma''(u)=(2-u^2)\varphi(u)=0$. Evaluation at $u=\pm\sqrt2$, together with the limiting values, gives $\sup_u|\sigma'(u)|<1.129$.
+
+The factor-product identity
+\begin{equation}
+ U'V'-UV=(U'-U)V+U'(V'-V)
+\end{equation}
+and submultiplicativity imply
+\begin{equation}
+ \|U'V'-UV\|_2\leq
+ R\big(\|U'-U\|_F+\|V'-V\|_F\big)
+\end{equation}
+when all four factor norms are at most $R$. Projection onto a closed Euclidean ball is nonexpansive relative to an initial point inside the ball. Thus a projected gradient step with jointly clipped norm $G$ gives
+\begin{equation}
+ \sqrt{\|U'-U\|_F^2+\|V'-V\|_F^2}\leq\eta G.
+\end{equation}
+Applying Cauchy--Schwarz to the sum of factor displacements gives the stated $\sqrt2R\eta G$ bound. For the implementation, $R=8$, $\eta=0.01$ and $G=1$. The step-size bound is conditional on the starting state lying inside the factor balls; the product-difference bound applies whenever the two endpoint states satisfy the stated norms.
+
+\subsection{Original units and changes in prediction error}
+Let $S_H=I_H\otimes\operatorname{diag}(s_1,\ldots,s_d)$ collect the training standard deviations. De-standardization adds a constant mean and multiplies by $S_H$. The original-unit result therefore replaces $\|W_o\|_2$ by $\|S_HW_o\|_2$, or upper-bounds it by $\|S_H\|_2\|W_o\|_2$.
+
+For any coupled contexts and targets $(x,y)$ and $(x',y')$, with coordinate-averaged absolute loss $\ell$, triangle inequalities yield
+\begin{align}
+\ell(f_{U',V'}(x'),y')-\ell(f_{U,V}(x),y)
+\leq&\ \frac{\|f_{U,V}(x')-f_{U,V}(x)\|_1}{n}\\
+&+B(x';U,V,U',V')+\frac{\|y'-y\|_1}{n},
+\end{align}
+where $B$ is the same-context update bound. Taking expectations gives a risk-difference inequality under the chosen coupling. The three terms correspond to frozen-model input response, online-state modification and target-process change. The result is a sensitivity characterization, and does not imply that reconstruction descent reduces future forecast error. The saved online/no-update forecasts supply the empirical marginal-accuracy comparison; this study does not claim an experimental verification of numerical tightness of the operator-norm bound.
+
+\subsection{Spectral normalization and receptive field}
+The implementation normalizes a convolution kernel after flattening its input-channel and temporal dimensions. A temporal convolution's full operator also depends on overlapping patches. Residual connections, per-time LayerNorm and median conditioning are retained. No whole-network contraction constant is assumed. With two kernel-three convolutions at each dilation $1,2,4,8$, the convolutional receptive field is
+\begin{equation}
+ 1+2(3-1)(1+2+4+8)=61
+\end{equation}
+processed time steps. The 336 h seasonal and decomposition paths provide additional historical information outside this receptive field.
+
+\section{Data preparation and chronological splits}
+\subsection{EIA-930 operating observations}
+The data preparation selects the observed Demand (MW) variable, rather than demand forecasts or adjusted-demand variables, for PJM, MISO, CISO, NYIS, ISNE, ERCO and SWPP. The hourly series begins at 2023-01-01 01:00 and ends at 2026-07-01 00:00, inclusive. The timestamps follow the prepared EIA time axis. The training boundary is 2025-01-01 01:00 (exclusive) and the validation boundary is 2026-01-01 01:00 (exclusive). The series contains 30,648 rows and seven channels. Missing counts by channel are 124, 65, 136, 5, 7, 54 and 31. Eight leading hours are excluded from eligible-context construction before the 336 h warm-up.
+
+The prepared archive identifier is\par\smallskip
+{\footnotesize\ttfamily\detokenize{8e7806f7931bad0209436d2b2b4c645243aeb984d434f16c6d3d8ca807542af8}}.
+
+\subsection{ECL customer loads}
+The analysis uses MT\_001 through MT\_016 in their source order. Four quarter-hour power observations are averaged to each hourly kW value; an incomplete hour is marked unavailable. The resulting 35,064 by 16 array begins at 2011-01-01 01:00 and ends at 2015-01-01 00:00. The training boundary is 2013-10-19 17:00, and the validation boundary is 2014-03-14 19:00, both exclusive. Customer inclusion uses the fixed index selection rather than future test completeness.
+
+The prepared archive identifier is\par\smallskip
+{\footnotesize\ttfamily\detokenize{df27042c63393550df20c5ba5b5dbd95807e22d0b97edc441bdc82b193b239c4}}.
+
+\subsection{Ausgrid household energy}
+General-consumption (GC) rows for customer identifiers 001 through 016 are selected. Two half-hour energy values are summed into the hourly energy interval, so the forecast unit is kWh per hour-long interval. The 26,304 by 16 array begins at 2010-07-01 01:00 and ends at 2013-07-01 00:00. The training boundary is 2012-08-06 05:00, and the validation boundary is 2012-11-23 19:00. Customer 002 has 1,944 missing hourly values; the remaining selected channels have none. Missingness does not remove a customer from the fixed selection.
+
+The prepared archive identifier is\par\smallskip
+{\footnotesize\ttfamily\detokenize{cf5eb1854ab9fe04e8f6726d6c1ca60e5eadc22e08fb136d069998c7a811f87f}}.
+
+\subsection{Availability, seasonality and scoring}
+The full hourly axis is retained and input gaps are filled by past-only forward filling. A forecast target block is scored only if every channel and horizon entry is observed. Scoring eligibility never changes deployment or adaptation history. The calendar variables are sine/cosine pairs for hour/24, weekday/7 and zero-indexed day-of-year/365.25.
+
+For channel $j$, the MASE scale is the mean of $|y_{t,j}-y_{t-24,j}|$ over observed training pairs. It is computed separately for each channel before averaging scaled forecast errors. Normalization uses the observed training mean and standard deviation. These scales are not recalculated from main-test labels.
+
+\begin{table}[h]
+\centering\caption{Eligible origins and natural-shock counts in the main experiment. Natural shocks are scored original-input windows exceeding the training 95th percentile of mean absolute standardized hourly context differences. Counts are per seed and identical across compared methods.}\label{tab:coverage}
+\input{tables/coverage.tex}
+\end{table}
+The natural-shock threshold yields only seven eligible windows in the Ausgrid 24 h cell and none in the other main cells. Accordingly, the main shock comparisons concern the explicitly defined input perturbation. The natural subset is preserved in Source Data without a pooled natural-extreme-event claim.
+
+\section{Training, baseline settings and computation}
+\subsection{Model settings}
+The context length is 336; the main forecast lengths are 24 and 168. StableShift uses width 128, four residual levels, two kernel-three convolutions per level, dilations 1/2/4/8, dropout 0.1 and adapter rank eight. The input projection is a pointwise convolution. The stable projection is a learned linear map. The recent-context projection is linear--GELU--LayerNorm. The prediction head is linear--GELU--linear. The reconstruction head maps the adapted feature sequence to load channels.
+
+The median filter uses a 25 h context-local window and replicated padding. A value is replaced by the local median when its deviation exceeds six times the local median absolute deviation, with the latter floored at 0.20 standardized units. The result is clipped to $[-6,6]$. This processing can use later samples within the already available context, but never any sample beyond the forecast boundary.
+
+The online mask is generated from seed $2026+o$, where $o$ is the saved integer forecast origin. It masks 15\% of load entries, retaining the calendar. Previously unobserved context entries do not contribute to reconstruction loss. Each stream starts with the selected trained state, with no reset between its scheduled origins. Variants and perturbation conditions start independently. The no-filter intervention uses the same online update gate and removes both the median replacement and final clipping.
+
+\subsection{Reference-model wrappers}
+Reference models come from Time-Series-Library commit\par
+{\footnotesize\ttfamily\detokenize{4e938a1767106324dd753b2a44832bf870a0252e}}.
+The common wrapper uses model width 64, four attention heads, feed-forward width 128, two encoder layers, one decoder layer where applicable, dropout 0.1, GELU, label length 48 and factor three. TimesNet uses top-$k=5$ periods and six kernels. DLinear uses moving average length 25 and shares temporal maps across channels. Model-specific options are preserved in the distributed wrapper and upstream source. The wrapper frequency flag selects six calendar-input dimensions; all observations and horizons remain hourly.
+
+TiDE receives known future calendar variables. Its temporal decoder width is 16. The upstream final scalar-output LayerNorm is replaced by Identity because normalizing a single scalar removes its input dependence. TimesNet's validation batch size is one, matching its deployment behavior because its FFT period selection depends on the batch. Other methods use validation batch size 32. Comparisons share data, learning-rate choices and training stopping rules; parameter counts are reported explicitly rather than assumed equal.
+
+\subsection{Optimization and recorded resources}
+The learning-rate candidates are 0.001 and 0.0003. AdamW uses weight decay 0.0001, batch size 32, up to 30 epochs and early stopping after six epochs without validation-MAE improvement. Every parameter gradient is jointly clipped to norm one during training. Seeds are 11, 22, 33, 44 and 55 in the main cells. The selected learning rate, best epoch, executed epochs and elapsed training time are stored for each fitted model in \texttt{training\_selection.csv}; that file's training time is for the selected trial, not the sum of the search budget.
+
+EIA main experiments ran with Python 3.12.10, PyTorch 2.6.0+cu124 and CUDA 12.4 on an NVIDIA RTX 4060 Laptop GPU. Archival runs used a Tesla V100 for ECL 24 h and Tesla V100S hardware for the other archived main cells. Exact per-run software and device records are retained in \texttt{analysis\_manifest.json}. Local and cloud source digests are preserved separately. Comparing their archived project Python sources after newline normalization found no differing text files; this does not imply identical hardware environments or byte-identical vendor trees.
+
+CUDA synchronization brackets each timed forecast. The time excludes host-side DataLoader preparation and NumPy metric calculation; it includes the model call and any triggered adaptation. The median latency is calculated within each seed and then across seeds. Peak memory is maximum PyTorch-allocated GPU memory after resetting the peak counter before a stream, not total device-reserved memory or training memory. Table S7 gives main-cell MASE and resource measurements.
+
+\section{Paired statistics and main comparisons}
+\subsection{Estimands and bootstrap procedure}
+Let $a_{s,o}$ and $b_{s,o}$ be the baseline and StableShift window errors for seed $s$ and scheduled origin $o$. Unscored entries are NaN at the original time positions. For MAE, errors are pooled directly; for RMSE, the arrays contain MSE and a square root is applied after pooling. The relative effect is $E_b/E_a-1$.
+
+Each replicate samples the seed indices with replacement and draws circular blocks on the common scheduled-origin grid. The same indices are used for both methods, and the same time indices for every drawn seed. For nominal block duration $D$ days, the origin-block length is $\lceil24D/H\rceil$, capped by stream length. The analysis uses 5,000 resamples and bootstrap seed 2026. Resamples with no scored observations are redrawn. Percentile limits are pointwise 95\% confidence intervals. The added-one Monte Carlo two-sided null-centered test is
+\begin{equation}
+ p=\frac{1+\sum_{b=1}^{B}{\bf1}\{|\Delta_b-\widehat\Delta|\geq|\widehat\Delta|\}}{B+1}.
+\end{equation}
+The Holm family includes 60 main tests: three datasets, two horizons, five input conditions and two metrics. MASE is a separate 30-test family. All available five-seed intervention tests form their own family, including MAE, RMSE and MASE. The secondary three-seed transfer intervals are descriptive pointwise intervals without a confirmatory multiplicity claim. Longer time blocks at 14 and 28 days are supplied in \texttt{paired\_comparisons.csv}.
+
+For joint macro/worst-cell summaries, one seed draw is shared across all cells. Circular calendar-day blocks are drawn separately within each dataset and converted into weights on each cell's origin dates. Those weights are common across horizons and conditions for that dataset. After pooling weighted errors, the mean and maximum within-cell relative differences define the macro and worst-cell statistics. Thus original measurement scales do not create a weighting advantage for a dataset with larger numerical loads.
+
+\begin{table}[h]
+\centering\caption{Chronological paired relative effects and pointwise 95\% intervals. Negative effects favor StableShift. The last column is the MAE Holm-adjusted $p$ value; RMSE adjusted tests are in Source Data.}\label{tab:primary}
+\input{tables/primary_effects.tex}
+\end{table}
+
+\subsection{Input-condition comparisons}
+The archive condition names are mapped as follows: \texttt{normal} is the original chronological stream; \texttt{missingness} masks 10\% of standardized load values to zero; \texttt{shock} scales the last 14 h by 1.35; \texttt{controlled\_drift} applies $1.15x+0.10$; and \texttt{anomaly} adds a middle-context 28 h offset. For the last condition, magnitude is four context standard deviations, floored at $10^{-4}$ before multiplication; the sign follows the block's channelwise mean, with negative sign when this mean is nonpositive. All transformations occur in standardized load coordinates and leave labels unchanged.
+\noindent\textbf{Table S3.} Paired MAE comparisons under all main input conditions. Base is the validation-selected comparator, SS is StableShift. Units follow the main accuracy table.
+\input{tables/stress_effects.tex}
+
+\subsection{Matched interventions}
+The archive identifier \texttt{StableShiftNoStability} removes only the consistency and representation-energy loss terms. Its encoder still uses spectral normalization, and reconstruction learning remains active. The other interventions reuse the trained full checkpoint. The anchor-only intervention retains the learned cycle mixture but removes both learned corrections. This is a joint intervention on those corrections, rather than a separate test of the linear and neural contributions.
+\noindent\textbf{Table S4.} Intervention MAE differences from the full model, with pointwise 95\% intervals. Positive values indicate higher error after removing the indicated component. Online effects use extra decimal places because of their small magnitude. Only complete five-seed interventions are included here.
+\input{tables/ablations.tex}
+
+\section{Secondary horizons and held-out regions}
+\subsection{Available additional experiments}
+Table S5 reports all additional completed original-input results, with their actual number of seeds. The EIA 48 h experiment includes three seeds for core methods; the representation-penalty retraining has two. ECL and Ausgrid 24 h TimesNet and penalty-retraining cells have one completed seed. Partial archival PJM results contain baselines only and support no comparison with StableShift. Training checkpoints without a completed full deployment record are excluded.
+\noindent\textbf{Table S5.} Secondary chronological results and seed counts. Regional units are MW; ECL is kW; Ausgrid is kWh per hourly interval. Tables include the transfer models separately from the multivariate main experiment.
+\input{tables/secondary_accuracy.tex}
+
+\subsection{Strictly held-out ERCO and SWPP}
+Five training regions supply shared univariate training and validation windows. The learned models are fitted jointly on those regions. ERCO and SWPP supply no training or model-selection targets. Their normalization uses the 336 observed hours immediately before the first test origin, then remains fixed throughout the stream. The drift threshold is calculated from training-region validation windows. Each held-out region has its own adapter trajectory. Its pre-2025 observed history is used only to form an evaluation MASE denominator and does not enter prediction or model selection.
+
+The transfer comparator is PatchTST, selected on the seen-region validation data among the available baselines. There are 25 scored weekly origins on ERCO and 24 of 25 on SWPP. The three seeds are 11, 22 and 33. Absolute error intervals in main Fig.~5 resample seed indices and weekly origins; paired intervals below use matching indices for both methods.
+\noindent\textbf{Table S6.} Three-seed transfer differences from validation-selected PatchTST. Intervals are pointwise 95\% intervals; negative effects favor StableShift.
+\input{tables/transfer_effects.tex}
+
+\section{MASE and computational measurements}
+\noindent\textbf{Table S7.} Five-seed chronological MASE, parameter counts and deployment resources. Memory is maximum allocated MiB across the measured streams. Latencies from different hardware settings are not used for cross-dataset speed comparisons.
+\input{tables/cost_and_mase.tex}
+
+\section{Reproducibility and Source Data}
+\subsection{Source Data map}
+\begin{longtable}{p{6.4cm}p{9.8cm}}
+\toprule File & Contents\\\midrule\endhead
+\texttt{seed\_metrics.csv} & All completed method/variant/condition/seed metrics, latency, memory and update counts.\\
+\texttt{all\_method\_metrics.csv} & Pooled errors for every completed method and explicit seed counts.\\
+\texttt{paired\_comparisons.csv} & Main paired MAE/RMSE/MASE effects, 7/14/28-day block intervals and adjusted tests.\\
+\texttt{paired\_ablations.csv} & Five-seed intervention effects and adjusted tests.\\
+\texttt{validation\_comparators.csv} & Eligible methods, validation MAE and the selected comparator.\\
+\texttt{training\_selection.csv} & Per-seed learning-rate and checkpoint selection.\\
+\texttt{online\_telemetry.csv} & Every main StableShift deployment origin, score, update flag and reconstruction telemetry.\\
+\texttt{degradation\_ratios.csv} & Each method's perturbed-input error divided by its chronological error.\\
+\texttt{transfer\_comparisons.csv} & Three-seed paired transfer effects.\\
+\texttt{transfer\_absolute\_intervals.csv} & Absolute-MAE intervals used in main Fig.~5.\\
+\texttt{run\_coverage.csv} & Completed and incomplete deployment markers and protocol signatures.\\
+\texttt{analysis\_manifest.json} & Data records, original environment records, stream/prediction checksums and joint aggregate statistics.\\
+\texttt{reference\_verification.json} & Registry/source-page metadata, live lookup status and dated cached verification when rate limited.\\
+\texttt{source\_snapshot\_comparison.json} & Local/cloud source comparison and separately retained digests.\\
+\bottomrule
+\end{longtable}
+
+\subsection{Reproduction entry points}
+The public-facing code package preserves the recorded model and benchmark sources. The main interface accepts only an observed context and its current adapter state before producing a forecast. In the implementation, \texttt{OnlineSession.forecast} performs the gate, optional adaptation and prediction; its caller computes metrics after this return. The analysis scripts regenerate the tables and figures without training.
+
+The original run sources are retained under their respective \texttt{source\_snapshot} directories, with all protocol, origin, threshold and selection files. The precise local result directory mappings are listed in the reproducibility README. Reproducing raw-stream bootstrap analyses requires the returned forecast streams; rendering the tables and figures uses the included Source Data. Environment records distinguish execution-time locks from the post-experiment analysis environment.
+
+\end{document}

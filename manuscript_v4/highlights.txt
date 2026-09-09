@@ -1,0 +1,4 @@
+Seasonal references separate persistent structure from learned load corrections.
+A 2,048-parameter state bounds the mutable pathway in label-free deployment.
+EIA-930 day-ahead MAE is 5.1% lower than validation-selected TiDE in 2026.
+Matched interventions separate forecasting gains from online update effects.

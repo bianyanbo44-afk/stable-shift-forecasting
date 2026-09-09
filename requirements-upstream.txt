@@ -1,0 +1,3 @@
+# Optional dependencies for the vendored Time-Series-Library reference smoke test
+reformer-pytorch==1.4.4
+einops==0.8.2

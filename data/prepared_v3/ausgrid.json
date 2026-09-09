@@ -1,0 +1,50 @@
+{
+  "dataset": "ausgrid",
+  "source": "data\\raw_ausgrid.zip",
+  "source_sha256": "5a766f52b6c8b3b72730380f4422e478934bc94640a4b089dd0e0e3c055c5d82",
+  "prepared_sha256": "cf5eb1854ab9fe04e8f6726d6c1ca60e5eadc22e08fb136d069998c7a811f87f",
+  "shape": [
+    26304,
+    16
+  ],
+  "columns": [
+    "customer_001",
+    "customer_002",
+    "customer_003",
+    "customer_004",
+    "customer_005",
+    "customer_006",
+    "customer_007",
+    "customer_008",
+    "customer_009",
+    "customer_010",
+    "customer_011",
+    "customer_012",
+    "customer_013",
+    "customer_014",
+    "customer_015",
+    "customer_016"
+  ],
+  "units": "kWh per hour",
+  "first": "2010-07-01 01:00:00",
+  "last": "2013-07-01 00:00:00",
+  "missing_per_column": [
+    0,
+    1944,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "aggregation": "Customers 1 through 16, GC; sum of two interval-ending energy readings; complete hours only"
+}

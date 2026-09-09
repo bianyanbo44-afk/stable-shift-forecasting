@@ -1,0 +1,370 @@
+{
+  "generated_at": "2026-09-08",
+  "source": "Crossref API",
+  "records": [
+    {
+      "doi": "10.1609/aaai.v39i17.33965",
+      "status": "FOUND",
+      "title": "Battling the Non-stationarity in Time Series Forecasting via Test-time Adaptation",
+      "authors": [
+        "HyunGi Kim",
+        "Siwon Kim",
+        "Jisoo Mok",
+        "Sungroh Yoon"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+      "volume": "39",
+      "issue": "17",
+      "page": "17868-17876",
+      "publisher": "Association for the Advancement of Artificial Intelligence (AAAI)",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1609/aaai.v39i17.33965"
+    },
+    {
+      "doi": "10.1145/3637528.3671926",
+      "status": "FOUND",
+      "title": "Calibration of Time-Series Forecasting: Detecting and Adapting Context-Driven Distribution Shift",
+      "authors": [
+        "Mouxiang Chen",
+        "Lefei Shen",
+        "Han Fu",
+        "Zhuo Li",
+        "Jianling Sun",
+        "Chenghao Liu"
+      ],
+      "year": 2024,
+      "venue": "Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+      "volume": null,
+      "issue": null,
+      "page": "341-352",
+      "publisher": "ACM",
+      "type": "proceedings-article",
+      "url": "https://doi.org/10.1145/3637528.3671926"
+    },
+    {
+      "doi": "10.52202/079017-0015",
+      "status": "FOUND",
+      "title": "TimeXer: Empowering Transformers for Time Series Forecasting with Exogenous Variables",
+      "authors": [
+        "Yuxuan Wang",
+        "Haixu Wu",
+        "Jiaxiang Dong",
+        "Guo Qin",
+        "Haoran Zhang",
+        "Yong Liu",
+        "Yunzhong Qiu",
+        "Jianmin Wang",
+        "Mingsheng Long"
+      ],
+      "year": 2024,
+      "venue": "Advances in Neural Information Processing Systems 37",
+      "volume": null,
+      "issue": null,
+      "page": "469-498",
+      "publisher": "Neural Information Processing Systems Foundation, Inc. (NeurIPS)",
+      "type": "proceedings-article",
+      "url": "https://doi.org/10.52202/079017-0015"
+    },
+    {
+      "doi": "10.52202/079017-0985",
+      "status": "FOUND",
+      "title": "Frequency Adaptive Normalization For Non-stationary Time Series Forecasting",
+      "authors": [
+        "Weiwei Ye",
+        "Songgaojun Deng",
+        "Qiaosha Zou",
+        "Ning Gui"
+      ],
+      "year": 2024,
+      "venue": "Advances in Neural Information Processing Systems 37",
+      "volume": null,
+      "issue": null,
+      "page": "31350-31379",
+      "publisher": "Neural Information Processing Systems Foundation, Inc. (NeurIPS)",
+      "type": "proceedings-article",
+      "url": "https://doi.org/10.52202/079017-0985"
+    },
+    {
+      "doi": "10.14778/3665844.3665863",
+      "status": "FOUND",
+      "title": "TFB: Towards Comprehensive and Fair Benchmarking of Time Series Forecasting Methods",
+      "authors": [
+        "Xiangfei Qiu",
+        "Jilin Hu",
+        "Lekui Zhou",
+        "Xingjian Wu",
+        "Junyang Du",
+        "Buang Zhang",
+        "Chenjuan Guo",
+        "Aoying Zhou",
+        "Christian S. Jensen",
+        "Zhenli Sheng",
+        "Bin Yang"
+      ],
+      "year": 2024,
+      "venue": "Proceedings of the VLDB Endowment",
+      "volume": "17",
+      "issue": "9",
+      "page": "2363-2377",
+      "publisher": "Association for Computing Machinery (ACM)",
+      "type": "journal-article",
+      "url": "https://doi.org/10.14778/3665844.3665863"
+    },
+    {
+      "doi": "10.1145/3637528.3671451",
+      "status": "FOUND",
+      "title": "Foundation Models for Time Series Analysis: A Tutorial and Survey",
+      "authors": [
+        "Yuxuan Liang",
+        "Haomin Wen",
+        "Yuqi Nie",
+        "Yushan Jiang",
+        "Ming Jin",
+        "Dongjin Song",
+        "Shirui Pan",
+        "Qingsong Wen"
+      ],
+      "year": 2024,
+      "venue": "Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+      "volume": null,
+      "issue": null,
+      "page": "6555-6565",
+      "publisher": "ACM",
+      "type": "proceedings-article",
+      "url": "https://doi.org/10.1145/3637528.3671451"
+    },
+    {
+      "doi": "10.1109/tnnls.2025.3593156",
+      "status": "FOUND",
+      "title": "Robust Multivariate Time Series Forecasting Against Intraseries and Interseries Transitional Shift",
+      "authors": [
+        "Hui He",
+        "Qi Zhang",
+        "Kun Yi",
+        "Xiaojun Xue",
+        "Shoujin Wang",
+        "Liang Hu",
+        "Longbing Cao"
+      ],
+      "year": 2025,
+      "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+      "volume": "36",
+      "issue": "12",
+      "page": "20357-20370",
+      "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1109/tnnls.2025.3593156"
+    },
+    {
+      "doi": "10.1609/aaai.v39i16.33908",
+      "status": "FOUND",
+      "title": "Adaptive Multi-Scale Decomposition Framework for Time Series Forecasting",
+      "authors": [
+        "Yifan Hu",
+        "Peiyuan Liu",
+        "Peng Zhu",
+        "Dawei Cheng",
+        "Tao Dai"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+      "volume": "39",
+      "issue": "16",
+      "page": "17359-17367",
+      "publisher": "Association for the Advancement of Artificial Intelligence (AAAI)",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1609/aaai.v39i16.33908"
+    },
+    {
+      "doi": "10.1609/aaai.v39i18.34156",
+      "status": "FOUND",
+      "title": "WPMixer: Efficient Multi-Resolution Mixing for Long-Term Time Series Forecasting",
+      "authors": [
+        "Md Mahmuddun Nabi Murad",
+        "Mehmet Aktukmak",
+        "Yasin Yilmaz"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+      "volume": "39",
+      "issue": "18",
+      "page": "19581-19588",
+      "publisher": "Association for the Advancement of Artificial Intelligence (AAAI)",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1609/aaai.v39i18.34156"
+    },
+    {
+      "doi": "10.1145/3690624.3709325",
+      "status": "FOUND",
+      "title": "DUET: Dual Clustering Enhanced Multivariate Time Series Forecasting",
+      "authors": [
+        "Xiangfei Qiu",
+        "Xingjian Wu",
+        "Yan Lin",
+        "Chenjuan Guo",
+        "Jilin Hu",
+        "Bin Yang"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.1",
+      "volume": null,
+      "issue": null,
+      "page": "1185-1196",
+      "publisher": "ACM",
+      "type": "proceedings-article",
+      "url": "https://doi.org/10.1145/3690624.3709325"
+    },
+    {
+      "doi": "10.1016/j.neunet.2024.106230",
+      "status": "FOUND",
+      "title": "Source-free unsupervised domain adaptation: A survey",
+      "authors": [
+        "Yuqi Fang",
+        "Pew-Thian Yap",
+        "Weili Lin",
+        "Hongtu Zhu",
+        "Mingxia Liu"
+      ],
+      "year": 2024,
+      "venue": "Neural Networks",
+      "volume": "174",
+      "issue": null,
+      "page": "106230",
+      "publisher": "Elsevier BV",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1016/j.neunet.2024.106230"
+    },
+    {
+      "doi": "10.1609/aaai.v37i6.25914",
+      "status": "FOUND",
+      "title": "Dish-TS: A General Paradigm for Alleviating Distribution Shift in Time Series Forecasting",
+      "authors": [
+        "Wei Fan",
+        "Pengyang Wang",
+        "Dongkun Wang",
+        "Dongjie Wang",
+        "Yuanchun Zhou",
+        "Yanjie Fu"
+      ],
+      "year": 2023,
+      "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+      "volume": "37",
+      "issue": "6",
+      "page": "7522-7529",
+      "publisher": "Association for the Advancement of Artificial Intelligence (AAAI)",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1609/aaai.v37i6.25914"
+    },
+    {
+      "doi": "10.1609/aaai.v37i9.26317",
+      "status": "FOUND",
+      "title": "Are Transformers Effective for Time Series Forecasting?",
+      "authors": [
+        "Ailing Zeng",
+        "Muxi Chen",
+        "Lei Zhang",
+        "Qiang Xu"
+      ],
+      "year": 2023,
+      "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+      "volume": "37",
+      "issue": "9",
+      "page": "11121-11128",
+      "publisher": "Association for the Advancement of Artificial Intelligence (AAAI)",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1609/aaai.v37i9.26317"
+    },
+    {
+      "doi": "10.1016/j.ijforecast.2023.04.006",
+      "status": "FOUND",
+      "title": "Hierarchical transfer learning with applications to electricity load forecasting",
+      "authors": [
+        "Anestis Antoniadis",
+        "Solenne Gaucher",
+        "Yannig Goude"
+      ],
+      "year": 2024,
+      "venue": "International Journal of Forecasting",
+      "volume": "40",
+      "issue": "2",
+      "page": "641-660",
+      "publisher": "Elsevier BV",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1016/j.ijforecast.2023.04.006"
+    },
+    {
+      "doi": "10.1080/14786451.2015.1100196",
+      "status": "FOUND",
+      "title": "Residential load and rooftop PV generation: an Australian distribution network dataset",
+      "authors": [
+        "Elizabeth L. Ratnam",
+        "Steven R. Weller",
+        "Christopher M. Kellett",
+        "Alan T. Murray"
+      ],
+      "year": 2015,
+      "venue": "International Journal of Sustainable Energy",
+      "volume": "36",
+      "issue": "8",
+      "page": "787-806",
+      "publisher": "Informa UK Limited",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1080/14786451.2015.1100196"
+    },
+    {
+      "doi": "10.1038/s42256-023-00626-4",
+      "status": "FOUND",
+      "title": "Parameter-efficient fine-tuning of large-scale pre-trained language models",
+      "authors": [
+        "Ning Ding",
+        "Yujia Qin",
+        "Guang Yang",
+        "Fuchao Wei",
+        "Zonghan Yang",
+        "Yusheng Su",
+        "Shengding Hu",
+        "Yulin Chen",
+        "Chi-Min Chan",
+        "Weize Chen",
+        "Jing Yi",
+        "Weilin Zhao",
+        "Xiaozhi Wang",
+        "Zhiyuan Liu",
+        "Hai-Tao Zheng",
+        "Jianfei Chen",
+        "Yang Liu",
+        "Jie Tang",
+        "Juanzi Li",
+        "Maosong Sun"
+      ],
+      "year": 2023,
+      "venue": "Nature Machine Intelligence",
+      "volume": "5",
+      "issue": "3",
+      "page": "220-235",
+      "publisher": "Springer Science and Business Media LLC",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1038/s42256-023-00626-4"
+    },
+    {
+      "doi": "10.1109/cvpr52688.2022.00706",
+      "status": "FOUND",
+      "title": "Continual Test-Time Domain Adaptation",
+      "authors": [
+        "Qin Wang",
+        "Olga Fink",
+        "Luc Van Gool",
+        "Dengxin Dai"
+      ],
+      "year": 2022,
+      "venue": "2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "volume": null,
+      "issue": null,
+      "page": "7191-7201",
+      "publisher": "IEEE",
+      "type": "proceedings-article",
+      "url": "https://doi.org/10.1109/cvpr52688.2022.00706"
+    }
+  ]
+}

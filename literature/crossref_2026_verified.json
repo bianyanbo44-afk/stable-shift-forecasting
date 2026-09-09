@@ -1,0 +1,70 @@
+{
+  "retrieved_at": "2026-09-08",
+  "source": "Crossref REST API",
+  "records": [
+    {
+      "doi": "10.1016/j.neucom.2026.133140",
+      "title": "Compact transformer variants for synthetic time series forecasting",
+      "authors": ["Ali Forootani", "Mohammad Khosravi"],
+      "year": 2026,
+      "venue": "Neurocomputing",
+      "volume": "677",
+      "article_number": "133140"
+    },
+    {
+      "doi": "10.1016/j.enbuild.2026.117568",
+      "title": "Operationally oriented Multi-Horizon electricity demand forecasting for industrial building zones using deep learning ensembles",
+      "authors": ["Berker Baydan", "Ahmet Haşim Yurttakal", "Hasan Köken"],
+      "year": 2026,
+      "venue": "Energy and Buildings",
+      "volume": "363",
+      "article_number": "117568"
+    },
+    {
+      "doi": "10.1109/oajpe.2026.3701634",
+      "title": "Probabilistic-Adversarial Networks (PANs): A Probability-Informed Deep Learning Approach for Electrical Demand Forecasting",
+      "authors": ["Hussein Sharadga", "Yuhan Du", "Javad Mohammadi"],
+      "year": 2026,
+      "venue": "IEEE Open Access Journal of Power and Energy",
+      "volume": "13",
+      "pages": "460-469"
+    },
+    {
+      "doi": "10.1007/s43621-026-02922-6",
+      "title": "A comparative study of machine learning and deep learning models for renewable energy and load demand forecasting in smart microgrids",
+      "authors": ["K. Ravivarma", "B. Lokeshgupta", "Ramanjaneya Reddy Udumula", "Kiran Kumar Nallamekala"],
+      "year": 2026,
+      "venue": "Discover Sustainability",
+      "volume": "7",
+      "issue": "1"
+    },
+    {
+      "doi": "10.1007/s11704-025-50947-3",
+      "title": "Deep learning for time series forecasting: a survey of recent advances",
+      "authors": ["Kaiyuan Liao", "Xiwei Xuan", "Kwan-Liu Ma"],
+      "year": 2026,
+      "venue": "Frontiers of Computer Science",
+      "volume": "20",
+      "issue": "11"
+    },
+    {
+      "doi": "10.1007/s11432-025-4553-x",
+      "title": "Tackling data heterogeneity in federated time series forecasting",
+      "authors": ["Wei Yuan", "Chaoqun Yang", "Xiangyu Zhao", "Quoc Viet Hung Nguyen", "Yang Cao", "Tieke He", "Hongzhi Yin"],
+      "year": 2026,
+      "venue": "Science China Information Sciences",
+      "volume": "69",
+      "issue": "5"
+    },
+    {
+      "doi": "10.3390/en19010280",
+      "title": "Enhancing Energy Market Forecasting with Graph Convolutional Networks: A Multi-Node Time-Series Analysis Framework",
+      "authors": ["Josue Ngondo Otshwe", "Bin Li", "Jaime Chabrol Ngouokoua", "Bing Qi", "Christian Mugisho Tabaro", "Qi Guo", "Yi Kang"],
+      "year": 2026,
+      "venue": "Energies",
+      "volume": "19",
+      "issue": "1",
+      "article_number": "280"
+    }
+  ]
+}

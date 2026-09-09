@@ -1,0 +1,84 @@
+{
+  "protocol_version": "v3-observed-label-streaming",
+  "output": "results/benchmark_v3_archival",
+  "datasets": {
+    "ecl": {
+      "path": "data/prepared_v3/ecl.npz",
+      "target_limit": 16
+    },
+    "pjm": {
+      "path": "data/prepared_v3/pjm.npz",
+      "target_limit": 2
+    },
+    "ausgrid": {
+      "path": "data/prepared_v3/ausgrid.npz",
+      "target_limit": 16
+    }
+  },
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "horizons": [
+    24,
+    48,
+    168
+  ],
+  "methods": [
+    "SeasonalNaive",
+    "WeeklyNaive",
+    "DLinear",
+    "PatchTST",
+    "TimesNet",
+    "iTransformer",
+    "TiDE",
+    "StableShift",
+    "StableShiftNoStability"
+  ],
+  "scenarios": [
+    "normal",
+    "missingness",
+    "shock",
+    "controlled_drift",
+    "anomaly"
+  ],
+  "context_length": 336,
+  "train_stride": 6,
+  "validation_stride": 24,
+  "batch_size": 32,
+  "epochs": 30,
+  "patience": 6,
+  "learning_rates": [
+    0.001,
+    0.0003
+  ],
+  "weight_decay": 0.0001,
+  "stable_model": {
+    "hidden_channels": 128,
+    "levels": 4,
+    "kernel_size": 3,
+    "dropout": 0.1,
+    "adapter_rank": 8,
+    "spectral_norm_bound": 1.0,
+    "robust_clip": 6.0,
+    "robust_filter": true,
+    "robust_threshold": 6.0,
+    "robust_window": 25,
+    "anchor_cycles": 7,
+    "cycle_average_weight": 0.6
+  },
+  "upstream_width": 64,
+  "consistency_weight": 0.05,
+  "contraction_weight": 0.0005,
+  "reconstruction_weight": 0.05,
+  "adapter_learning_rate": 0.01,
+  "max_grad_norm": 1.0,
+  "bootstrap_resamples": 5000,
+  "bootstrap_block_hours": 168,
+  "device": "cuda",
+  "num_threads": 4,
+  "upstream_commit": "4e938a1767106324dd753b2a44832bf870a0252e"
+}

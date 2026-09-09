@@ -1,0 +1,144 @@
+{
+  "generated_at_utc": "2026-09-08T01:51:20.164131+00:00",
+  "datasets": [
+    {
+      "dataset": "ecl",
+      "source_url": "https://archive.ics.uci.edu/static/public/321/electricityloaddiagrams20112014.zip",
+      "retrieved_at_utc": "2026-09-08T01:51:19.119367+00:00",
+      "raw_path": "data\\raw_ecl.zip",
+      "raw_bytes": 261335609,
+      "raw_sha256": "f6c4d0e0df12ecdb9ea008dd6eef3518adb52c559d04a9bac2e1b81dcfc8d4e1",
+      "prepared_path": "data\\prepared\\ecl.npz",
+      "prepared_shape": [
+        140256,
+        16
+      ],
+      "hourly_shape": [
+        35065,
+        16
+      ],
+      "prepared_sha256": "391570385923dd4d710d5a9809c39939ccd68b3974a424b00b3ecd3d73ee7403",
+      "time_start": "2011-01-01T00:15:00.000000000",
+      "time_end": "2015-01-01T00:00:00.000000000",
+      "target_columns": [
+        "MT_001",
+        "MT_002",
+        "MT_003",
+        "MT_004",
+        "MT_005",
+        "MT_006",
+        "MT_007",
+        "MT_008",
+        "MT_009",
+        "MT_010",
+        "MT_011",
+        "MT_012",
+        "MT_013",
+        "MT_014",
+        "MT_015",
+        "MT_016"
+      ],
+      "preparation": {
+        "resolution": "hourly",
+        "aggregation": "arithmetic mean within hourly bins",
+        "gap_rule": "forward carry for at most three empty bins; incomplete channels removed",
+        "normalization": "training segment only",
+        "source_rows": 140256,
+        "source_channels": 16,
+        "hourly_rows": 35065,
+        "hourly_channels": 16,
+        "source_missing_hour_bins": 0,
+        "hourly_time_start": "2011-01-01T00:00:00",
+        "hourly_time_end": "2015-01-01T00:00:00"
+      }
+    },
+    {
+      "dataset": "pjm",
+      "source_url": "https://www.kaggle.com/api/v1/datasets/download/robikscube/hourly-energy-consumption",
+      "retrieved_at_utc": "2026-09-08T01:51:19.888160+00:00",
+      "raw_path": "data\\raw_pjm_kaggle.zip",
+      "raw_bytes": 11979477,
+      "raw_sha256": "76636b1d976287a0fb1f0076a1be7767e053944c7080f3b8ad145d494c81bdea",
+      "prepared_path": "data\\prepared\\pjm.npz",
+      "prepared_shape": [
+        143206,
+        2
+      ],
+      "hourly_shape": [
+        143232,
+        2
+      ],
+      "prepared_sha256": "486c27b72ef6df7ce4a27a0ac518d63c68c463d5e13f70b4eb6125f4bafce44d",
+      "time_start": "2002-04-01T01:00:00.000000000",
+      "time_end": "2018-08-03T00:00:00.000000000",
+      "target_columns": [
+        "PJME",
+        "PJMW"
+      ],
+      "preparation": {
+        "resolution": "hourly",
+        "aggregation": "arithmetic mean within hourly bins",
+        "gap_rule": "forward carry for at most three empty bins; incomplete channels removed",
+        "normalization": "training segment only",
+        "source_rows": 143206,
+        "source_channels": 2,
+        "hourly_rows": 143232,
+        "hourly_channels": 2,
+        "source_missing_hour_bins": 30,
+        "hourly_time_start": "2002-04-01T01:00:00",
+        "hourly_time_end": "2018-08-03T00:00:00"
+      }
+    },
+    {
+      "dataset": "ausgrid",
+      "source_url": "https://pierreh.eu/downloads/Ausgrid_solar_home_data.zip",
+      "retrieved_at_utc": "2026-09-08T01:51:20.060006+00:00",
+      "raw_path": "data\\raw_ausgrid.zip",
+      "raw_bytes": 57038633,
+      "raw_sha256": "5a766f52b6c8b3b72730380f4422e478934bc94640a4b089dd0e0e3c055c5d82",
+      "prepared_path": "data\\prepared\\ausgrid.npz",
+      "prepared_shape": [
+        52608,
+        16
+      ],
+      "hourly_shape": [
+        26304,
+        16
+      ],
+      "prepared_sha256": "2fc1eec14c75800d7b0ef39df37a3ccacb4e33858d8d4292d9539c2ef90e27b8",
+      "time_start": "2010-07-01T00:00:00.000000000",
+      "time_end": "2013-06-30T23:30:00.000000000",
+      "target_columns": [
+        "customer_001",
+        "customer_003",
+        "customer_004",
+        "customer_005",
+        "customer_006",
+        "customer_007",
+        "customer_008",
+        "customer_009",
+        "customer_010",
+        "customer_011",
+        "customer_012",
+        "customer_013",
+        "customer_014",
+        "customer_015",
+        "customer_016",
+        "customer_017"
+      ],
+      "preparation": {
+        "resolution": "hourly",
+        "aggregation": "arithmetic mean within hourly bins",
+        "gap_rule": "forward carry for at most three empty bins; incomplete channels removed",
+        "normalization": "training segment only",
+        "source_rows": 52608,
+        "source_channels": 16,
+        "hourly_rows": 26304,
+        "hourly_channels": 16,
+        "source_missing_hour_bins": 1,
+        "hourly_time_start": "2010-07-01T00:00:00",
+        "hourly_time_end": "2013-06-30T23:00:00"
+      }
+    }
+  ]
+}

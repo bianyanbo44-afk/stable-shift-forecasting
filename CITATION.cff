@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Please cite this software release when using the StableShift code or reproducibility materials."
+type: software
+title: "StableShift: Anchored electricity-demand forecasting with bounded label-free adaptation"
+authors:
+  - family-names: Bian
+    given-names: Yanbo
+    affiliation: "Beijing Jiaotong University, Weihai International Academy"
+    email: "24722081@bjtu.edu.cn"
+version: 0.1.0
+date-released: 2026-09-09
+repository-code: "https://github.com/bianyanbo44-afk/stable-shift-forecasting"
+url: "https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/v0.1.0"
+license: MIT

@@ -1,0 +1,22 @@
+{
+  "dataset": "pjm",
+  "source": "data\\raw_pjm_kaggle.zip",
+  "source_sha256": "76636b1d976287a0fb1f0076a1be7767e053944c7080f3b8ad145d494c81bdea",
+  "prepared_sha256": "a9ac21a512670a703f7845ab045c176499bdae0bd24b4ef92602312cc1ae618b",
+  "shape": [
+    143232,
+    2
+  ],
+  "columns": [
+    "PJME",
+    "PJMW"
+  ],
+  "units": "MW",
+  "first": "2002-04-01 01:00:00",
+  "last": "2018-08-03 00:00:00",
+  "missing_per_column": [
+    34,
+    34
+  ],
+  "aggregation": "PJME/PJMW shared collection period; source clock labels; ambiguous repeated hours missing; no imputed targets"
+}

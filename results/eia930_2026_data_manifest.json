@@ -1,0 +1,181 @@
+{
+  "source": "U.S. EIA Form EIA-930",
+  "value_field": "Demand (MW)",
+  "timezone": "UTC",
+  "timestamp_semantics": "End of hour",
+  "units": "MW",
+  "records": [
+    {
+      "url": "https://www.eia.gov/electricity/gridmonitor/sixMonthFiles/EIA930_BALANCE_2023_Jan_Jun.csv",
+      "path": "data\\eia930\\EIA930_BALANCE_2023_Jan_Jun.csv",
+      "bytes": 41981693,
+      "sha256": "a0e14e9c07ab4cc1de3e384c7be890b0c61d9de3fe04ad3ae5ec739f1f35ec1b",
+      "retrieved_utc": "2026-09-09T04:10:06.254554+00:00",
+      "headers": {
+        "Content-Type": "application/octet-stream",
+        "Last-Modified": "Tue, 08 Sep 2026 14:40:00 GMT",
+        "ETag": "\"0207ed9f3fdd1:0\"",
+        "Server": "Microsoft-IIS/10.0",
+        "X-Powered-By": "ASP.NET",
+        "Strict-Transport-Security": "max-age=31536000",
+        "Vary": "Accept-Encoding",
+        "Date": "Wed, 09 Sep 2026 04:09:27 GMT",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Alt-Svc": "h3=\":443\"; ma=93600"
+      }
+    },
+    {
+      "url": "https://www.eia.gov/electricity/gridmonitor/sixMonthFiles/EIA930_BALANCE_2023_Jul_Dec.csv",
+      "path": "data\\eia930\\EIA930_BALANCE_2023_Jul_Dec.csv",
+      "bytes": 42574041,
+      "sha256": "c719fc1b513eec8982ce209b6e3173fc64b2d0d243f83d3bf0d8d1adf6222de2",
+      "retrieved_utc": "2026-09-09T04:09:49.701053+00:00",
+      "headers": {
+        "Content-Type": "application/octet-stream",
+        "Last-Modified": "Tue, 08 Sep 2026 14:40:06 GMT",
+        "ETag": "\"0a79af09f3fdd1:0\"",
+        "Server": "Microsoft-IIS/10.0",
+        "X-Powered-By": "ASP.NET",
+        "Strict-Transport-Security": "max-age=31536000",
+        "Vary": "Accept-Encoding",
+        "Date": "Wed, 09 Sep 2026 04:09:27 GMT",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Alt-Svc": "h3=\":443\"; ma=93600"
+      }
+    },
+    {
+      "url": "https://www.eia.gov/electricity/gridmonitor/sixMonthFiles/EIA930_BALANCE_2024_Jan_Jun.csv",
+      "path": "data\\eia930\\EIA930_BALANCE_2024_Jan_Jun.csv",
+      "bytes": 41742812,
+      "sha256": "26768c495c3ba987e29d79df2e40d4e741f9dbcff086f53c12ff774465756a10",
+      "retrieved_utc": "2026-09-09T04:09:57.887201+00:00",
+      "headers": {
+        "Content-Type": "application/octet-stream",
+        "Last-Modified": "Tue, 08 Sep 2026 14:40:12 GMT",
+        "ETag": "\"02e2ef49f3fdd1:0\"",
+        "Server": "Microsoft-IIS/10.0",
+        "X-Powered-By": "ASP.NET",
+        "Strict-Transport-Security": "max-age=31536000",
+        "Vary": "Accept-Encoding",
+        "Date": "Wed, 09 Sep 2026 04:09:27 GMT",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Alt-Svc": "h3=\":443\"; ma=93600"
+      }
+    },
+    {
+      "url": "https://www.eia.gov/electricity/gridmonitor/sixMonthFiles/EIA930_BALANCE_2024_Jul_Dec.csv",
+      "path": "data\\eia930\\EIA930_BALANCE_2024_Jul_Dec.csv",
+      "bytes": 47928993,
+      "sha256": "a602a8e577cfdd2fa3083413eaa4dd8ba7f0d2b26a2986f8f6d22917465ea49f",
+      "retrieved_utc": "2026-09-09T04:10:23.332157+00:00",
+      "headers": {
+        "Content-Type": "application/octet-stream",
+        "Last-Modified": "Tue, 08 Sep 2026 14:40:18 GMT",
+        "ETag": "\"0b5c1f79f3fdd1:0\"",
+        "Server": "Microsoft-IIS/10.0",
+        "X-Powered-By": "ASP.NET",
+        "Strict-Transport-Security": "max-age=31536000",
+        "Vary": "Accept-Encoding",
+        "Date": "Wed, 09 Sep 2026 04:09:50 GMT",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Alt-Svc": "h3=\":443\"; ma=93600"
+      }
+    },
+    {
+      "url": "https://www.eia.gov/electricity/gridmonitor/sixMonthFiles/EIA930_BALANCE_2025_Jan_Jun.csv",
+      "path": "data\\eia930\\EIA930_BALANCE_2025_Jan_Jun.csv",
+      "bytes": 47565054,
+      "sha256": "fac4bb991dfa1dab3b4b35300ccab54ac99be13a40ce91954db8ddafb2816242",
+      "retrieved_utc": "2026-09-09T04:10:31.547188+00:00",
+      "headers": {
+        "Content-Type": "application/octet-stream",
+        "Last-Modified": "Tue, 08 Sep 2026 14:40:24 GMT",
+        "ETag": "\"03c55fb9f3fdd1:0\"",
+        "Server": "Microsoft-IIS/10.0",
+        "X-Powered-By": "ASP.NET",
+        "Strict-Transport-Security": "max-age=31536000",
+        "Vary": "Accept-Encoding",
+        "Date": "Wed, 09 Sep 2026 04:09:58 GMT",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Alt-Svc": "h3=\":443\"; ma=93600"
+      }
+    },
+    {
+      "url": "https://www.eia.gov/electricity/gridmonitor/sixMonthFiles/EIA930_BALANCE_2025_Jul_Dec.csv",
+      "path": "data\\eia930\\EIA930_BALANCE_2025_Jul_Dec.csv",
+      "bytes": 48256021,
+      "sha256": "1146158b972439db7c7f4cc7d0491e07644ddbf244d03b8ecb44cb2c833d10f1",
+      "retrieved_utc": "2026-09-09T04:10:40.474057+00:00",
+      "headers": {
+        "Content-Type": "application/octet-stream",
+        "Last-Modified": "Tue, 08 Sep 2026 14:40:30 GMT",
+        "ETag": "\"0c3e8fe9f3fdd1:0\"",
+        "Server": "Microsoft-IIS/10.0",
+        "X-Powered-By": "ASP.NET",
+        "Strict-Transport-Security": "max-age=31536000",
+        "Vary": "Accept-Encoding",
+        "Date": "Wed, 09 Sep 2026 04:10:07 GMT",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Alt-Svc": "h3=\":443\"; ma=93600"
+      }
+    },
+    {
+      "url": "https://www.eia.gov/electricity/gridmonitor/sixMonthFiles/EIA930_BALANCE_2026_Jan_Jun.csv",
+      "path": "data\\eia930\\EIA930_BALANCE_2026_Jan_Jun.csv",
+      "bytes": 47081999,
+      "sha256": "f5dbc7dab8e953dbf5e496acd844659da251c4bff391f0632b2d1375dfaa4d58",
+      "retrieved_utc": "2026-09-09T04:10:48.310223+00:00",
+      "headers": {
+        "Content-Type": "application/octet-stream",
+        "Last-Modified": "Tue, 08 Sep 2026 14:40:36 GMT",
+        "ETag": "\"04a7c2a03fdd1:0\"",
+        "Server": "Microsoft-IIS/10.0",
+        "X-Powered-By": "ASP.NET",
+        "Strict-Transport-Security": "max-age=31536000",
+        "Vary": "Accept-Encoding",
+        "Date": "Wed, 09 Sep 2026 04:10:24 GMT",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Alt-Svc": "h3=\":443\"; ma=93600"
+      }
+    }
+  ],
+  "output": "data\\prepared_v2\\eia930_2023_2026.npz",
+  "shape": [
+    30648,
+    7
+  ],
+  "regions": [
+    "PJM",
+    "MISO",
+    "CISO",
+    "NYIS",
+    "ISNE",
+    "ERCO",
+    "SWPP"
+  ],
+  "missing_by_region": {
+    "PJM": 124,
+    "MISO": 65,
+    "CISO": 136,
+    "NYIS": 5,
+    "ISNE": 7,
+    "ERCO": 54,
+    "SWPP": 31
+  },
+  "first_timestamp": "2023-01-01 01:00:00",
+  "last_timestamp": "2026-07-01 00:00:00",
+  "label_policy": "Raw observed demand only; no provider forecasts, adjusted or imputed columns are used.",
+  "planned_split": {
+    "train_end_exclusive": "2025-01-01 01:00",
+    "validation_end_exclusive": "2026-01-01 01:00",
+    "test": "2026 first half"
+  },
+  "output_sha256": "8e7806f7931bad0209436d2b2b4c645243aeb984d434f16c6d3d8ca807542af8"
+}

@@ -1,0 +1,50 @@
+{
+  "dataset": "ecl",
+  "source": "data\\raw_ecl.zip",
+  "source_sha256": "f6c4d0e0df12ecdb9ea008dd6eef3518adb52c559d04a9bac2e1b81dcfc8d4e1",
+  "prepared_sha256": "df27042c63393550df20c5ba5b5dbd95807e22d0b97edc441bdc82b193b239c4",
+  "shape": [
+    35064,
+    16
+  ],
+  "columns": [
+    "MT_001",
+    "MT_002",
+    "MT_003",
+    "MT_004",
+    "MT_005",
+    "MT_006",
+    "MT_007",
+    "MT_008",
+    "MT_009",
+    "MT_010",
+    "MT_011",
+    "MT_012",
+    "MT_013",
+    "MT_014",
+    "MT_015",
+    "MT_016"
+  ],
+  "units": "kW",
+  "first": "2011-01-01 01:00:00",
+  "last": "2015-01-01 00:00:00",
+  "missing_per_column": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "aggregation": "First 16 source channels; mean of four interval-ending power readings; complete hours only"
+}

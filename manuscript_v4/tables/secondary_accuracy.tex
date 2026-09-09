@@ -1,0 +1,45 @@
+{
+\footnotesize
+\begin{longtable}{llp{5.2cm}rrrr}
+\toprule
+Data & $H$ & Method & Seeds & MAE & RMSE & MASE \\
+\midrule
+\endhead
+EIA-930 & 48 & DLinear & 3 & 2219 & 3530 & 1.057 \\
+EIA-930 & 48 & iTransformer & 3 & 2150 & 3427 & 1.032 \\
+EIA-930 & 48 & PatchTST & 3 & 2092 & 3379 & 0.998 \\
+EIA-930 & 48 & Daily persistence & 3 & 2843 & 4528 & 1.324 \\
+EIA-930 & 48 & StableShift & 3 & 1983 & 3191 & 0.947 \\
+EIA-930 & 48 & Without representation penalties & 2 & 1965 & 3190 & 0.943 \\
+EIA-930 & 48 & TiDE & 3 & 2040 & 3296 & 0.984 \\
+EIA-930 & 48 & TimesNet & 3 & 2356 & 3636 & 1.148 \\
+EIA-930 & 48 & Weekly persistence & 3 & 3770 & 5952 & 1.710 \\
+ECL & 24 & Without representation penalties & 1 & 7.38 & 12.85 & 3.081 \\
+ECL & 24 & TimesNet & 1 & 7.43 & 12.38 & 3.167 \\
+Ausgrid & 24 & Without representation penalties & 1 & 0.252 & 0.457 & 0.882 \\
+Ausgrid & 24 & TimesNet & 1 & 0.252 & 0.458 & 0.885 \\
+PJM archival & 24 & DLinear & 1 & 1086 & 1740 & 0.875 \\
+PJM archival & 24 & PatchTST & 1 & 1125 & 1826 & 0.910 \\
+PJM archival & 24 & Daily persistence & 1 & 1281 & 2164 & 1.030 \\
+PJM archival & 24 & Weekly persistence & 1 & 2008 & 3374 & 1.624 \\
+ERCO transfer & 168 & DLinear & 3 & 4417 & 5668 & 1.900 \\
+ERCO transfer & 168 & PatchTST & 3 & 4659 & 6202 & 2.004 \\
+ERCO transfer & 168 & Daily persistence & 3 & 4502 & 6127 & 1.936 \\
+ERCO transfer & 168 & StableShift & 3 & 4369 & 5798 & 1.879 \\
+ERCO transfer & 168 & Weekly persistence & 3 & 5125 & 6747 & 2.204 \\
+ERCO transfer & 24 & DLinear & 1 & 3203 & 4148 & 1.377 \\
+ERCO transfer & 24 & PatchTST & 1 & 2946 & 3835 & 1.267 \\
+ERCO transfer & 24 & Daily persistence & 1 & 2741 & 3738 & 1.179 \\
+ERCO transfer & 24 & Weekly persistence & 1 & 5090 & 6705 & 2.189 \\
+SWPP transfer & 168 & DLinear & 3 & 2588 & 3242 & 1.421 \\
+SWPP transfer & 168 & PatchTST & 3 & 2564 & 3470 & 1.408 \\
+SWPP transfer & 168 & Daily persistence & 3 & 2265 & 3245 & 1.244 \\
+SWPP transfer & 168 & StableShift & 3 & 2267 & 3030 & 1.245 \\
+SWPP transfer & 168 & Weekly persistence & 3 & 2786 & 3634 & 1.529 \\
+SWPP transfer & 24 & DLinear & 1 & 1817 & 2547 & 0.997 \\
+SWPP transfer & 24 & PatchTST & 1 & 1758 & 2381 & 0.965 \\
+SWPP transfer & 24 & Daily persistence & 1 & 1491 & 2164 & 0.818 \\
+SWPP transfer & 24 & Weekly persistence & 1 & 2895 & 3810 & 1.590 \\
+\bottomrule
+\end{longtable}
+}

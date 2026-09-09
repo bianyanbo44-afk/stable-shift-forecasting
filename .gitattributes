@@ -1,0 +1,5 @@
+# Preserve archived source bytes and their recorded checksums across platforms.
+* -text
+*.pdf binary
+*.png binary
+*.tiff binary

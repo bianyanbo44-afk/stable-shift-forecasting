@@ -1,0 +1,9 @@
+# CPU environment recorded during analysis (8 September 2026).
+# Completed experiment environments are recorded in their run protocols.
+# Python 3.12.10
+numpy==2.5.3
+pandas==2.2.3
+PyYAML==6.0.3
+torch==2.13.0+cpu
+matplotlib==3.11.1
+pytest==9.1.1

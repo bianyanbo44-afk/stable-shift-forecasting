@@ -1,0 +1,120 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{baydan2026operational}
+B.~Baydan, A.~H. Yurttakal, H.~K{\"o}ken, {Operationally oriented Multi-Horizon electricity demand forecasting for industrial building zones using deep learning ensembles}, Energy and Buildings 363 (2026) 117568.
+\newblock \href {https://doi.org/10.1016/j.enbuild.2026.117568} {\path{doi:10.1016/j.enbuild.2026.117568}}.
+
+\bibitem{forootani2026compact}
+A.~Forootani, M.~Khosravi, {Compact transformer variants for synthetic time series forecasting}, Neurocomputing 677 (2026) 133140.
+\newblock \href {https://doi.org/10.1016/j.neucom.2026.133140} {\path{doi:10.1016/j.neucom.2026.133140}}.
+
+\bibitem{zeng2023transformers}
+A.~Zeng, M.~Chen, L.~Zhang, Q.~Xu, {Are Transformers Effective for Time Series Forecasting?}, Proceedings of the AAAI Conference on Artificial Intelligence 37~(9) (2023) 11121--11128.
+\newblock \href {https://doi.org/10.1609/aaai.v37i9.26317} {\path{doi:10.1609/aaai.v37i9.26317}}.
+
+\bibitem{nie2023patchtst}
+Y.~Nie, N.~H. Nguyen, P.~Sinthong, J.~Kalagnanam, {A Time Series is Worth 64 Words: Long-term Forecasting with Transformers}, arXiv preprint (2022).
+\newblock \href {https://doi.org/10.48550/arxiv.2211.14730} {\path{doi:10.48550/arxiv.2211.14730}}.
+
+\bibitem{wu2023timesnet}
+H.~Wu, T.~Hu, Y.~Liu, H.~Zhou, J.~Wang, M.~Long, {TimesNet: Temporal 2D-Variation Modeling for General Time Series Analysis}, arXiv preprint (2022).
+\newblock \href {https://doi.org/10.48550/arxiv.2210.02186} {\path{doi:10.48550/arxiv.2210.02186}}.
+
+\bibitem{liu2023itransformer}
+Y.~Liu, T.~Hu, H.~Zhang, H.~Wu, S.~Wang, L.~Ma, M.~Long, {iTransformer: Inverted Transformers Are Effective for Time Series Forecasting}, arXiv preprint (2023).
+\newblock \href {https://doi.org/10.48550/arxiv.2310.06625} {\path{doi:10.48550/arxiv.2310.06625}}.
+
+\bibitem{das2023tide}
+A.~Das, W.~Kong, A.~Leach, S.~Mathur, R.~Sen, R.~Yu, {Long-term Forecasting with TiDE: Time-series Dense Encoder}, arXiv preprint (2023).
+\newblock \href {https://doi.org/10.48550/arxiv.2304.08424} {\path{doi:10.48550/arxiv.2304.08424}}.
+
+\bibitem{liao2026survey}
+K.~Liao, X.~Xuan, K.-L. Ma, {Deep learning for time series forecasting: a survey of recent advances}, Frontiers of Computer Science 20~(11) (2026).
+\newblock \href {https://doi.org/10.1007/s11704-025-50947-3} {\path{doi:10.1007/s11704-025-50947-3}}.
+
+\bibitem{liu2022nonstationary}
+Y.~Liu, H.~Wu, J.~Wang, M.~Long, {Non-stationary Transformers: Exploring the Stationarity in Time Series Forecasting}, arXiv preprint (2022).
+\newblock \href {https://doi.org/10.48550/arxiv.2205.14415} {\path{doi:10.48550/arxiv.2205.14415}}.
+
+\bibitem{fan2023dishts}
+W.~Fan, P.~Wang, D.~Wang, D.~Wang, Y.~Zhou, Y.~Fu, {Dish-TS: A General Paradigm for Alleviating Distribution Shift in Time Series Forecasting}, Proceedings of the AAAI Conference on Artificial Intelligence 37~(6) (2023) 7522--7529.
+\newblock \href {https://doi.org/10.1609/aaai.v37i6.25914} {\path{doi:10.1609/aaai.v37i6.25914}}.
+
+\bibitem{chen2024calibration}
+M.~Chen, L.~Shen, H.~Fu, Z.~Li, J.~Sun, C.~Liu, {Calibration of Time-Series Forecasting: Detecting and Adapting Context-Driven Distribution Shift}, in: Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining, 2024, pp. 341--352.
+\newblock \href {https://doi.org/10.1145/3637528.3671926} {\path{doi:10.1145/3637528.3671926}}.
+
+\bibitem{apt2026}
+Y.~Li, Z.~Shao, C.~Yu, Y.~Fu, T.~Sun, Y.~Xu, F.~Wang, {APT: Affine Prototype-Timestamp for Time Series Forecasting Under Distribution Shift}, Proceedings of the AAAI Conference on Artificial Intelligence 40~(18) (2026) 15180--15188.
+\newblock \href {https://doi.org/10.1609/aaai.v40i18.38542} {\path{doi:10.1609/aaai.v40i18.38542}}.
+
+\bibitem{adanodes2026}
+T.~Dang, S.~Chatterjee, H.~Jia, Y.~Wu, F.~Salim, F.~Kawsar, {AdaNODEs: Test Time Adaptation for Time Series Forecasting Using Neural Odes}, in: ICASSP 2026 - 2026 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2026, pp. 2771--2775.
+\newblock \href {https://doi.org/10.1109/icassp55912.2026.11463542} {\path{doi:10.1109/icassp55912.2026.11463542}}.
+
+\bibitem{adamshift2026}
+Y.~Dong, J.~Wu, {Rethinking Adam for time series forecasting: A simple heuristic to improve optimization under distribution shifts}, Neurocomputing 682 (2026) 133279.
+\newblock \href {https://doi.org/10.1016/j.neucom.2026.133279} {\path{doi:10.1016/j.neucom.2026.133279}}.
+
+\bibitem{hu2025adaptive}
+Y.~Hu, P.~Liu, P.~Zhu, D.~Cheng, T.~Dai, {Adaptive Multi-Scale Decomposition Framework for Time Series Forecasting}, Proceedings of the AAAI Conference on Artificial Intelligence 39~(16) (2025) 17359--17367.
+\newblock \href {https://doi.org/10.1609/aaai.v39i16.33908} {\path{doi:10.1609/aaai.v39i16.33908}}.
+
+\bibitem{murad2025wpmixer}
+M.~M.~N. Murad, M.~Aktukmak, Y.~Yilmaz, {WPMixer: Efficient Multi-Resolution Mixing for Long-Term Time Series Forecasting}, Proceedings of the AAAI Conference on Artificial Intelligence 39~(18) (2025) 19581--19588.
+\newblock \href {https://doi.org/10.1609/aaai.v39i18.34156} {\path{doi:10.1609/aaai.v39i18.34156}}.
+
+\bibitem{qiu2025duet}
+X.~Qiu, X.~Wu, Y.~Lin, C.~Guo, J.~Hu, B.~Yang, {DUET: Dual Clustering Enhanced Multivariate Time Series Forecasting}, in: Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.1, 2025, pp. 1185--1196.
+\newblock \href {https://doi.org/10.1145/3690624.3709325} {\path{doi:10.1145/3690624.3709325}}.
+
+\bibitem{he2025robust}
+H.~He, Q.~Zhang, K.~Yi, X.~Xue, S.~Wang, L.~Hu, L.~Cao, {Robust Multivariate Time Series Forecasting Against Intraseries and Interseries Transitional Shift}, IEEE Transactions on Neural Networks and Learning Systems 36~(12) (2025) 20357--20370.
+\newblock \href {https://doi.org/10.1109/tnnls.2025.3593156} {\path{doi:10.1109/tnnls.2025.3593156}}.
+
+\bibitem{wang2022continualtta}
+Q.~Wang, O.~Fink, L.~V. Gool, D.~Dai, {Continual Test-Time Domain Adaptation}, in: 2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2022, pp. 7191--7201.
+\newblock \href {https://doi.org/10.1109/cvpr52688.2022.00706} {\path{doi:10.1109/cvpr52688.2022.00706}}.
+
+\bibitem{kim2025tta}
+H.~Kim, S.~Kim, J.~Mok, S.~Yoon, {Battling the Non-stationarity in Time Series Forecasting via Test-time Adaptation}, Proceedings of the AAAI Conference on Artificial Intelligence 39~(17) (2025) 17868--17876.
+\newblock \href {https://doi.org/10.1609/aaai.v39i17.33965} {\path{doi:10.1609/aaai.v39i17.33965}}.
+
+\bibitem{hu2021lora}
+E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, W.~Chen, {LoRA: Low-Rank Adaptation of Large Language Models}, arXiv preprint (2021).
+\newblock \href {https://doi.org/10.48550/arxiv.2106.09685} {\path{doi:10.48550/arxiv.2106.09685}}.
+
+\bibitem{ding2023peft}
+N.~Ding, Y.~Qin, G.~Yang, F.~Wei, Z.~Yang, Y.~Su, S.~Hu, Y.~Chen, C.-M. Chan, W.~Chen, J.~Yi, W.~Zhao, X.~Wang, Z.~Liu, H.-T. Zheng, J.~Chen, Y.~Liu, J.~Tang, J.~Li, M.~Sun, {Parameter-efficient fine-tuning of large-scale pre-trained language models}, Nature Machine Intelligence 5~(3) (2023) 220--235.
+\newblock \href {https://doi.org/10.1038/s42256-023-00626-4} {\path{doi:10.1038/s42256-023-00626-4}}.
+
+\bibitem{miyato2018spectral}
+T.~Miyato, T.~Kataoka, M.~Koyama, Y.~Yoshida, {Spectral Normalization for Generative Adversarial Networks}, arXiv preprint (2018).
+\newblock \href {https://doi.org/10.48550/arxiv.1802.05957} {\path{doi:10.48550/arxiv.1802.05957}}.
+
+\bibitem{antoniadis2024hierarchical}
+A.~Antoniadis, S.~Gaucher, Y.~Goude, {Hierarchical transfer learning with applications to electricity load forecasting}, International Journal of Forecasting 40~(2) (2024) 641--660.
+\newblock \href {https://doi.org/10.1016/j.ijforecast.2023.04.006} {\path{doi:10.1016/j.ijforecast.2023.04.006}}.
+
+\bibitem{uci2015ecl}
+{UCI Machine Learning Repository}, \href{https://archive.ics.uci.edu/dataset/321/electricityloaddiagrams20112014}{{ElectricityLoadDiagrams20112014}}, UCI dataset 321, accessed 8 September 2026 (2015).
+\newline\urlprefix\url{https://archive.ics.uci.edu/dataset/321/electricityloaddiagrams20112014}
+
+\bibitem{ratnam2015ausgrid}
+E.~L. Ratnam, S.~R. Weller, C.~M. Kellett, A.~T. Murray, {Residential load and rooftop PV generation: an Australian distribution network dataset}, International Journal of Sustainable Energy 36~(8) (2017) 787--806.
+\newblock \href {https://doi.org/10.1080/14786451.2015.1100196} {\path{doi:10.1080/14786451.2015.1100196}}.
+
+\bibitem{eia9302026}
+{U.S. Energy Information Administration}, \href{https://www.eia.gov/electricity/gridmonitor/dashboard/electric_overview/US48/US48}{{EIA-930 Balance files: hourly operating data}}, U.S. EIA Electricity Grid Monitor, observed demand balance files retrieved 8 September 2026; accessed 9 September 2026 (2026).
+\newline\urlprefix\url{https://www.eia.gov/electricity/gridmonitor/dashboard/electric_overview/US48/US48}
+
+\bibitem{qiu2024tfb}
+X.~Qiu, J.~Hu, L.~Zhou, X.~Wu, J.~Du, B.~Zhang, C.~Guo, A.~Zhou, C.~S. Jensen, Z.~Sheng, B.~Yang, {TFB: Towards Comprehensive and Fair Benchmarking of Time Series Forecasting Methods}, Proceedings of the VLDB Endowment 17~(9) (2024) 2363--2377.
+\newblock \href {https://doi.org/10.14778/3665844.3665863} {\path{doi:10.14778/3665844.3665863}}.
+
+\end{thebibliography}

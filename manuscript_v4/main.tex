@@ -5,7 +5,12 @@
 \usepackage{xcolor}
 \usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
-\usepackage{balance}
+\usepackage{cuted}
+% Keep the class caption style for full-width figures placed in the text flow.
+\makeatletter
+\newcommand{\captionof}[1]{\def\@captype{#1}\caption}
+\makeatother
+\setlength{\stripsep}{12pt plus 2pt minus 2pt}
 \journal{Neurocomputing}
 \newtheorem{proposition}{Proposition}
 \newcommand{\SSmodel}{StableShift}
@@ -61,11 +66,15 @@ Let $x_t\in\R^{L\times(d+6)}$ contain the $L=336$ hours immediately preceding fo
 
 The forecaster has fixed parameters $\theta$ and an online state $\phi_t=(U_t,V_t)$. At each origin it first computes a context-only drift score, optionally updates $\phi_t$, and then issues the forecast. State persists across successive origins. Labels enter only the subsequent evaluation of issued forecasts. Figure~\ref{fig:method} summarizes the information flow.
 
-\begin{figure*}[t]
+\begin{strip}\vspace{0pt}\end{strip}
+\clearpage
+\begin{strip}
+\begin{minipage}{\textwidth}
 \centering\includegraphics[width=\textwidth]{figures/fig1_architecture.pdf}
-\caption{\textbf{An explicit boundary between forecasting knowledge and online modification.} (a) Each forecast uses the preceding 336 observed hours. Future labels enter scoring after issuance. (b) Context conditioning feeds a frozen temporal encoder and a seasonal reference. Learned linear and neural corrections augment that reference. Only the two low-rank factors are mutable during deployment. A validation-calibrated drift gate permits one masked-reconstruction step per origin. The diagram is schematic; all computations are detailed in the Methods and Supplementary Information.}
+\captionof{figure}{\textbf{An explicit boundary between forecasting knowledge and online modification.} (a) Each forecast uses the preceding 336 observed hours. Future labels enter scoring after issuance. (b) Context conditioning feeds a frozen temporal encoder and a seasonal reference. Learned linear and neural corrections augment that reference. Only the two low-rank factors are mutable during deployment. A validation-calibrated drift gate permits one masked-reconstruction step per origin. The diagram is schematic; all computations are detailed in the Methods and Supplementary Information.}
 \label{fig:method}
-\end{figure*}
+\end{minipage}
+\end{strip}
 
 \subsection{Seasonal reference and learned corrections}
 Write $\widetilde x_t$ for the conditioned load context. A 25 h local median filter replaces observations beyond six local median absolute deviations, using a standardized deviation floor of 0.20. Values are then clipped to $[-6,6]$. The filter uses only the context available at the forecast origin. Calendar channels are retained unchanged.
@@ -153,59 +162,76 @@ MAE averages absolute errors over scored origins, horizons, channels and seeds. 
 
 Confidence intervals use 5,000 paired bootstrap resamples crossing common seed draws with common circular time blocks. Missing score slots remain on the deployment grid. The principal block spans at least seven days: seven 24 h origins or one 168 h origin. Sensitivity analyses use 14- and 28-day blocks. Intervals are pointwise percentile 95\% intervals. Null-centered bootstrap tests use an add-one Monte Carlo correction, followed by Holm adjustment across the 60 main MAE/RMSE comparisons; MASE and intervention families are adjusted separately. Joint calendar-day resampling gives equal-cell macro and worst-cell relative errors. This retains the dependence between horizons and conditions within each dataset. Supplementary Section S4 provides the full specification and numerical tables.
 
+\begin{strip}\vspace{0pt}\end{strip}
+\clearpage
 \section{Results}
 \subsection{An advantage on the 2026 regional holdout}
 StableShift achieves EIA-930 MAE values of 1,562 MW at 24 h and 2,573 MW at 168 h, compared with 1,646 MW and 2,711 MW for TiDE (Table~\ref{tab:main}). The corresponding RMSE values are 2,480 MW and 4,017 MW, versus 2,615 MW and 4,364 MW. At 24 h, the paired MAE difference is $-5.07\%$ (pointwise 95\% CI $-8.70$ to $-1.24\%$); the 168 h difference is $-5.11\%$ ($-13.46$ to $+3.26\%$). Figure~\ref{fig:accuracy} shows both metrics and all main cells. The longer-horizon interval reflects the smaller number of non-overlapping forecast blocks. The chronological EIA contrasts do not meet the Holm-adjusted 5\% threshold across the full comparison family.
 
-\begin{table*}[t]
+\begin{strip}
+\begin{minipage}{\textwidth}
 \centering
-\caption{\textbf{Chronological forecast accuracy across aggregation scales.} Entries are five-seed pooled MAE / RMSE in original units: MW for EIA-930, kW for ECL and kWh per hourly interval for Ausgrid. Bold indicates the lowest error among available five-seed methods in each column and metric. A dash denotes that a five-seed result is unavailable; partial runs appear in the supplement. The table reports point estimates; paired uncertainty is shown in Fig.~\ref{fig:accuracy}.}
+\captionof{table}{\textbf{Chronological forecast accuracy across aggregation scales.} Entries are five-seed pooled MAE / RMSE in original units: MW for EIA-930, kW for ECL and kWh per hourly interval for Ausgrid. Bold indicates the lowest error among available five-seed methods in each column and metric. A dash denotes that a five-seed result is unavailable; partial runs appear in the supplement. The table reports point estimates; paired uncertainty is shown in Fig.~\ref{fig:accuracy}.}
 \label{tab:main}
 \input{tables/main_accuracy.tex}
-\end{table*}
+\end{minipage}
+\end{strip}
 
-\begin{figure*}[t]
+\begin{strip}
+\begin{minipage}{\textwidth}
 \centering\includegraphics[width=\textwidth]{figures/fig2_accuracy.pdf}
-\caption{\textbf{Forecasting gains depend on the data scale.} Paired relative differences in (a) MAE and (b) RMSE from the validation-selected comparator. Negative values favor StableShift. The comparator is TiDE except for ECL 168 h, where it is weekly persistence. Points pool five seeds; bars are pointwise 95\% paired crossed seed/time-block bootstrap intervals with 5,000 resamples. Scheduled origins retain their positions when labels are unavailable. Holm-adjusted tests are reported separately.}
+\captionof{figure}{\textbf{Forecasting gains depend on the data scale.} Paired relative differences in (a) MAE and (b) RMSE from the validation-selected comparator. Negative values favor StableShift. The comparator is TiDE except for ECL 168 h, where it is weekly persistence. Points pool five seeds; bars are pointwise 95\% paired crossed seed/time-block bootstrap intervals with 5,000 resamples. Scheduled origins retain their positions when labels are unavailable. Holm-adjusted tests are reported separately.}
 \label{fig:accuracy}
-\end{figure*}
+\end{minipage}
+\end{strip}
 
 The customer and household benchmarks produce a different ordering. Relative to the fixed validation comparators, StableShift's MAE is 18.3--19.4\% higher on ECL and 8.0--11.3\% higher on Ausgrid. TiDE gives the lowest chronological ECL point estimates in Table~\ref{tab:main}, while the best household result varies by metric and horizon. Across the six chronological cells, the equal-cell relative MAE difference is $+7.81\%$ (95\% CI $+5.77$ to $+9.94\%$), and the RMSE difference is $+5.04\%$ ($+2.81$ to $+7.62\%$). This pattern identifies regional demand as the present design's strongest application.
 
+\begin{strip}\vspace{0pt}\end{strip}
+\clearpage
 \subsection{Regional accuracy under altered inputs}
 On EIA 24 h, StableShift has lower MAE than TiDE in all four perturbed-input conditions. The differences are $-4.46\%$ for missing inputs, $-9.03\%$ for recent amplitude scaling, $-9.96\%$ for affine offset and $-19.67\%$ for block anomalies. The last three contrasts retain Holm-adjusted significance, with adjusted $p=0.012$, $0.049$ and $0.012$, respectively. At 168 h, the corresponding point-estimate advantages are 2.16\%, 8.83\%, 11.24\% and 12.12\%; their multiplicity-adjusted tests are less decisive.
 
 Figure~\ref{fig:stress} shows absolute comparative error alongside degradation from each model's chronological forecast. Under the 24 h block anomaly, StableShift's MAE rises from 1,562 to 1,622 MW, a factor of 1.038, whereas TiDE rises from 1,646 to 2,019 MW, a factor of 1.227. Under missing inputs, StableShift retains lower absolute MAE, with a larger increase relative to its own chronological error.
 
-\begin{figure*}[t]
+\begin{strip}
+\begin{minipage}{\textwidth}
 \centering\includegraphics[width=\textwidth]{figures/fig3_input_response.pdf}
-\caption{\textbf{Absolute accuracy and degradation describe complementary responses to altered inputs.} (a,b) EIA MAE divided by each method's own chronological MAE, for 24 h and 168 h forecasts. Lines connect categorical conditions for readability and do not represent increasing perturbation severity. (c,d) Relative MAE differences from the fixed validation comparator across all three datasets. Colors and printed values use the same scale; negative values favor StableShift. All conditions alter observed context loads only and retain the original future labels. Values pool five seeds. Pointwise uncertainty and adjusted tests are provided in Supplementary Table S3 and Source Data.}
+\captionof{figure}{\textbf{Absolute accuracy and degradation describe complementary responses to altered inputs.} (a,b) EIA MAE divided by each method's own chronological MAE, for 24 h and 168 h forecasts. Lines connect categorical conditions for readability and do not represent increasing perturbation severity. (c,d) Relative MAE differences from the fixed validation comparator across all three datasets. Colors and printed values use the same scale; negative values favor StableShift. All conditions alter observed context loads only and retain the original future labels. Values pool five seeds. Pointwise uncertainty and adjusted tests are provided in Supplementary Table S3 and Source Data.}
 \label{fig:stress}
-\end{figure*}
+\end{minipage}
+\end{strip}
 
 Across all 30 main data/horizon/input-condition cells, the macro relative difference is $+1.77\%$ in MAE (95\% CI $-0.18$ to $+3.86\%$) and $-0.68\%$ in RMSE ($-2.83$ to $+1.59\%$). The worst-cell MAE difference is $+24.54\%$ ($+18.48$ to $+43.00\%$).
 
+\begin{strip}\vspace{0pt}\end{strip}
+\clearpage
 \subsection{Learned corrections dominate the observed EIA gain}
 Removing both learned corrections raises EIA MAE from 1,562 to 2,359 MW at 24 h and from 2,573 to 3,051 MW at 168 h. Expressed relative to the anchor-only model, the full forecaster reduces MAE by 33.8\% and 15.7\%. Conversely, removing online updates changes the chronological MAE by only $-0.0015\%$ and $+0.0011\%$ relative to the full model. Across all 30 main conditions, the largest absolute MAE difference from disabling updates is 0.0524\% (Fig.~\ref{fig:components}). The useful regional forecasting behavior is therefore already present in the fitted correction pathways.
 
 The drift gate updates nine of 181 EIA 24 h origins and one of 25 EIA 168 h origins. It makes no updates on the unmodified ECL streams and updates 50 of 219 and five of 31 Ausgrid origins. Reconstruction telemetry characterizes the update activity, complementing the paired forecast comparison. Removing the representation penalties while retaining spectral normalization produces smaller, directionally mixed effects. Input conditioning also has condition-dependent effects, with removal improving the EIA missing-input point estimates. Supplementary Table S4 reports every available five-seed intervention and its uncertainty.
 
-\begin{figure*}[t]
+\begin{strip}
+\begin{minipage}{\textwidth}
 \centering\includegraphics[width=\textwidth]{figures/fig4_components.pdf}
-\caption{\textbf{Component interventions locate the source of forecasting performance.} (a) Removing the learned linear and neural corrections, leaving the seasonal reference. (b) Retraining without consistency and representation-energy penalties; spectral normalization and reconstruction remain enabled. Points and bars in (a,b) show relative MAE changes from the full model and pointwise paired 95\% intervals, with five seeds. Cells with fewer than five completed retraining seeds are labeled. (c) The effect of disabling online updates is displayed on its own small numerical scale; values below 0.0005\% in magnitude round to zero. (d) Triggered updates divided by scheduled origins on unmodified input streams. Positive intervention effects mean that the removed component helped the full model.}
+\captionof{figure}{\textbf{Component interventions locate the source of forecasting performance.} (a) Removing the learned linear and neural corrections, leaving the seasonal reference. (b) Retraining without consistency and representation-energy penalties; spectral normalization and reconstruction remain enabled. Points and bars in (a,b) show relative MAE changes from the full model and pointwise paired 95\% intervals, with five seeds. Cells with fewer than five completed retraining seeds are labeled. (c) The effect of disabling online updates is displayed on its own small numerical scale; values below 0.0005\% in magnitude round to zero. (d) Triggered updates divided by scheduled origins on unmodified input streams. Positive intervention effects mean that the removed component helped the full model.}
 \label{fig:components}
-\end{figure*}
+\end{minipage}
+\end{strip}
 
+\clearpage
 \subsection{Regional transfer and deployment cost}
 The separate three-seed transfer evaluation gives StableShift MAE values of 4,369 MW on ERCO and 2,267 MW on SWPP (Fig.~\ref{fig:transfer}). Relative to validation-selected PatchTST, these are point-estimate reductions of 6.23\% and 11.59\%. The ERCO interval includes zero; complete transfer intervals appear in Supplementary Table S6. DLinear has lower ERCO RMSE, while daily persistence nearly matches StableShift's SWPP MAE. The anchor-only variant has slightly lower MAE on both regions, indicating a substantial contribution from the transferred seasonal reference.
 
 The mutable state contains 2,048 parameters at every horizon. Total model size ranges from 526,560 parameters for EIA 24 h to 978,657 for a 16-channel 168 h model. EIA 24 h median per-origin latency is 4.24 ms on the recorded RTX 4060 Laptop GPU; the measured median includes triggered adaptation at its observed frequency. The corresponding maximum allocated GPU memory during the inference stream is 25.93 MiB. Supplementary computational measurements are grouped by hardware, including V100/V100S archival runs. Figure~\ref{fig:transfer} compares model size and latency within the EIA hardware setting.
 
-\begin{figure*}[t]
+\begin{strip}
+\begin{minipage}{\textwidth}
 \centering\includegraphics[width=\textwidth]{figures/fig5_transfer_cost.pdf}
-\caption{\textbf{Transfer and computation complete the operating profile.} (a,b) Absolute MAE for previously unseen ERCO and SWPP at 168 h, using three seeds; bars show pointwise 95\% crossed seed/weekly-origin bootstrap intervals. Each region has its own horizontal scale. (c) Parameter count and chronological EIA 24 h MAE for the completed neural methods. (d) Median EIA 24 h latency on the same RTX 4060 Laptop GPU. Points are medians across the five seed-specific latency medians; lines span their minimum and maximum, not confidence intervals. Logarithmic axes are used for parameter count and latency. Measured forecasting time includes the online update when it is triggered.}
+\captionof{figure}{\textbf{Transfer and computation complete the operating profile.} (a,b) Absolute MAE for previously unseen ERCO and SWPP at 168 h, using three seeds; bars show pointwise 95\% crossed seed/weekly-origin bootstrap intervals. Each region has its own horizontal scale. (c) Parameter count and chronological EIA 24 h MAE for the completed neural methods. (d) Median EIA 24 h latency on the same RTX 4060 Laptop GPU. Points are medians across the five seed-specific latency medians; lines span their minimum and maximum, not confidence intervals. Logarithmic axes are used for parameter count and latency. Measured forecasting time includes the online update when it is triggered.}
 \label{fig:transfer}
-\end{figure*}
+\end{minipage}
+\end{strip}
 
 \section{Discussion}
 Anchored forecasting turns recurring demand structure into an explicit reference for learning. On the recent EIA-930 holdout, the fitted corrections improve day-ahead accuracy and sustain an advantage under the specified altered-input conditions. The joint correction intervention identifies these pathways as the main source of the regional gain. The seasonal reference thus provides both a useful forecasting foundation and an interpretable baseline for measuring what the model learns.
@@ -238,7 +264,7 @@ OpenAI Codex assisted with software development, analysis scripting, manuscript 
 \section*{Supplementary material}
 Supplementary Information provides the sensitivity proof, full data and implementation specifications, paired statistical results, all available secondary experiments and reproducibility details. The accompanying Source Data are machine-readable.
 
-\setlength{\bibsep}{2pt plus 0.5pt minus 0.5pt}
+\setlength{\bibsep}{0pt plus 0.5pt}
 \bibliographystyle{elsarticle-num}
 \bibliography{references}
 \end{document}

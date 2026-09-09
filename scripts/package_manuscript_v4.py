@@ -5,6 +5,7 @@ ROOT=Path(__file__).resolve().parents[1];O=ROOT/'manuscript_v4';OUT=ROOT/'submis
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--main-pdf',type=Path,default=O/'main.pdf',help='Use an alternate local export as manuscript_v4/main.pdf in the archive.')
 parser.add_argument('--skip-evidence',action='store_true',help='Keep the existing completed-evidence archive and its manifest record.')
+parser.add_argument('--manuscript-only',action='store_true',help='Refresh only the manuscript ZIP, preserving the code and experimental evidence archives.')
 args=parser.parse_args()
 if not args.main_pdf.is_file():raise SystemExit('Main PDF does not exist: '+str(args.main_pdf))
 M=json.loads((O/'source_data/analysis_manifest.json').read_text(encoding='utf-8'))
@@ -21,9 +22,15 @@ def archive(name,paths,overrides=None):
 paper=[]
 for pattern in ['*.tex','*.pdf','*.bib','*.bbl','*.txt','*.md','tables/*.tex','figures/*.pdf','figures/*.svg','figures/*.png','figures/*.tiff','source_data/*']:
     paper.extend(O.glob(pattern))
-paper=[p for p in paper if p.name not in {'EDITORIAL_PLAN.md','main_final.pdf'} and (p.resolve()!=args.main_pdf.resolve() or p.name=='main.pdf')]
+paper=[p for p in paper if p.name!='EDITORIAL_PLAN.md' and
+       (p.suffix.lower()!='.pdf' or p.name in {'main.pdf','supplementary.pdf','cover_letter.pdf'})]
 paper.append(O/'quality/final_checks.json')
 records=[archive('Neurocomputing_manuscript_v4.zip',paper,{(O/'main.pdf').resolve():args.main_pdf.resolve()})]
+if args.manuscript_only:
+    previous=json.loads((OUT/'package_manifest.json').read_text(encoding='utf-8'))
+    records.extend(r for r in previous if r['file']!='Neurocomputing_manuscript_v4.zip')
+    (OUT/'package_manifest.json').write_text(json.dumps(records,indent=2),encoding='utf-8')
+    raise SystemExit(0)
 code=list((ROOT/'src/stable_shift_forecasting').glob('*.py'))
 script_names=['run_benchmark_v3.py','run_entity_transfer_v3.py','aggregate_benchmark_v3.py','analyze_manuscript_v4.py','build_submission_inventory_v4.py',
  'build_manuscript_assets_v4.py','draw_manuscript_v4.py','compile_manuscript_v4.py','review_manuscript_v4.py','prepare_references_v4.py',

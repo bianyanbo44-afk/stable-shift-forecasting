@@ -23,7 +23,7 @@ paper=[]
 for pattern in ['*.tex','*.pdf','*.bib','*.bbl','*.txt','*.md','tables/*.tex','figures/*.pdf','figures/*.svg','figures/*.png','figures/*.tiff','source_data/*']:
     paper.extend(O.glob(pattern))
 paper=[p for p in paper if p.name!='EDITORIAL_PLAN.md' and
-       (p.suffix.lower()!='.pdf' or p.name in {'main.pdf','supplementary.pdf','cover_letter.pdf'})]
+       (p.parent!=O or p.suffix.lower()!='.pdf' or p.name in {'main.pdf','supplementary.pdf','cover_letter.pdf'})]
 paper.append(O/'quality/final_checks.json')
 records=[archive('Neurocomputing_manuscript_v4.zip',paper,{(O/'main.pdf').resolve():args.main_pdf.resolve()})]
 if args.manuscript_only:

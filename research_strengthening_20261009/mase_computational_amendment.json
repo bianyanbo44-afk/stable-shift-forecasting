@@ -1,0 +1,40 @@
+{
+  "frozen_utc": "2026-10-09T14:11:49.108405+00:00",
+  "before_any_withheld_scoring": true,
+  "reason": "Original loader rejected zero training seasonal MASE scale. ECL fixed cohort has ten constant training channels. All entities remain in source forecasts, calibration updates and primary MAE/RMSE.",
+  "primary_protocol_changed": false,
+  "cohort_ids_changed": false,
+  "selections_changed": false,
+  "training_only_defined_channels": {
+    "ecl": [
+      "MT_101",
+      "MT_102",
+      "MT_103",
+      "MT_104",
+      "MT_105",
+      "MT_114"
+    ],
+    "ausgrid": [
+      "customer_101",
+      "customer_102",
+      "customer_103",
+      "customer_104",
+      "customer_105",
+      "customer_106",
+      "customer_107",
+      "customer_108",
+      "customer_109",
+      "customer_110",
+      "customer_111",
+      "customer_112",
+      "customer_113",
+      "customer_114",
+      "customer_115",
+      "customer_116"
+    ]
+  },
+  "secondary_mase": "Pool scaled errors only over channels with positive finite training seasonal scale; use separately recorded mase_observed_count in all point estimates and bootstrap denominators. Do not invent a positive seasonal scale for constant training channels.",
+  "source_normalization": "Original training-only mean/std, including pre-existing unit-standard-deviation fallback for constant channels; no new tuning.",
+  "selection_lock_sha256": "bf9a0fa348bb93a647c2681ea2913d3d42ce822e6a1a722ae428489824ed611d",
+  "loader_sha256": "1e54a88a99440597cc06871492a07d598fb97675c6c6dab2ecdccf4c3c5bb3be"
+}

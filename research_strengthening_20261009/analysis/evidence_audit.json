@@ -1,0 +1,508 @@
+{
+  "selection": {
+    "cosa_expanded": {
+      "disabled": 1,
+      "at_alpha_1": 0,
+      "at_rate_0_01": 0,
+      "at_steps_50": 5,
+      "at_steps_20": 15
+    },
+    "history_clip": {
+      "disabled": 5,
+      "at_alpha_1": 10,
+      "at_rate_0_01": 0,
+      "at_steps_50": 0,
+      "at_steps_20": 0
+    },
+    "nlms_expanded": {
+      "disabled": 5,
+      "at_alpha_1": 0,
+      "at_rate_0_01": 0,
+      "at_steps_50": 0,
+      "at_steps_20": 0
+    },
+    "query_expanded": {
+      "disabled": 5,
+      "at_alpha_1": 12,
+      "at_rate_0_01": 0,
+      "at_steps_50": 0,
+      "at_steps_20": 0
+    },
+    "cosa_candidates_min": 16,
+    "cosa_candidates_max": 17
+  },
+  "phases": {
+    "test": {
+      "source_runs": 60,
+      "forecast_rows": 232220,
+      "mask_and_causal_checks": true,
+      "metrics_recomputed": true,
+      "active_qnc_updates": 12580,
+      "qnc_clipped_updates": 5447,
+      "qnc_bound_violations": 0,
+      "operator_feedback_loss_violations": 0,
+      "qnc_dataset_updates": {
+        "ausgrid": {
+          "updates": 4240,
+          "clipped": 3883
+        },
+        "ecl": {
+          "updates": 5700,
+          "clipped": 1472
+        },
+        "eia930": {
+          "updates": 2640,
+          "clipped": 92
+        }
+      }
+    },
+    "independent": {
+      "source_runs": 20,
+      "forecast_rows": 20060,
+      "mask_and_causal_checks": true,
+      "metrics_recomputed": true,
+      "active_qnc_updates": 855,
+      "qnc_clipped_updates": 9,
+      "qnc_bound_violations": 0,
+      "operator_feedback_loss_violations": 0,
+      "qnc_dataset_updates": {
+        "eia930": {
+          "updates": 855,
+          "clipped": 9
+        }
+      }
+    },
+    "withheld": {
+      "source_runs": 40,
+      "forecast_rows": 171700,
+      "mask_and_causal_checks": true,
+      "metrics_recomputed": true,
+      "active_qnc_updates": 9940,
+      "qnc_clipped_updates": 6768,
+      "qnc_bound_violations": 0,
+      "operator_feedback_loss_violations": 0,
+      "qnc_dataset_updates": {
+        "ausgrid": {
+          "updates": 4240,
+          "clipped": 3918
+        },
+        "ecl": {
+          "updates": 5700,
+          "clipped": 2850
+        }
+      }
+    }
+  },
+  "withheld_manifest": {
+    "prepared_utc": "2026-10-09T11:42:48.724633+00:00",
+    "selection_lock_sha256": "bf9a0fa348bb93a647c2681ea2913d3d42ce822e6a1a722ae428489824ed611d",
+    "datasets": {
+      "ecl": {
+        "entities": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116
+        ],
+        "columns": [
+          "MT_101",
+          "MT_102",
+          "MT_103",
+          "MT_104",
+          "MT_105",
+          "MT_106",
+          "MT_107",
+          "MT_108",
+          "MT_109",
+          "MT_110",
+          "MT_111",
+          "MT_112",
+          "MT_113",
+          "MT_114",
+          "MT_115",
+          "MT_116"
+        ],
+        "shape": [
+          35064,
+          16
+        ],
+        "units": "kW",
+        "first_timestamp": "2011-01-01 01:00:00",
+        "last_timestamp": "2015-01-01 00:00:00",
+        "missing_by_channel": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "source_archive_sha256": "f6c4d0e0df12ecdb9ea008dd6eef3518adb52c559d04a9bac2e1b81dcfc8d4e1",
+        "prepared_sha256": "08b8eecb34bad53a99b4f07f14ef31e14c6745c51e471abf949203c370228b08",
+        "selection_did_not_use_test_completeness": true
+      },
+      "ausgrid": {
+        "entities": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116
+        ],
+        "columns": [
+          "customer_101",
+          "customer_102",
+          "customer_103",
+          "customer_104",
+          "customer_105",
+          "customer_106",
+          "customer_107",
+          "customer_108",
+          "customer_109",
+          "customer_110",
+          "customer_111",
+          "customer_112",
+          "customer_113",
+          "customer_114",
+          "customer_115",
+          "customer_116"
+        ],
+        "shape": [
+          26304,
+          16
+        ],
+        "units": "kWh per hour-long interval",
+        "first_timestamp": "2010-07-01 01:00:00",
+        "last_timestamp": "2013-07-01 00:00:00",
+        "missing_by_channel": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "source_archive_sha256": "5a766f52b6c8b3b72730380f4422e478934bc94640a4b089dd0e0e3c055c5d82",
+        "prepared_sha256": "f5b5992c9f54e548e50722b38a7968dde86084c1e3d03a3e7cbedde495a140ff",
+        "selection_did_not_use_test_completeness": true
+      }
+    },
+    "entity_membership_overlap": false,
+    "evaluation": "predeclared unused-entity cohort on existing historical calendar; fixed positional transfer; no source retraining"
+  },
+  "selection_lock_utc": "2026-10-09T11:21:43.493260+00:00",
+  "mase_computational_amendment": {
+    "frozen_utc": "2026-10-09T14:11:49.108405+00:00",
+    "before_any_withheld_scoring": true,
+    "reason": "Original loader rejected zero training seasonal MASE scale. ECL fixed cohort has ten constant training channels. All entities remain in source forecasts, calibration updates and primary MAE/RMSE.",
+    "primary_protocol_changed": false,
+    "cohort_ids_changed": false,
+    "selections_changed": false,
+    "training_only_defined_channels": {
+      "ecl": [
+        "MT_101",
+        "MT_102",
+        "MT_103",
+        "MT_104",
+        "MT_105",
+        "MT_114"
+      ],
+      "ausgrid": [
+        "customer_101",
+        "customer_102",
+        "customer_103",
+        "customer_104",
+        "customer_105",
+        "customer_106",
+        "customer_107",
+        "customer_108",
+        "customer_109",
+        "customer_110",
+        "customer_111",
+        "customer_112",
+        "customer_113",
+        "customer_114",
+        "customer_115",
+        "customer_116"
+      ]
+    },
+    "secondary_mase": "Pool scaled errors only over channels with positive finite training seasonal scale; use separately recorded mase_observed_count in all point estimates and bootstrap denominators. Do not invent a positive seasonal scale for constant training channels.",
+    "source_normalization": "Original training-only mean/std, including pre-existing unit-standard-deviation fallback for constant channels; no new tuning.",
+    "selection_lock_sha256": "bf9a0fa348bb93a647c2681ea2913d3d42ce822e6a1a722ae428489824ed611d",
+    "loader_sha256": "1e54a88a99440597cc06871492a07d598fb97675c6c6dab2ecdccf4c3c5bb3be"
+  },
+  "unused_entity_variation": {
+    "ecl": [
+      {
+        "entity": "MT_101",
+        "training_std": 542.7273559570312,
+        "test_std": 380.0090637207031,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_102",
+        "training_std": 525.3896484375,
+        "test_std": 447.59588623046875,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_103",
+        "training_std": 757.5509643554688,
+        "test_std": 622.908935546875,
+        "test_nonzero_fraction": 0.9998574280011405,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_104",
+        "training_std": 438.3671875,
+        "test_std": 355.263427734375,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_105",
+        "training_std": 166.75404357910156,
+        "test_std": 150.43051147460938,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_106",
+        "training_std": 0.0,
+        "test_std": 27.22871971130371,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_107",
+        "training_std": 0.0,
+        "test_std": 8.294066429138184,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_108",
+        "training_std": 0.0,
+        "test_std": 16.73162269592285,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_109",
+        "training_std": 0.0,
+        "test_std": 35.39080810546875,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_110",
+        "training_std": 0.0,
+        "test_std": 21.41119384765625,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_111",
+        "training_std": 0.0,
+        "test_std": 21.443037033081055,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_112",
+        "training_std": 0.0,
+        "test_std": 15.05526065826416,
+        "test_nonzero_fraction": 0.9992871400057028,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_113",
+        "training_std": 0.0,
+        "test_std": 7.3702497482299805,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_114",
+        "training_std": 174.53656005859375,
+        "test_std": 126.00739288330078,
+        "test_nonzero_fraction": 0.9994297120045623,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_115",
+        "training_std": 0.0,
+        "test_std": 10.917683601379395,
+        "test_nonzero_fraction": 0.9995722840034217,
+        "all_period_zero": false
+      },
+      {
+        "entity": "MT_116",
+        "training_std": 0.0,
+        "test_std": 15.609177589416504,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      }
+    ],
+    "ausgrid": [
+      {
+        "entity": "customer_101",
+        "training_std": 0.4190937876701355,
+        "test_std": 0.44434675574302673,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_102",
+        "training_std": 0.7114465236663818,
+        "test_std": 0.6074671149253845,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_103",
+        "training_std": 0.5653916001319885,
+        "test_std": 0.7112889289855957,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_104",
+        "training_std": 1.512230634689331,
+        "test_std": 1.9029731750488281,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_105",
+        "training_std": 0.7017691731452942,
+        "test_std": 0.257539302110672,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_106",
+        "training_std": 0.8103889226913452,
+        "test_std": 0.8263092637062073,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_107",
+        "training_std": 0.4213399291038513,
+        "test_std": 0.35933682322502136,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_108",
+        "training_std": 0.6137135624885559,
+        "test_std": 0.5850872993469238,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_109",
+        "training_std": 0.5674369931221008,
+        "test_std": 0.5912277698516846,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_110",
+        "training_std": 0.5194970965385437,
+        "test_std": 0.5272344946861267,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_111",
+        "training_std": 0.5432857275009155,
+        "test_std": 0.775855541229248,
+        "test_nonzero_fraction": 0.9992398327632079,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_112",
+        "training_std": 0.6027383804321289,
+        "test_std": 0.6129399538040161,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_113",
+        "training_std": 0.532041072845459,
+        "test_std": 0.47978395223617554,
+        "test_nonzero_fraction": 0.9990497909540099,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_114",
+        "training_std": 1.0607223510742188,
+        "test_std": 1.1284376382827759,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_115",
+        "training_std": 0.3853767216205597,
+        "test_std": 0.3695010542869568,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      },
+      {
+        "entity": "customer_116",
+        "training_std": 0.46517688035964966,
+        "test_std": 0.302269846200943,
+        "test_nonzero_fraction": 1.0,
+        "all_period_zero": false
+      }
+    ]
+  },
+  "locked_validation_implementation_sha256_matches": true
+}

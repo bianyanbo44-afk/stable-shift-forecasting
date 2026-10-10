@@ -1,0 +1,10 @@
+{
+  "display_name": "QORC",
+  "expansion": "Query-aware Online Residual Calibration",
+  "previous_manuscript_name": "QNC",
+  "archived_operator_identifier": "query_expanded",
+  "algorithm_changed": false,
+  "primary_scores_changed": false,
+  "displacement": "one before/after feedback update at the same current query",
+  "spelling": "British English in manuscript prose; original citations and code identifiers retained"
+}

@@ -1,0 +1,150 @@
+{
+  "query_expanded": {
+    "config": {
+      "rule": "query",
+      "alpha": 1.0,
+      "trust": 0.05
+    },
+    "mae": 9.72082503217468,
+    "rmse": 16.834666094679232,
+    "mase": 4.077059957713498,
+    "origins": 67,
+    "observed_entries": 180096,
+    "updates": 60,
+    "clipped_updates": 60,
+    "query_displacement_p99": 0.09865938872098923,
+    "query_displacement_max": 0.09886565059423447
+  },
+  "nlms_expanded": {
+    "config": {
+      "rule": "none",
+      "alpha": 0.4,
+      "trust": null
+    },
+    "mae": 9.71291022953275,
+    "rmse": 16.71334669712177,
+    "mase": 3.9450468335079787,
+    "origins": 67,
+    "observed_entries": 180096,
+    "updates": 60,
+    "clipped_updates": 0,
+    "query_displacement_p99": 0.3086882531642914,
+    "query_displacement_max": 0.3571670651435852
+  },
+  "history_clip": {
+    "config": {
+      "rule": "history",
+      "alpha": 0.4,
+      "trust": 0.05
+    },
+    "mae": 9.72194560981397,
+    "rmse": 16.841081782588393,
+    "mase": 4.061711866047633,
+    "origins": 67,
+    "observed_entries": 180096,
+    "updates": 60,
+    "clipped_updates": 60,
+    "query_displacement_p99": 0.11239466816186905,
+    "query_displacement_max": 0.118770070374012
+  },
+  "cosa_expanded": {
+    "config": {
+      "rate": 0.0003,
+      "steps": 50
+    },
+    "mae": 10.014615890637746,
+    "rmse": 17.196394693979958,
+    "mase": 4.159679581795062,
+    "seconds": 14.5,
+    "origins": 67,
+    "observed_entries": 180096,
+    "complete_blocks": 67,
+    "post_feedback_observed_entries": 161280,
+    "updates": 3000,
+    "mutable_parameters": 467728,
+    "peak_allocated_mib": 26.84521484375,
+    "measurement_origin": "predeclared validation-only boundary extension"
+  },
+  "budget_by_rho": {
+    "0.01": {
+      "config": {
+        "rule": "query",
+        "alpha": 0.2,
+        "trust": 0.01
+      },
+      "mae": 10.220419144469043,
+      "rmse": 17.868143455461766,
+      "mase": 4.639457018608843,
+      "origins": 67,
+      "observed_entries": 180096,
+      "updates": 60,
+      "clipped_updates": 60,
+      "query_displacement_p99": 0.019731875509023666,
+      "query_displacement_max": 0.019773129373788834
+    },
+    "0.025": {
+      "config": {
+        "rule": "query",
+        "alpha": 0.2,
+        "trust": 0.025
+      },
+      "mae": 9.844240968419108,
+      "rmse": 17.172763018842296,
+      "mase": 4.255986285233113,
+      "origins": 67,
+      "observed_entries": 180096,
+      "updates": 60,
+      "clipped_updates": 60,
+      "query_displacement_p99": 0.049329690635204315,
+      "query_displacement_max": 0.049432817846536636
+    },
+    "0.05": {
+      "config": {
+        "rule": "query",
+        "alpha": 1.0,
+        "trust": 0.05
+      },
+      "mae": 9.72082503217468,
+      "rmse": 16.834666094679232,
+      "mase": 4.077059957713498,
+      "origins": 67,
+      "observed_entries": 180096,
+      "updates": 60,
+      "clipped_updates": 60,
+      "query_displacement_p99": 0.09865938872098923,
+      "query_displacement_max": 0.09886565059423447
+    },
+    "0.1": {
+      "config": {
+        "rule": "query",
+        "alpha": 1.0,
+        "trust": 0.1
+      },
+      "mae": 9.67545404577351,
+      "rmse": 16.62248144679589,
+      "mase": 3.9509884828844877,
+      "origins": 67,
+      "observed_entries": 180096,
+      "updates": 60,
+      "clipped_updates": 60,
+      "query_displacement_p99": 0.19731877744197845,
+      "query_displacement_max": 0.19773131608963013
+    },
+    "0.2": {
+      "config": {
+        "rule": "query",
+        "alpha": 0.4,
+        "trust": 0.2
+      },
+      "mae": 9.71291022953275,
+      "rmse": 16.71334669712177,
+      "mase": 3.9450468335079787,
+      "origins": 67,
+      "observed_entries": 180096,
+      "updates": 60,
+      "clipped_updates": 0,
+      "query_displacement_p99": 0.3086882531642914,
+      "query_displacement_max": 0.3571670651435852
+    }
+  }
+}

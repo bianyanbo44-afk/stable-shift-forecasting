@@ -1,0 +1,94 @@
+{
+  "query_expanded": {
+    "config": {
+      "disabled": true
+    },
+    "mae": 2905.5296749607865,
+    "rmse": 4506.837020599925,
+    "mase": 1.3703760528447928,
+    "updates": 0
+  },
+  "nlms_expanded": {
+    "config": {
+      "disabled": true
+    },
+    "mae": 2905.5296749607865,
+    "rmse": 4506.837020599925,
+    "mase": 1.3703760528447928,
+    "updates": 0
+  },
+  "history_clip": {
+    "config": {
+      "disabled": true
+    },
+    "mae": 2905.5296749607865,
+    "rmse": 4506.837020599925,
+    "mase": 1.3703760528447928,
+    "updates": 0
+  },
+  "cosa_expanded": {
+    "config": {
+      "rate": 0.0003,
+      "steps": 1
+    },
+    "mae": 2904.6809244009874,
+    "rmse": 4507.715272979168,
+    "mase": 1.3700025741695445,
+    "seconds": 0.8590000000003783,
+    "origins": 177,
+    "observed_entries": 207312,
+    "complete_blocks": 151,
+    "post_feedback_observed_entries": 199080,
+    "updates": 170,
+    "mutable_parameters": 204631,
+    "peak_allocated_mib": 21.99951171875,
+    "measurement_origin": "archived original validation candidate"
+  },
+  "budget_by_rho": {
+    "0.01": {
+      "config": {
+        "disabled": true
+      },
+      "mae": 2905.5296749607865,
+      "rmse": 4506.837020599925,
+      "mase": 1.3703760528447928,
+      "updates": 0
+    },
+    "0.025": {
+      "config": {
+        "disabled": true
+      },
+      "mae": 2905.5296749607865,
+      "rmse": 4506.837020599925,
+      "mase": 1.3703760528447928,
+      "updates": 0
+    },
+    "0.05": {
+      "config": {
+        "disabled": true
+      },
+      "mae": 2905.5296749607865,
+      "rmse": 4506.837020599925,
+      "mase": 1.3703760528447928,
+      "updates": 0
+    },
+    "0.1": {
+      "config": {
+        "disabled": true
+      },
+      "mae": 2905.5296749607865,
+      "rmse": 4506.837020599925,
+      "mase": 1.3703760528447928,
+      "updates": 0
+    },
+    "0.2": {
+      "config": {
+        "disabled": true
+      },
+      "mae": 2905.5296749607865,
+      "rmse": 4506.837020599925,
+      "mase": 1.3703760528447928,
+      "updates": 0
+    }
+  }
+}

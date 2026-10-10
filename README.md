@@ -1,65 +1,55 @@
-# StableShift
+# QORC and StableShift
 
-Code, manuscript and reproducibility materials for **Anchored electricity-demand forecasting with bounded label-free adaptation**.
+Code and research materials for **Learning from delayed feedback with bounded forecast updates**.
 
-Yanbo Bian · Beijing Jiaotong University · [24722081@bjtu.edu.cn](mailto:24722081@bjtu.edu.cn)
+QORC (Query-aware Online Residual Calibration) learns from matured forecast errors while bounding the change it induces at the current forecast. It uses a closed-form normalised residual update over a frozen source forecaster. The original StableShift forecasting implementation and its earlier study remain available in this repository.
 
-StableShift combines an explicit seasonal reference, learned linear and neural corrections, and a 2,048-parameter online state. The repository includes the five-seed 24 h / 168 h comparison on EIA-930, ECL and Ausgrid, paired component interventions, and a separate regional-transfer analysis.
+[QORC v0.3.0 research release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/qorc-v0.3.0) · [Source Data](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/download/qorc-v0.3.0/QORC_Source_Data_v0.3.0.zip) · [Complete reproduction archive](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/download/qorc-v0.3.0/QORC_Reproduction_v0.3.0.zip) · [Reproduction instructions](docs/QORC_REPRODUCIBILITY.md)
 
-[Read the manuscript](manuscript_v4/main.pdf) · [Supplementary information](manuscript_v4/supplementary.pdf) · [Source Data](manuscript_v4/source_data) · [Download completed forecasts](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/v0.1.0)
+## Results and evaluation
 
-![StableShift architecture](manuscript_v4/figures/fig1_architecture.png)
+The release includes 60 validation selections, 60 original-benchmark evaluations, 20 EIA re-evaluations and 40 fixed-configuration entity-transfer evaluations. It covers three electricity-demand datasets, two frozen sources, 24 h/168 h horizons and five source seeds.
 
-## Install
+- All 23,375 active QORC updates met the current-query displacement and feedback-loss tolerances.
+- Mean benchmark MAE was 4.02% lower than frozen forecasting and 0.74% lower than independently tuned NLMS.
+- New-entity MAE was 15.13% lower than frozen forecasting and 2.04% higher than independently tuned NLMS.
+- Historical clipping exceeded the matched QORC query budget in 13.00% of benchmark updates and 24.29% of entity-transfer updates.
+- The median controlled-COSA/QORC calibration-and-scoring time ratio was 19.6 across 11 active seed-11 settings, excluding shared source inference.
 
-Use Python 3.12 and install the project from the repository root:
+Temporal comparisons revisit development periods and are exploratory. ECL/Ausgrid entities 101–116 use archived sources, fixed positional transfer and configurations selected before cohort preparation. Complete results and five budget profiles accompany the release. QORC names the same rule archived as QNC/`query_expanded`; raw identifiers remain stable.
+
+## Install and reproduce
+
+Use Python 3.12 and an appropriate CUDA PyTorch build for metric replay:
 
 ```bash
 python -m pip install -e ".[analysis]" -r requirements-upstream.txt
 ```
 
-For GPU training, install the PyTorch build matching your CUDA environment. Recorded environments are retained in `requirements-cuda-lock.txt` and the release's run protocols. `requirements-lock.txt` records the CPU analysis environment; `submission_v4/analysis_environment_lock.txt` captures manuscript post-processing dependencies.
-
-## Reproduce figures and the paper
-
-The committed Source Data and tables are sufficient to redraw the five figures and compile the manuscript:
+Download and extract `QORC_Reproduction_v0.3.0.zip` into a separate directory. It contains the prepared arrays, 60 selected source checkpoints and all recorded trajectories required for replay.
 
 ```bash
-python scripts/draw_manuscript_v4.py
-python scripts/compile_manuscript_v4.py
+python research_strengthening_20261009/replay_strengthening.py
+python research_strengthening_20261009/analyze_strengthening.py --phase all
+python research_strengthening_20261009/derive_strengthening.py
+python research_strengthening_20261009/summarize_control.py
 ```
 
-Compilation requires a LaTeX installation with `pdflatex`, `bibtex`, `elsarticle` and the packages used in the sources. Arial was used for the figures; Matplotlib substitutes an available font when Arial is absent.
+The default replay regenerates the Ausgrid 24 h seed-11 StableShift entity-transfer cell and compares its metrics with the released records. [Detailed instructions](docs/QORC_REPRODUCIBILITY.md) describe requirements, figures and data preparation.
 
-To recompute paired statistics and tables, download `Neurocomputing_completed_forecast_evidence_v4.zip` from the [v0.1.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/v0.1.0) and extract it into this repository root, preserving its paths. The archive contains **2,120 completed scenario/variant forecast streams** with predictions, window metrics, model-selection records and source snapshots.
-
-```bash
-python scripts/analyze_manuscript_v4.py
-python scripts/build_manuscript_assets_v4.py
-python scripts/draw_manuscript_v4.py
-python scripts/compile_manuscript_v4.py
-```
-
-These commands analyze completed experiments; they do not launch training. The release includes a SHA-256 manifest for its archives.
-
-## Data and training
-
-See [reproduction instructions](docs/REPRODUCIBILITY.md) for data preparation, archived run paths and training commands. EIA-930 spans 2023 through June 2026. ECL and Ausgrid provide the historical customer and household benchmarks. Original data remain available from their providers.
-
-The main comparisons use seeds `11, 22, 33, 44, 55`, a 336 h input context, and forecast horizons of 24 h and 168 h. Supplementary experiments report their recorded seed counts. Every quantitative result is linked to saved forecasts through `manuscript_v4/source_data/analysis_manifest.json`.
-
-## Repository layout
+## Files
 
 | Path | Contents |
-| --- | --- |
-| `src/stable_shift_forecasting/` | Model, deployment, metrics and paired inference |
-| `scripts/` | Data preparation, training, analysis and manuscript generation |
-| `configs/` | Main, archival and transfer configurations |
-| `manuscript_v4/` | Paper, supplement, bibliography, tables, figures and Source Data |
-| `vendor_cache/Time-Series-Library/` | Pinned forecasting baselines and their original license |
+|---|---|
+| `research_strengthening_20261009/` | Calibration selection, evaluation, paired inference, budget/runtime analysis and figure code |
+| `research_strengthening_20261009/analysis/` | Compact complete statistical summaries; full per-origin data are in the release |
+| `research_innovation_20260924/` | Original QNC operator and controlled COSA implementation |
+| `src/stable_shift_forecasting/` | Frozen forecasting sources, metrics and data interfaces |
+| `docs/qorc_figures/` | Five vector figures corresponding to this research version |
+| `TERMINOLOGY_MAP.json` | QORC/QNC identifier mapping |
 
-## Citation and license
+## Citation and licences
 
-Use [CITATION.cff](CITATION.cff) to cite this software release. The associated manuscript is supplied in this repository.
+Use [CITATION.cff](CITATION.cff) and the versioned release URL for these research materials. Author-created software retains the root MIT licence. Third-party COSA code retains CC BY-NC-SA 4.0 and its original notices; provider terms govern source datasets. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-Original software is available under the [MIT license](LICENSE). Third-party software retains its own license, as listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The software license does not relicense third-party datasets or the manuscript text and figures.
+The [StableShift v0.1.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/v0.1.0) and [QNC v0.2.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/qnc-v0.2.0) remain available for the earlier studies. The original StableShift instructions are preserved in [docs/STABLESHIFT_LEGACY_README.md](docs/STABLESHIFT_LEGACY_README.md).

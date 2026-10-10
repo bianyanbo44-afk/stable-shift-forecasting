@@ -1,0 +1,6 @@
+{
+  "reason": "The first two validation-only implementation checks showed a best COSA configuration at the new 20-step boundary. No supplementary test or withheld-cohort outcomes had been evaluated.",
+  "initial_protocol_preserved": true,
+  "rule": "After the fixed 16-candidate COSA grid, if its validation-selected active configuration uses 20 steps, additionally evaluate 50 steps at that selected starting rate. If its selected rate is 0.005, additionally evaluate rate 0.01 at its selected step count. Select among the complete recorded candidates and the disabled option. Perform this single boundary extension only, without subsequent test-driven tuning.",
+  "reporting": "Report actual candidate count and any remaining boundary optimum. These additions are validation-only. This amendment is hashed before the full selection stage and all supplementary evaluation stages."
+}

@@ -1,0 +1,71 @@
+{
+  "DOI": "10.1109/97.668945",
+  "title": [
+    "Set-membership filtering and a set-membership normalized LMS algorithm with an adaptive step size"
+  ],
+  "author": [
+    {
+      "given": "S.",
+      "family": "Gollamudi",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    },
+    {
+      "given": "S.",
+      "family": "Nagaraj",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    },
+    {
+      "given": "S.",
+      "family": "Kapoor",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    },
+    {
+      "family": "Yih-Fang Huang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    }
+  ],
+  "container-title": [
+    "IEEE Signal Processing Letters"
+  ],
+  "volume": "5",
+  "issue": "5",
+  "page": "111-114",
+  "published": {
+    "date-parts": [
+      [
+        1998,
+        5
+      ]
+    ]
+  },
+  "URL": "https://doi.org/10.1109/97.668945",
+  "abstract": null
+}

@@ -1,0 +1,103 @@
+{
+  "analysis_status": "post-hoc descriptive summary of locked trajectories",
+  "input_sha256": {
+    "test_update_geometry.csv": "1dac0928336d895f8d61d34c0cd9392416089be59aed7131831167d5af43bf03",
+    "independent_update_geometry.csv": "84022a137bf794824d7dd65a313b8786fa427876a020328a20319bfd83bde586",
+    "withheld_update_geometry.csv": "0bda4f22dba05ec181b0709b50ec59355cd8688e7de0218fee9ae021501e5783"
+  },
+  "join_keys": [
+    "dataset",
+    "horizon",
+    "base",
+    "seed",
+    "update_number"
+  ],
+  "common_budget": "QNC query_cap from the same event",
+  "exceedance_tolerance": "2e-6 * max(1, common_cap) in standardized RMS units",
+  "active_events_only": true,
+  "all_events_retained": true,
+  "new_model_or_budget_selection": false,
+  "rows": [
+    {
+      "phase": "test",
+      "method": "query_expanded",
+      "updates": 12580,
+      "exceedances": 0,
+      "exceedance_fraction": 0.0,
+      "ratio_p99": 1.0000002,
+      "ratio_max": 1.0000004599999999
+    },
+    {
+      "phase": "test",
+      "method": "nlms_matched_new",
+      "updates": 12580,
+      "exceedances": 5452,
+      "exceedance_fraction": 0.43338632750397454,
+      "ratio_p99": 26.86025387999993,
+      "ratio_max": 47.007155999999995
+    },
+    {
+      "phase": "test",
+      "method": "history_matched_new",
+      "updates": 12580,
+      "exceedances": 1635,
+      "exceedance_fraction": 0.12996820349761526,
+      "ratio_p99": 1.4974483365165256,
+      "ratio_max": 4.3144693487378225
+    },
+    {
+      "phase": "independent",
+      "method": "query_expanded",
+      "updates": 855,
+      "exceedances": 0,
+      "exceedance_fraction": 0.0,
+      "ratio_p99": 0.9949813632009942,
+      "ratio_max": 1.0000001443756863
+    },
+    {
+      "phase": "independent",
+      "method": "nlms_matched_new",
+      "updates": 855,
+      "exceedances": 9,
+      "exceedance_fraction": 0.010526315789473684,
+      "ratio_p99": 1.0004985121438608,
+      "ratio_max": 1.6401969498109983
+    },
+    {
+      "phase": "independent",
+      "method": "history_matched_new",
+      "updates": 855,
+      "exceedances": 5,
+      "exceedance_fraction": 0.005847953216374269,
+      "ratio_p99": 0.9176498670220047,
+      "ratio_max": 1.2108746701002402
+    },
+    {
+      "phase": "withheld",
+      "method": "query_expanded",
+      "updates": 9940,
+      "exceedances": 0,
+      "exceedance_fraction": 0.0,
+      "ratio_p99": 1.0000012766725517,
+      "ratio_max": 1.0000037746260813
+    },
+    {
+      "phase": "withheld",
+      "method": "nlms_matched_new",
+      "updates": 9940,
+      "exceedances": 6764,
+      "exceedance_fraction": 0.6804828973843058,
+      "ratio_p99": 78.46269001886107,
+      "ratio_max": 146.84916792389336
+    },
+    {
+      "phase": "withheld",
+      "method": "history_matched_new",
+      "updates": 9940,
+      "exceedances": 2414,
+      "exceedance_fraction": 0.24285714285714285,
+      "ratio_p99": 1.488681648800002,
+      "ratio_max": 2.4500868
+    }
+  ]
+}

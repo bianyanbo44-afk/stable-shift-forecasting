@@ -1,0 +1,10 @@
+matplotlib==3.10.8
+numpy==2.2.6
+pandas==2.2.3
+PyMuPDF==1.26.7
+pillow==12.3.0
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.66.1
+kiwisolver==1.5.1
+pyparsing==3.3.3

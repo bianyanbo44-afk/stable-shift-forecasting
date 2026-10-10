@@ -1,0 +1,85 @@
+{
+  "query_expanded": {
+    "config": {
+      "disabled": true
+    },
+    "mae": 2902.943414746912,
+    "rmse": 4543.3737061790325,
+    "mase": 1.3685913746796479,
+    "updates": 0
+  },
+  "nlms_expanded": {
+    "config": {
+      "disabled": true
+    },
+    "mae": 2902.943414746912,
+    "rmse": 4543.3737061790325,
+    "mase": 1.3685913746796479,
+    "updates": 0
+  },
+  "history_clip": {
+    "config": {
+      "disabled": true
+    },
+    "mae": 2902.943414746912,
+    "rmse": 4543.3737061790325,
+    "mase": 1.3685913746796479,
+    "updates": 0
+  },
+  "cosa_expanded": {
+    "config": {
+      "disabled": true
+    },
+    "mae": 2902.943414746912,
+    "rmse": 4543.3737061790325,
+    "mase": 1.3685913746796479,
+    "updates": 0
+  },
+  "budget_by_rho": {
+    "0.01": {
+      "config": {
+        "disabled": true
+      },
+      "mae": 2902.943414746912,
+      "rmse": 4543.3737061790325,
+      "mase": 1.3685913746796479,
+      "updates": 0
+    },
+    "0.025": {
+      "config": {
+        "disabled": true
+      },
+      "mae": 2902.943414746912,
+      "rmse": 4543.3737061790325,
+      "mase": 1.3685913746796479,
+      "updates": 0
+    },
+    "0.05": {
+      "config": {
+        "disabled": true
+      },
+      "mae": 2902.943414746912,
+      "rmse": 4543.3737061790325,
+      "mase": 1.3685913746796479,
+      "updates": 0
+    },
+    "0.1": {
+      "config": {
+        "disabled": true
+      },
+      "mae": 2902.943414746912,
+      "rmse": 4543.3737061790325,
+      "mase": 1.3685913746796479,
+      "updates": 0
+    },
+    "0.2": {
+      "config": {
+        "disabled": true
+      },
+      "mae": 2902.943414746912,
+      "rmse": 4543.3737061790325,
+      "mase": 1.3685913746796479,
+      "updates": 0
+    }
+  }
+}

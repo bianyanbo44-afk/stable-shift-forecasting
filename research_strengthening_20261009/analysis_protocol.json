@@ -1,0 +1,12 @@
+{
+  "before_supplementary_test_evaluation": true,
+  "primary": {"baselines": ["frozen", "cosa_expanded", "nlms_expanded"], "metrics": ["mae","rmse"], "holm_tests": {"test":72,"independent":24,"withheld":48}},
+  "matched_mechanism": {"baselines": ["nlms_matched_new","history_matched_new"], "metrics": ["mae","rmse"], "holm_tests": {"test":48,"independent":16,"withheld":32}},
+  "independently_tuned_history": {"baselines": ["history_clip"], "metrics": ["mae","rmse"], "holm_tests": {"test":24,"independent":8,"withheld":16}},
+  "MASE": "Same contrasts, secondary families separated from MAE/RMSE; family size half of corresponding primary family.",
+  "bootstrap_draws":5000,
+  "block_days":[7,14,28],
+  "macro": "Equal setting weights. Preserve shared within-dataset calendar/seed draws across horizons and architectures. Report pointwise paired intervals, not arbitrary manuscript acceptance thresholds.",
+  "budget": "All budgets and both fixed-eta and validation-eta analyses reported descriptively. Do not select a budget on any testing outcome. Report retained step fractions and absolute standardized displacement quantiles.",
+  "runtime": "Use a separate unbatched warm-up plus three synchronized repetitions on the seed-11 streams for all 12 main settings and all five primary methods; fixed order rotation. Report median loop durations conditional on selected budgets, not whole-model latency."
+}

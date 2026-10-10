@@ -1,0 +1,28 @@
+{
+  "title": "QORC expanded evaluation: Source data and reproducibility materials",
+  "author": "Yanbo Bian",
+  "version": "0.3.0",
+  "release_date": "2026-10-10",
+  "release_tag": "qorc-v0.3.0",
+  "release_url": "https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/qorc-v0.3.0",
+  "repository": "https://github.com/bianyanbo44-afk/stable-shift-forecasting",
+  "generated_data": "Observed-entry error sums/counts, paired statistics, calibration selections, update geometry, budget profiles and runtime measurements.",
+  "reused_sources": [
+    "EIA-930",
+    "UCI ECL (10.24432/C58C86)",
+    "Ausgrid (10.1080/14786451.2015.1100196)"
+  ],
+  "licence_note": "Author-created software is MIT; third-party and provider terms are retained separately.",
+  "checkpoint_count": 60,
+  "completed_cells": {
+    "select": 60,
+    "test": 60,
+    "independent": 20,
+    "withheld": 40
+  },
+  "algorithm_identifiers": {
+    "manuscript": "QORC",
+    "previous_name": "QNC",
+    "archive_key": "query_expanded"
+  }
+}

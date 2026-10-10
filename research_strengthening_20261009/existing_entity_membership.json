@@ -1,0 +1,109 @@
+{
+  "data/prepared/ausgrid.npz": [
+    "customer_001",
+    "customer_003",
+    "customer_004",
+    "customer_005",
+    "customer_006",
+    "customer_007",
+    "customer_008",
+    "customer_009",
+    "customer_010",
+    "customer_011",
+    "customer_012",
+    "customer_013",
+    "customer_014",
+    "customer_015",
+    "customer_016",
+    "customer_017"
+  ],
+  "data/prepared/ecl.npz": [
+    "MT_001",
+    "MT_002",
+    "MT_003",
+    "MT_004",
+    "MT_005",
+    "MT_006",
+    "MT_007",
+    "MT_008",
+    "MT_009",
+    "MT_010",
+    "MT_011",
+    "MT_012",
+    "MT_013",
+    "MT_014",
+    "MT_015",
+    "MT_016"
+  ],
+  "data/prepared/pjm.npz": [
+    "PJME",
+    "PJMW"
+  ],
+  "data/prepared_v2/eia930_2023_2026.npz": [
+    "PJM",
+    "MISO",
+    "CISO",
+    "NYIS",
+    "ISNE",
+    "ERCO",
+    "SWPP"
+  ],
+  "data/prepared_v2/eia930_2023_2026_ffill.npz": [
+    "PJM",
+    "MISO",
+    "CISO",
+    "NYIS",
+    "ISNE",
+    "ERCO",
+    "SWPP"
+  ],
+  "data/prepared_v3/ausgrid.npz": [
+    "customer_001",
+    "customer_002",
+    "customer_003",
+    "customer_004",
+    "customer_005",
+    "customer_006",
+    "customer_007",
+    "customer_008",
+    "customer_009",
+    "customer_010",
+    "customer_011",
+    "customer_012",
+    "customer_013",
+    "customer_014",
+    "customer_015",
+    "customer_016"
+  ],
+  "data/prepared_v3/ecl.npz": [
+    "MT_001",
+    "MT_002",
+    "MT_003",
+    "MT_004",
+    "MT_005",
+    "MT_006",
+    "MT_007",
+    "MT_008",
+    "MT_009",
+    "MT_010",
+    "MT_011",
+    "MT_012",
+    "MT_013",
+    "MT_014",
+    "MT_015",
+    "MT_016"
+  ],
+  "data/prepared_v3/pjm.npz": [
+    "PJME",
+    "PJMW"
+  ],
+  "data/prepared_v4/eia930_through_august_2026.npz": [
+    "PJM",
+    "MISO",
+    "CISO",
+    "NYIS",
+    "ISNE",
+    "ERCO",
+    "SWPP"
+  ]
+}

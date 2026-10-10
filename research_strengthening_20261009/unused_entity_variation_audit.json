@@ -1,0 +1,230 @@
+{
+  "ecl": [
+    {
+      "entity": "MT_101",
+      "training_std": 542.7273559570312,
+      "test_std": 380.0090637207031,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_102",
+      "training_std": 525.3896484375,
+      "test_std": 447.59588623046875,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_103",
+      "training_std": 757.5509643554688,
+      "test_std": 622.908935546875,
+      "test_nonzero_fraction": 0.9998574280011405,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_104",
+      "training_std": 438.3671875,
+      "test_std": 355.263427734375,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_105",
+      "training_std": 166.75404357910156,
+      "test_std": 150.43051147460938,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_106",
+      "training_std": 0.0,
+      "test_std": 27.22871971130371,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_107",
+      "training_std": 0.0,
+      "test_std": 8.294066429138184,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_108",
+      "training_std": 0.0,
+      "test_std": 16.73162269592285,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_109",
+      "training_std": 0.0,
+      "test_std": 35.39080810546875,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_110",
+      "training_std": 0.0,
+      "test_std": 21.41119384765625,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_111",
+      "training_std": 0.0,
+      "test_std": 21.443037033081055,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_112",
+      "training_std": 0.0,
+      "test_std": 15.05526065826416,
+      "test_nonzero_fraction": 0.9992871400057028,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_113",
+      "training_std": 0.0,
+      "test_std": 7.3702497482299805,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_114",
+      "training_std": 174.53656005859375,
+      "test_std": 126.00739288330078,
+      "test_nonzero_fraction": 0.9994297120045623,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_115",
+      "training_std": 0.0,
+      "test_std": 10.917683601379395,
+      "test_nonzero_fraction": 0.9995722840034217,
+      "all_period_zero": false
+    },
+    {
+      "entity": "MT_116",
+      "training_std": 0.0,
+      "test_std": 15.609177589416504,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    }
+  ],
+  "ausgrid": [
+    {
+      "entity": "customer_101",
+      "training_std": 0.4190937876701355,
+      "test_std": 0.44434675574302673,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_102",
+      "training_std": 0.7114465236663818,
+      "test_std": 0.6074671149253845,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_103",
+      "training_std": 0.5653916001319885,
+      "test_std": 0.7112889289855957,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_104",
+      "training_std": 1.512230634689331,
+      "test_std": 1.9029731750488281,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_105",
+      "training_std": 0.7017691731452942,
+      "test_std": 0.257539302110672,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_106",
+      "training_std": 0.8103889226913452,
+      "test_std": 0.8263092637062073,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_107",
+      "training_std": 0.4213399291038513,
+      "test_std": 0.35933682322502136,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_108",
+      "training_std": 0.6137135624885559,
+      "test_std": 0.5850872993469238,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_109",
+      "training_std": 0.5674369931221008,
+      "test_std": 0.5912277698516846,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_110",
+      "training_std": 0.5194970965385437,
+      "test_std": 0.5272344946861267,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_111",
+      "training_std": 0.5432857275009155,
+      "test_std": 0.775855541229248,
+      "test_nonzero_fraction": 0.9992398327632079,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_112",
+      "training_std": 0.6027383804321289,
+      "test_std": 0.6129399538040161,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_113",
+      "training_std": 0.532041072845459,
+      "test_std": 0.47978395223617554,
+      "test_nonzero_fraction": 0.9990497909540099,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_114",
+      "training_std": 1.0607223510742188,
+      "test_std": 1.1284376382827759,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_115",
+      "training_std": 0.3853767216205597,
+      "test_std": 0.3695010542869568,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    },
+    {
+      "entity": "customer_116",
+      "training_std": 0.46517688035964966,
+      "test_std": 0.302269846200943,
+      "test_nonzero_fraction": 1.0,
+      "all_period_zero": false
+    }
+  ]
+}

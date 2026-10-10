@@ -1,0 +1,12 @@
+# Drawing environment: Python 3.12.14; scientific replay locks are separate.
+matplotlib==3.11.1
+numpy==2.5.3
+pandas==2.2.3
+PyMuPDF==1.28.2
+pillow==12.3.0
+contourpy==1.3.3
+cycler==0.12.1
+fonttools==4.64.0
+kiwisolver==1.5.1
+pyparsing==3.3.2
+python-dateutil==2.9.0.post0

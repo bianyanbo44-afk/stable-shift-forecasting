@@ -53,3 +53,7 @@ The default replay regenerates the Ausgrid 24 h seed-11 StableShift entity-trans
 Use [CITATION.cff](CITATION.cff) and the versioned release URL for these research materials. Author-created software retains the root MIT licence. Third-party COSA code retains CC BY-NC-SA 4.0 and its original notices; provider terms govern source datasets. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 The [StableShift v0.1.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/v0.1.0) and [QNC v0.2.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/qnc-v0.2.0) remain available for the earlier studies. The original StableShift instructions are preserved in [docs/STABLESHIFT_LEGACY_README.md](docs/STABLESHIFT_LEGACY_README.md).
+
+## Publication artwork
+
+The manuscript figures have been refined for final-size readability and consistent visual encoding. Editable PDF/SVG exports, previews and regeneration instructions are in [QORC manuscript artwork](docs/QORC_ARTWORK.md). Numerical evidence and the versioned v0.3.0 research deposit are unchanged.

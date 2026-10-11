@@ -1,0 +1,20 @@
+\begin{longtable}{llrlrr}
+\caption{Independent EIA extension: forecast-equivalent initialisation contrasts. Relative MAE differences and paired 95\% intervals.}\label{tab:independent_coordinate}\\
+\toprule
+Dataset & Source & $H$ & Contrast & MAE difference (\%) & Holm $p$\\
+\midrule
+\endfirsthead
+\toprule
+Dataset & Source & $H$ & Contrast & MAE difference (\%) & Holm $p$\\
+\midrule
+\endhead
+EIA-930 & DLinear & 24 & $a=0.1$ vs. $a=1$ & +0.00 [-0.03, +0.04] & 1.000\\
+EIA-930 & DLinear & 24 & $a=10$ vs. $a=1$ & +0.88 [+0.39, +1.45] & 0.010\\
+EIA-930 & StableShift & 24 & $a=0.1$ vs. $a=1$ & -0.01 [-0.10, +0.07] & 1.000\\
+EIA-930 & StableShift & 24 & $a=10$ vs. $a=1$ & +2.46 [+1.24, +3.97] & 0.020\\
+EIA-930 & DLinear & 168 & $a=0.1$ vs. $a=1$ & -0.05 [-0.14, +0.02] & 1.000\\
+EIA-930 & DLinear & 168 & $a=10$ vs. $a=1$ & +0.25 [+0.05, +0.55] & 0.398\\
+EIA-930 & StableShift & 168 & $a=0.1$ vs. $a=1$ & -0.03 [-0.27, +0.17] & 1.000\\
+EIA-930 & StableShift & 168 & $a=10$ vs. $a=1$ & +0.70 [+0.12, +1.52] & 0.442\\
+\bottomrule
+\end{longtable}

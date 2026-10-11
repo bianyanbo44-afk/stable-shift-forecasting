@@ -1,0 +1,16 @@
+\begin{longtable}{lllp{.22\textwidth}rp{.09\textwidth}}
+\caption{EIA re-evaluation: QUART independently tuned historical clipping. Relative MAE differences with pointwise paired 95\% intervals.}\label{tab:independent_independently_tuned_history}\\
+\toprule
+Dataset & $H$ & Source & Comparator & MAE difference (\%) [95\% CI] & Holm $p$\\
+\midrule
+\endfirsthead
+\toprule
+Dataset & $H$ & Source & Comparator & MAE difference (\%) [95\% CI] & Holm $p$\\
+\midrule
+\endhead
+EIA & 24 & DLinear & Historical clipping & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 24 & StableShift & Historical clipping & $-0.03$ [$ -1.02, +0.76 $] & 1.000\\
+EIA & 168 & DLinear & Historical clipping & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 168 & StableShift & Historical clipping & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+\bottomrule
+\end{longtable}

@@ -1,10 +1,21 @@
 {
-  "display_name": "QORC",
-  "expansion": "Query-aware Online Residual Calibration",
-  "previous_manuscript_name": "QNC",
+  "display_name": "QUART",
+  "expansion": "Query-aware Updates with Adaptive Revision Truncation",
+  "previous_manuscript_name": "QURB",
   "archived_operator_identifier": "query_expanded",
   "algorithm_changed": false,
   "primary_scores_changed": false,
   "displacement": "one before/after feedback update at the same current query",
-  "spelling": "British English in manuscript prose; original citations and code identifiers retained"
+  "spelling": "British English in manuscript prose; original citations and code identifiers retained",
+  "previous_manuscript_names": [
+    "QURB",
+    "QORC",
+    "QNC"
+  ],
+  "public_numerical_release_name": "QUART v0.4.0",
+  "matched_step_displacement_controls": "Historical clipping and NLMS retain QUART's selected step; distinguish independently tuned prediction-error controls.",
+  "relative_MAE_aggregation": "Equal-setting mean of QUART/comparator ratios minus one; 12 benchmark and eight new-entity settings.",
+  "physical_budget_envelope": "s_max * B_t is a derived upper envelope for joint-output physical-unit RMS, not measured physical-unit displacement.",
+  "manuscript_title": "QUART: Exact control of forecast revisions in online learning",
+  "public_release_url": "https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/quart-v0.4.0"
 }

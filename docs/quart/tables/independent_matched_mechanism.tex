@@ -1,0 +1,20 @@
+\begin{longtable}{lllp{.22\textwidth}rp{.09\textwidth}}
+\caption{EIA re-evaluation: QUART matched-step controls. Relative MAE differences with pointwise paired 95\% intervals.}\label{tab:independent_matched_mechanism}\\
+\toprule
+Dataset & $H$ & Source & Comparator & MAE difference (\%) [95\% CI] & Holm $p$\\
+\midrule
+\endfirsthead
+\toprule
+Dataset & $H$ & Source & Comparator & MAE difference (\%) [95\% CI] & Holm $p$\\
+\midrule
+\endhead
+EIA & 24 & DLinear & Matched NLMS & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 24 & DLinear & Matched historical clipping & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 24 & StableShift & Matched NLMS & $-0.04$ [$ -0.25, +0.08 $] & 1.000\\
+EIA & 24 & StableShift & Matched historical clipping & $-0.00$ [$ -0.09, +0.08 $] & 1.000\\
+EIA & 168 & DLinear & Matched NLMS & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 168 & DLinear & Matched historical clipping & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 168 & StableShift & Matched NLMS & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 168 & StableShift & Matched historical clipping & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+\bottomrule
+\end{longtable}

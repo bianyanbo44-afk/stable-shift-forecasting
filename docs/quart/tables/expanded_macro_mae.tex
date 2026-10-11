@@ -1,0 +1,24 @@
+\begin{tabular}{llrl}
+\toprule
+Evaluation & Comparator & Mean MAE difference (\%) [95\% CI] & Settings\\
+\midrule
+Original benchmark & Frozen & $-4.02$ [$ -4.66, -3.40 $] & 12\\
+Original benchmark & COSA & $-1.81$ [$ -2.29, -1.35 $] & 12\\
+Original benchmark & NLMS & $-0.74$ [$ -0.97, -0.53 $] & 12\\
+Original benchmark & Historical clipping & $-0.13$ [$ -0.26, -0.03 $] & 12\\
+Original benchmark & Matched NLMS & $-5.01$ [$ -6.28, -3.65 $] & 12\\
+Original benchmark & Matched historical clipping & $-0.11$ [$ -0.22, -0.02 $] & 12\\
+EIA re-evaluation & Frozen & $-3.54$ [$ -5.33, -2.05 $] & 4\\
+EIA re-evaluation & COSA & $-0.45$ [$ -1.12, +0.30 $] & 4\\
+EIA re-evaluation & NLMS & $-0.01$ [$ -0.17, +0.15 $] & 4\\
+EIA re-evaluation & Historical clipping & $-0.01$ [$ -0.25, +0.19 $] & 4\\
+EIA re-evaluation & Matched NLMS & $-0.01$ [$ -0.06, +0.02 $] & 4\\
+EIA re-evaluation & Matched historical clipping & $-0.00$ [$ -0.02, +0.02 $] & 4\\
+Unused entities & Frozen & $-15.13$ [$ -16.48, -13.67 $] & 8\\
+Unused entities & COSA & $-0.44$ [$ -2.17, +1.36 $] & 8\\
+Unused entities & NLMS & $+2.04$ [$ +0.13, +4.36 $] & 8\\
+Unused entities & Historical clipping & $-0.35$ [$ -0.50, -0.23 $] & 8\\
+Unused entities & Matched NLMS & $-4.47$ [$ -7.12, -1.36 $] & 8\\
+Unused entities & Matched historical clipping & $-0.35$ [$ -0.50, -0.23 $] & 8\\
+\bottomrule
+\end{tabular}

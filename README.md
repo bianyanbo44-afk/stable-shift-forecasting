@@ -1,59 +1,55 @@
-# QORC and StableShift
+# QUART and StableShift
 
-Code and research materials for **Learning from delayed feedback with bounded forecast updates**.
+Code, manuscript and reproducibility materials for **QUART: Exact control of forecast revisions in online learning**.
 
-QORC (Query-aware Online Residual Calibration) learns from matured forecast errors while bounding the change it induces at the current forecast. It uses a closed-form normalised residual update over a frozen source forecaster. The original StableShift forecasting implementation and its earlier study remain available in this repository.
+QUART (Query-aware Updates with Adaptive Revision Truncation) learns from matured forecast errors while bounding the revision it induces at the current, unlabelled query. A closed-form rule selects the largest feasible fraction along a normalised residual-learning proposal. The source forecaster remains frozen.
 
-[QORC v0.3.0 research release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/qorc-v0.3.0) · [Source Data](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/download/qorc-v0.3.0/QORC_Source_Data_v0.3.0.zip) · [Complete reproduction archive](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/download/qorc-v0.3.0/QORC_Reproduction_v0.3.0.zip) · [Reproduction instructions](docs/QORC_REPRODUCIBILITY.md)
+[QUART v0.4.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/quart-v0.4.0) · [Current manuscript](docs/quart/main.pdf) · [Supplementary Information](docs/quart/supplementary.pdf) · [Source Data](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/download/quart-v0.4.0/QUART_Source_Data_v0.4.0.zip) · [Complete reproduction archive](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/download/quart-v0.4.0/QUART_Reproduction_v0.4.0.zip) · [Reproduction instructions](docs/QUART_REPRODUCIBILITY.md)
 
-## Results and evaluation
+## Evidence and scope
 
-The release includes 60 validation selections, 60 original-benchmark evaluations, 20 EIA re-evaluations and 40 fixed-configuration entity-transfer evaluations. It covers three electricity-demand datasets, two frozen sources, 24 h/168 h horizons and five source seeds.
+The recorded evaluation covers three electricity-demand datasets, two frozen sources, 24 h/168 h horizons and five seeds: 60 original-benchmark cells, 20 EIA re-evaluations and 40 fixed-configuration entity-transfer cells.
 
-- All 23,375 active QORC updates met the current-query displacement and feedback-loss tolerances.
-- Mean benchmark MAE was 4.02% lower than frozen forecasting and 0.74% lower than independently tuned NLMS.
-- New-entity MAE was 15.13% lower than frozen forecasting and 2.04% higher than independently tuned NLMS.
-- Historical clipping exceeded the matched QORC query budget in 13.00% of benchmark updates and 24.29% of entity-transfer updates.
-- The median controlled-COSA/QORC calibration-and-scoring time ratio was 19.6 across 11 active seed-11 settings, excluding shared source inference.
+- All 23,375 active updates met the current-query displacement and observed-feedback loss tolerances.
+- Across 12 benchmark settings, mean relative MAE differences were -4.02% against frozen forecasting and -0.74% against independently tuned NLMS.
+- Across eight new-entity settings, the differences were -15.13% against frozen forecasting and +2.04% against fixed NLMS; the ECL 24 h StableShift contrast was +21.62% against NLMS.
+- Matched-step historical clipping exceeded the shared budget in 13.00% of benchmark updates and 24.29% of entity-transfer updates.
+- The median controlled-COSA/QUART calibration-and-scoring time ratio was 19.6 across 11 active seed-11 settings, excluding shared source inference.
 
-Temporal comparisons revisit development periods and are exploratory. ECL/Ausgrid entities 101–116 use archived sources, fixed positional transfer and configurations selected before cohort preparation. Complete results and five budget profiles accompany the release. QORC names the same rule archived as QNC/`query_expanded`; raw identifiers remain stable.
+Temporal comparisons revisit development periods and remain exploratory. Entity transfer uses the original calendar, archived source models, fixed positional mapping and configurations selected before scoring. The bound applies to one learning update at a fixed current query in joint training-standardised RMS. Exact control refers to the feasible fraction on the proposal ray. Complete adverse outcomes, block sensitivities and physical-unit budget interpretation remain in the paper and supplement.
 
-## Install and reproduce
+## Reproduce
 
-Use Python 3.12 and an appropriate CUDA PyTorch build for metric replay:
+Download `QUART_Reproduction_v0.4.0.zip` from the release and extract it into a separate directory. It preserves all previous computational entries and adds `quart_v0.4.0/` with the current paper, complete Source Data, figure script and bundled QA helpers.
+
+```bash
+python -m pip install -r quart_v0.4.0/requirements-figures.txt
+python quart_v0.4.0/draw_quart_artwork.py --check-inputs
+python quart_v0.4.0/draw_quart_artwork.py
+```
+
+For source-model/metric replay, install the original project with the analysis and upstream requirements, using the recorded PyTorch/CUDA environment:
 
 ```bash
 python -m pip install -e ".[analysis]" -r requirements-upstream.txt
-```
-
-Download and extract `QORC_Reproduction_v0.3.0.zip` into a separate directory. It contains the prepared arrays, 60 selected source checkpoints and all recorded trajectories required for replay.
-
-```bash
 python research_strengthening_20261009/replay_strengthening.py
-python research_strengthening_20261009/analyze_strengthening.py --phase all
-python research_strengthening_20261009/derive_strengthening.py
-python research_strengthening_20261009/summarize_control.py
 ```
 
-The default replay regenerates the Ausgrid 24 h seed-11 StableShift entity-transfer cell and compares its metrics with the released records. [Detailed instructions](docs/QORC_REPRODUCIBILITY.md) describe requirements, figures and data preparation.
+The default replay is the archived Ausgrid 24 h seed-11 StableShift entity-transfer cell. [Detailed instructions](docs/QUART_REPRODUCIBILITY.md) explain the current figure workflow and inherited metric replay.
 
 ## Files
 
 | Path | Contents |
 |---|---|
-| `research_strengthening_20261009/` | Calibration selection, evaluation, paired inference, budget/runtime analysis and figure code |
-| `research_strengthening_20261009/analysis/` | Compact complete statistical summaries; full per-origin data are in the release |
-| `research_innovation_20260924/` | Original QNC operator and controlled COSA implementation |
+| `docs/quart/` | Current manuscript/SI PDFs, LaTeX/Biber sources, 34 verified references, used tables and final figures |
+| `scripts/quart/` | Current deterministic figure script, pinned requirements and portable QA helpers |
+| `research_strengthening_20261009/` | Original calibration evaluation, paired inference and replay |
+| `research_innovation_20260924/` | Original numerical operator and controlled COSA implementation |
 | `src/stable_shift_forecasting/` | Frozen forecasting sources, metrics and data interfaces |
-| `docs/qorc_figures/` | Five vector figures corresponding to this research version |
-| `TERMINOLOGY_MAP.json` | QORC/QNC identifier mapping |
+| `TERMINOLOGY_MAP.json` | QUART/QURB/QORC/QNC mapping to the unchanged `query_expanded` rule |
 
-## Citation and licences
+## Versions and licences
 
-Use [CITATION.cff](CITATION.cff) and the versioned release URL for these research materials. Author-created software retains the root MIT licence. Third-party COSA code retains CC BY-NC-SA 4.0 and its original notices; provider terms govern source datasets. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+QUART is the current display name for the rule previously presented as QURB and archived as QORC/QNC/`query_expanded`. This publication synchronization does not change selections, trajectories, checkpoints, bootstrap results or raw experimental identifiers. The [QORC v0.3.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/qorc-v0.3.0), [QNC v0.2.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/qnc-v0.2.0), and [StableShift v0.1.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/v0.1.0) remain accessible. Prior README and citation metadata are retained in `docs/history/`.
 
-The [StableShift v0.1.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/v0.1.0) and [QNC v0.2.0 release](https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/qnc-v0.2.0) remain available for the earlier studies. The original StableShift instructions are preserved in [docs/STABLESHIFT_LEGACY_README.md](docs/STABLESHIFT_LEGACY_README.md).
-
-## Publication artwork
-
-The manuscript figures have been refined for final-size readability and consistent visual encoding. Editable PDF/SVG exports, previews and regeneration instructions are in [QORC manuscript artwork](docs/QORC_ARTWORK.md). Numerical evidence and the versioned v0.3.0 research deposit are unchanged.
+Use [CITATION.cff](CITATION.cff) and the versioned release URL for the current research materials. Author-created software retains the root MIT licence. COSA retains CC BY-NC-SA 4.0; other third-party software and provider datasets retain their own terms. The software licence does not relicense manuscript text, figures or third-party data. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

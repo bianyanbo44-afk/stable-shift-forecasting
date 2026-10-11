@@ -1,0 +1,48 @@
+\begin{longtable}{lllp{.22\textwidth}rp{.09\textwidth}}
+\caption{Original benchmark re-evaluation: QUART primary contrasts. Relative MAE differences with pointwise paired 95\% intervals.}\label{tab:test_primary}\\
+\toprule
+Dataset & $H$ & Source & Comparator & MAE difference (\%) [95\% CI] & Holm $p$\\
+\midrule
+\endfirsthead
+\toprule
+Dataset & $H$ & Source & Comparator & MAE difference (\%) [95\% CI] & Holm $p$\\
+\midrule
+\endhead
+EIA & 24 & DLinear & Frozen & $-0.72$ [$ -1.42, -0.02 $] & 1.000\\
+EIA & 24 & DLinear & COSA & $-0.36$ [$ -0.89, +0.13 $] & 1.000\\
+EIA & 24 & DLinear & NLMS & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 24 & StableShift & Frozen & $-5.10$ [$ -8.29, -2.58 $] & 0.205\\
+EIA & 24 & StableShift & COSA & $-0.75$ [$ -1.74, +0.20 $] & 1.000\\
+EIA & 24 & StableShift & NLMS & $-0.11$ [$ -0.77, +0.41 $] & 1.000\\
+EIA & 168 & DLinear & Frozen & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 168 & DLinear & COSA & $-0.07$ [$ -0.54, +0.18 $] & 1.000\\
+EIA & 168 & DLinear & NLMS & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 168 & StableShift & Frozen & $-0.55$ [$ -1.91, +0.89 $] & 1.000\\
+EIA & 168 & StableShift & COSA & $+0.40$ [$ -1.10, +2.23 $] & 1.000\\
+EIA & 168 & StableShift & NLMS & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+ECL & 24 & DLinear & Frozen & $-3.95$ [$ -5.06, -3.00 $] & 0.014\\
+ECL & 24 & DLinear & COSA & $-0.38$ [$ -0.84, +0.04 $] & 1.000\\
+ECL & 24 & DLinear & NLMS & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+ECL & 24 & StableShift & Frozen & $-6.62$ [$ -8.78, -4.74 $] & 0.014\\
+ECL & 24 & StableShift & COSA & $-0.91$ [$ -1.43, -0.43 $] & 0.049\\
+ECL & 24 & StableShift & NLMS & $-0.37$ [$ -1.15, +0.00 $] & 1.000\\
+ECL & 168 & DLinear & Frozen & $-2.09$ [$ -3.41, -0.70 $] & 0.126\\
+ECL & 168 & DLinear & COSA & $-4.45$ [$ -6.35, -2.75 $] & 0.014\\
+ECL & 168 & DLinear & NLMS & $-0.06$ [$ -0.13, +0.00 $] & 1.000\\
+ECL & 168 & StableShift & Frozen & $-10.57$ [$ -13.25, -7.97 $] & 0.014\\
+ECL & 168 & StableShift & COSA & $-9.75$ [$ -12.76, -7.10 $] & 0.014\\
+ECL & 168 & StableShift & NLMS & $-3.55$ [$ -5.78, -1.62 $] & 0.143\\
+Ausgrid & 24 & DLinear & Frozen & $-3.21$ [$ -4.42, -2.10 $] & 0.014\\
+Ausgrid & 24 & DLinear & COSA & $-0.87$ [$ -1.35, -0.36 $] & 0.129\\
+Ausgrid & 24 & DLinear & NLMS & $-1.17$ [$ -1.46, -0.89 $] & 0.014\\
+Ausgrid & 24 & StableShift & Frozen & $-6.24$ [$ -8.00, -4.66 $] & 0.014\\
+Ausgrid & 24 & StableShift & COSA & $-0.99$ [$ -1.46, -0.51 $] & 0.031\\
+Ausgrid & 24 & StableShift & NLMS & $-1.25$ [$ -1.59, -0.95 $] & 0.014\\
+Ausgrid & 168 & DLinear & Frozen & $-2.63$ [$ -3.84, -1.44 $] & 0.014\\
+Ausgrid & 168 & DLinear & COSA & $-0.90$ [$ -1.69, -0.03 $] & 1.000\\
+Ausgrid & 168 & DLinear & NLMS & $-0.04$ [$ -0.22, +0.15 $] & 1.000\\
+Ausgrid & 168 & StableShift & Frozen & $-6.62$ [$ -8.52, -4.77 $] & 0.014\\
+Ausgrid & 168 & StableShift & COSA & $-2.63$ [$ -3.62, -1.60 $] & 0.014\\
+Ausgrid & 168 & StableShift & NLMS & $-2.35$ [$ -3.36, -1.33 $] & 0.014\\
+\bottomrule
+\end{longtable}

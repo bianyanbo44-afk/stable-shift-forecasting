@@ -1,0 +1,36 @@
+\begin{longtable}{llrlrr}
+\caption{Main benchmark: forecast-equivalent initialisation contrasts. Relative MAE differences and paired 95\% intervals.}\label{tab:test_coordinate}\\
+\toprule
+Dataset & Source & $H$ & Contrast & MAE difference (\%) & Holm $p$\\
+\midrule
+\endfirsthead
+\toprule
+Dataset & Source & $H$ & Contrast & MAE difference (\%) & Holm $p$\\
+\midrule
+\endhead
+Ausgrid & DLinear & 24 & $a=0.1$ vs. $a=1$ & -0.02 [-0.04, +0.01] & 1.000\\
+Ausgrid & DLinear & 24 & $a=10$ vs. $a=1$ & +0.68 [+0.44, +1.00] & 0.010\\
+Ausgrid & StableShift & 24 & $a=0.1$ vs. $a=1$ & -0.01 [-0.03, +0.01] & 1.000\\
+Ausgrid & StableShift & 24 & $a=10$ vs. $a=1$ & +0.70 [+0.48, +0.96] & 0.010\\
+Ausgrid & DLinear & 168 & $a=0.1$ vs. $a=1$ & +0.01 [-0.00, +0.03] & 1.000\\
+Ausgrid & DLinear & 168 & $a=10$ vs. $a=1$ & +0.10 [+0.01, +0.20] & 1.000\\
+Ausgrid & StableShift & 168 & $a=0.1$ vs. $a=1$ & +0.01 [-0.00, +0.03] & 1.000\\
+Ausgrid & StableShift & 168 & $a=10$ vs. $a=1$ & +0.05 [-0.04, +0.16] & 1.000\\
+ECL & DLinear & 24 & $a=0.1$ vs. $a=1$ & +0.02 [-0.00, +0.05] & 1.000\\
+ECL & DLinear & 24 & $a=10$ vs. $a=1$ & +0.71 [+0.47, +0.95] & 0.010\\
+ECL & StableShift & 24 & $a=0.1$ vs. $a=1$ & -0.01 [-0.04, +0.02] & 1.000\\
+ECL & StableShift & 24 & $a=10$ vs. $a=1$ & +0.64 [+0.33, +1.04] & 0.077\\
+ECL & DLinear & 168 & $a=0.1$ vs. $a=1$ & +0.01 [-0.02, +0.03] & 1.000\\
+ECL & DLinear & 168 & $a=10$ vs. $a=1$ & -0.29 [-0.72, +0.02] & 1.000\\
+ECL & StableShift & 168 & $a=0.1$ vs. $a=1$ & +0.02 [-0.01, +0.04] & 1.000\\
+ECL & StableShift & 168 & $a=10$ vs. $a=1$ & -0.31 [-0.55, -0.07] & 0.456\\
+EIA-930 & DLinear & 24 & $a=0.1$ vs. $a=1$ & -0.03 [-0.15, +0.06] & 1.000\\
+EIA-930 & DLinear & 24 & $a=10$ vs. $a=1$ & +0.18 [+0.06, +0.33] & 0.484\\
+EIA-930 & StableShift & 24 & $a=0.1$ vs. $a=1$ & +0.02 [-0.03, +0.11] & 1.000\\
+EIA-930 & StableShift & 24 & $a=10$ vs. $a=1$ & +1.20 [+0.47, +2.22] & 0.626\\
+EIA-930 & DLinear & 168 & $a=0.1$ vs. $a=1$ & -0.03 [-0.08, +0.00] & 1.000\\
+EIA-930 & DLinear & 168 & $a=10$ vs. $a=1$ & -0.04 [-0.26, +0.08] & 1.000\\
+EIA-930 & StableShift & 168 & $a=0.1$ vs. $a=1$ & -0.02 [-0.07, +0.02] & 1.000\\
+EIA-930 & StableShift & 168 & $a=10$ vs. $a=1$ & +0.22 [+0.08, +0.41] & 0.486\\
+\bottomrule
+\end{longtable}

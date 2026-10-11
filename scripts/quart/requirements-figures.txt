@@ -1,0 +1,7 @@
+# Versions recorded in the original strengthened figure-rendering environment.
+# New read-only smoke checks also passed with the runtime versions in final_portability_checks.json.
+numpy==2.5.3
+pandas==2.2.3
+matplotlib==3.11.1
+Pillow==10.2.0
+PyMuPDF==1.27.2.3

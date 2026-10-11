@@ -1,0 +1,17 @@
+\begin{tabular}{llrrrr}
+\toprule
+Evaluation & Update rule & Events & Over budget (\%) & P99 ratio & Max ratio\\
+\midrule
+Original benchmark & QUART & 12,580 & 0.00 & 1.00 & 1.00\\
+ & Matched NLMS & 12,580 & 43.34 & 26.86 & 47.01\\
+ & Matched history & 12,580 & 13.00 & 1.50 & 4.31\\
+\addlinespace[3pt]
+EIA re-evaluation & QUART & 855 & 0.00 & 0.99 & 1.00\\
+ & Matched NLMS & 855 & 1.05 & 1.00 & 1.64\\
+ & Matched history & 855 & 0.58 & 0.92 & 1.21\\
+\addlinespace[3pt]
+Unused entities & QUART & 9,940 & 0.00 & 1.00 & 1.00\\
+ & Matched NLMS & 9,940 & 68.05 & 78.46 & 146.85\\
+ & Matched history & 9,940 & 24.29 & 1.49 & 2.45\\
+\bottomrule
+\end{tabular}

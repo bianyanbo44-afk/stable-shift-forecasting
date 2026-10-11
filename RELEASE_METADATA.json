@@ -1,10 +1,10 @@
 {
-  "title": "QORC expanded evaluation: Source data and reproducibility materials",
+  "title": "QUART forecast revision control: Source data and reproducibility materials",
   "author": "Yanbo Bian",
-  "version": "0.3.0",
-  "release_date": "2026-10-10",
-  "release_tag": "qorc-v0.3.0",
-  "release_url": "https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/qorc-v0.3.0",
+  "version": "0.4.0",
+  "release_date": "2026-10-12",
+  "release_tag": "quart-v0.4.0",
+  "release_url": "https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/quart-v0.4.0",
   "repository": "https://github.com/bianyanbo44-afk/stable-shift-forecasting",
   "generated_data": "Observed-entry error sums/counts, paired statistics, calibration selections, update geometry, budget profiles and runtime measurements.",
   "reused_sources": [
@@ -21,8 +21,18 @@
     "withheld": 40
   },
   "algorithm_identifiers": {
-    "manuscript": "QORC",
-    "previous_name": "QNC",
+    "manuscript": "QUART",
+    "expansion": "Query-aware Updates with Adaptive Revision Truncation",
+    "previous_names": [
+      "QURB",
+      "QORC",
+      "QNC"
+    ],
     "archive_key": "query_expanded"
-  }
+  },
+  "manuscript_title": "QUART: Exact control of forecast revisions in online learning",
+  "target_journal": "Neurocomputing",
+  "revision_scope": "Current manuscript and SI, verified bibliography, final-size QUART figures, source files and portable drawing scripts; original scientific records unchanged.",
+  "new_training_or_bootstrap_run": false,
+  "preceding_numerical_release": "qorc-v0.3.0"
 }

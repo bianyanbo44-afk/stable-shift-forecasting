@@ -1,0 +1,337 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=20mm]{geometry}
+\usepackage{newtxtext,newtxmath,booktabs,longtable,array,graphicx,microtype,xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr,tocloft,needspace,placeins}
+\setlength{\cftsecnumwidth}{2.5em}
+\renewcommand{\ttdefault}{lmtt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{QUART: Supplementary Information}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\rms}{\operatorname{rms}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Supplementary Information}\par\vspace{4mm}
+{\Large QUART: Exact control of forecast revisions in online learning}\par\vspace{4mm}
+\end{center}
+\vspace{3mm}
+This supplement gives the derivations, data and source specifications for QUART (query-aware updates with adaptive revision truncation). It also reports complete paired comparisons, sensitivity analyses and reproduction instructions.
+{\small\tableofcontents}
+\clearpage
+
+\section{Derivations and update properties}
+\subsection{Forecast-equivalent gated initialisation}
+For a fixed source prediction $p$, feature $z$ and residual map $v=Wz+b$, consider
+\[
+f(g,W,b)=p+\tanh(g)v,\qquad \ell=\tfrac12\|f-y\|_2^2.
+\]
+At $g=0$, $f=p$, $\nabla_W\ell=0$, $\nabla_b\ell=0$ and
+\[
+\partial_g\ell=v^{\mathsf T}(p-y)=-v^{\mathsf T}r,\qquad r=y-p.
+\]
+One unregularised gradient step therefore leaves $W,b$ unchanged and sets $g^+=\eta v^{\mathsf T}r$. The exact prediction change on that input is
+\[
+f^+-f=\tanh(\eta v^{\mathsf T}r)v
+       =\eta vv^{\mathsf T}r+O(\eta^3).
+\]
+Replacing $(W,b)$ by $(aW,ab)$ gives $av$ and hence the leading term $\eta a^2vv^{\mathsf T}r$, while the initial function remains $p$ for every input. The expansion is for fixed $a,v,r$ as $\eta\rightarrow0$. The main-text lemma describes this local mechanism. The recorded COSA experiments use Adam, clipping and parameter regularisation and measure their trajectories directly; the simple expansion is not used as an exact formula for those optimiser trajectories.
+
+\subsection{Normalised operator proposal}
+At a matured feedback event, let $z\in\R^{H+6}$ be the stored feature, $r\in\R^H$ the masked residual and $D\in\R^{H\times(H+6)}$ a correction. The strictly convex problem
+\[
+\min_D\;\tfrac12\|Dz-r\|_2^2+\tfrac12\|D\|_F^2
+\]
+has first-order condition $D(zz^{\mathsf T}+I)=rz^{\mathsf T}$. Thus
+\[
+D^*=rz^{\mathsf T}(I+zz^{\mathsf T})^{-1}
+   =\frac{rz^{\mathsf T}}{1+z^{\mathsf T}z}.
+\]
+QUART uses the relaxed proposal $D=\eta D^*$, with $\eta\leq1$, along the classical normalised adaptive-filtering direction. The current query determines the admissible fraction, giving an effective step size $\eta\beta_t$.
+
+For the current features $q_{t,j}$, stack $D_jq_{t,j}$ as $V$. The scalar problem
+\[
+\max_{0\leq\beta\leq1}\;\beta
+\quad\text{subject to}\quad \rms(\beta V)\leq B_t
+\]
+has solution $\beta=\min\{1,B_t/\rms(V)\}$ when $V\ne0$, and $\beta=1$ otherwise. This solution is exact along the specified proposal ray; it does not optimise over other matrix directions.
+
+\paragraph{Prediction-space geometry.}
+For an operator increment $\Delta C=(\Delta C_1,\ldots,\Delta C_d)$ at fixed current features, define the output seminorm
+\[
+ \|\Delta C\|_{q_t}
+ =\left(\frac{1}{Hd}\sum_{j=1}^{d}\|\Delta C_jq_{t,j}\|_2^2\right)^{1/2}.
+\]
+Its squared value is
+\[
+ \|\Delta C\|_{q_t}^2
+ =\frac{1}{Hd}\sum_{j=1}^{d}
+ \operatorname{tr}\!\left(\Delta C_jq_{t,j}q_{t,j}^{\mathsf T}\Delta C_j^{\mathsf T}\right).
+\]
+The current unlabelled query defines a positive-semidefinite quadratic form on the operator increment. Directions that annihilate the query have zero seminorm. QUART imposes $\|\Delta C\|_{q_t}\leq B_t$ along the ray $\Delta C_j=\beta D_j$, $0\leq\beta\leq1$. Homogeneity yields the closed-form fraction, giving the update a prediction-space trust-region interpretation.
+
+A parameter-step bound also provides a query-dependent upper bound. With $\|\Delta C\|_F^2=\sum_j\|\Delta C_j\|_F^2$,
+\[
+ \|\Delta C\|_{q_t}
+ \leq\frac{\max_j\|q_{t,j}\|_2}{\sqrt{Hd}}\|\Delta C\|_F.
+\]
+Parameter clipping can enforce an output budget when its radius is chosen using this inequality. QUART instead uses the exact action of the selected proposal at the current query.
+
+A Gaussian representation makes the link to distribution-based step control explicit. Let $\mu_t=\operatorname{vec}(\widehat y_t)$ and $\Delta\mu_t=\operatorname{vec}([\Delta C_jq_{t,j}]_{j=1}^d)$. For $\sigma>0$, let $G_0=\mathcal N(\mu_t,\sigma^2I_{Hd})$ and $G_1=\mathcal N(\mu_t+\Delta\mu_t,\sigma^2I_{Hd})$. Their KL divergence is
+\[
+ \mathrm{KL}(G_0\,\|\,G_1)
+ =\frac{\|\Delta\mu_t\|_2^2}{2\sigma^2}
+ =\frac{Hd}{2\sigma^2}\|\Delta C\|_{q_t}^2.
+\]
+A KL constraint can therefore represent the same Euclidean forecast-displacement geometry at a fixed query. This geometric correspondence leaves QUART deterministic. The method specifies the protected query and exactly truncates the delayed-feedback NLMS proposal.
+
+\paragraph{Constraint objects and evaluation domains.}
+The schematic distinctions below follow the parameter-step formulation of Mor{\'e} and Sorensen (1983), the feedback-error formulation of de Lamare and Diniz (2009), and the policy-divergence formulation of Schulman et al. (2015).\footnote{Publication records: \url{https://doi.org/10.1137/0904038}; \url{https://doi.org/10.1109/TVT.2008.926608}; \url{https://proceedings.mlr.press/v37/schulman15.html}.} The historical-clipping and QUART rows describe the calibration rules used in this study. Here $e_s^+$ denotes one observed scalar residual after the update, $\nu_{\rm old}$ is the practical policy constraint's state distribution, and $\mathrm{KL}_s=\mathrm{KL}(\pi_{\rm old}(\cdot|s),\pi_{\rm new}(\cdot|s))$.
+
+\begin{center}
+\small
+\begin{tabular}{p{.23\linewidth}p{.39\linewidth}p{.29\linewidth}}
+\toprule
+Rule & Constrained quantity & Evaluation domain\\
+\midrule
+Parameter trust region & $\|\Delta\theta\|_2\leq\delta$ & Parameter space\\[3pt]
+Set-membership NLMS & $|e_s^+|\leq\gamma_s$ & Labelled feedback input\\[3pt]
+Practical TRPO & $\mathbb E_{s\sim\nu_{\rm old}}[\mathrm{KL}_s]\leq\delta$ & Sampled state distribution\\[3pt]
+Historical clipping & $\rms([\Delta C_jz_j]_{j=1}^d)\leq B_s$ & Stored feedback feature\\[3pt]
+QUART & $\rms([\Delta C_jq_{t,j}]_{j=1}^d)\leq B_t$ & Current unlabelled query\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The theoretical policy formulation also considers maximum-state KL constraints. QUART constrains RMS displacement at one current query. Set-membership NLMS and historical clipping constrain different feedback quantities. Historical clipping therefore serves as a diagnostic control, rather than an implementation of set-membership NLMS.
+
+\paragraph{Analytical illustration of one update.}
+Consider a constructed, fully observed event with $H=24$, $d=1$, $\eta=1$, $C=0$, $p_s=\tfrac14\mathbf1_{24}$, $c_s=0$ and $r=\mathbf1_{24}$. With the usual intercept, $\|z\|_2^2=\tfrac52$ and $D=\tfrac27rz^{\mathsf T}$. For current source predictions $p_t=u\mathbf1_{24}$, the historical context columns contribute zero to $Dq_t$, and
+\[
+ \rms(Dz)=\frac57,\qquad
+ \rms(Dq_t)=\frac{2|6u+1|}{7}.
+\]
+For $u\in\{1,0,-\tfrac16\}$ and the primary $\rho=0.05$, both source-based budgets are $B_s=B_t=\tfrac1{20}$. Historical clipping therefore uses the same fraction $\beta^{\rm hist}=\tfrac7{100}$ for all three queries. QUART selects its fraction from the current displacement.
+
+\begin{center}
+\small
+\begin{tabular}{rrrrr}
+\toprule
+$u$ & Raw RMS & Historical-clipped RMS & QUART $\beta$ & QUART RMS\\
+\midrule
+$1$ & $2$ & $\tfrac7{50}$ & $\tfrac1{40}$ & $\tfrac1{20}$\\[3pt]
+$0$ & $\tfrac27$ & $\tfrac1{50}$ & $\tfrac7{40}$ & $\tfrac1{20}$\\[3pt]
+$-\tfrac16$ & $0$ & $0$ & $1$ & $0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These values follow algebraically from the constructed features and proposal. Historical clipping gives displacement $0.14$ at $u=1$, while the current-query budget is $0.05$. At $u=-\tfrac16$, the proposal has zero current-query effect and QUART takes its full fraction. In every case the observed residual becomes $(1-5\beta/7)r$, retaining the original single-update descent property. The example isolates the constraint objects with the historical proposal and both budgets held fixed.
+
+\subsection{Causal implementation recipe}
+Maintain one operator $C_j=0$ per channel and a queue of unconsumed daily source forecasts. At each scheduled origin $t$:
+\begin{enumerate}
+\item Compute the frozen prediction $p_t$ and observed-history context $c_t$. Form $q_{t,j}$ and the budget $B_t=0.05\max\{1,\rms(p_t)\}$.
+\item In chronological order, remove each queued origin $s$ with $s+H\leq t$. Retrieve its stored feature $z_j$, observed targets and mask. Skip a window with no observed target.
+\item Evaluate the historical forecast under the current operator, form its masked residual $r_j$, and compute $D_j=\eta r_jz_j^{\mathsf T}/(1+\|z_j\|_2^2)$.
+\item Compute $V=[D_jq_{t,j}]_{j=1}^d$, set $\beta=\min\{1,B_t/\rms(V)\}$ (one when $V=0$), and update every $C_j\leftarrow C_j+\beta D_j$.
+\item After consuming all eligible feedback, issue $p_{t,j}+C_jq_{t,j}$ once and append the uncalibrated prediction and features to the queue. Subsequent outcomes cannot revise this issued forecast.
+\end{enumerate}
+On the regular daily grid, at most one window matures at each origin in the reported runs. If several windows arrive together, the bound applies separately to each feedback step. Bounding their accumulated change would require a shared issuance budget.
+
+\subsection{Proof of the main-text proposition}
+On an observed feedback row, applying $C_j^+=C_j+\beta D_j$ changes the residual to
+\[
+r_j^+=r_j-\beta D_jz_j
+      =\left(1-\beta\eta\frac{\|z_j\|_2^2}{1+\|z_j\|_2^2}\right)r_j.
+\]
+The factor lies in $[0,1]$, so squared residuals cannot increase in any channel or in their observed-entry sum or mean. Unobserved rows have $r_j=0$ and receive no update. The descent applies when the old source forecast is replayed under the current calibration operator. Previously issued predictions remain fixed.
+
+At the current query, the complete forecast change is exactly $\beta V$. Consequently,
+\[
+\rms(\widehat y_t^+-\widehat y_t)=\beta\rms(V)\leq B_t.
+\]
+The budget is expressed in training-standardised output coordinates. If original-unit channel standard deviations are $s_j$, the original-unit RMS change is at most $(\max_j s_j)B_t$. The recorded algorithm uses the tighter directly interpretable standardised constraint.
+
+Finally, suppose two redundant factorisations encode identical operators $C_{0,j}$ and receive identical features, masks, observations and step sizes. Their initial forecasts and feedback residuals coincide. The normalised proposal and query-clipping recurrence then yield identical proposals, query displacements, admissible fractions and updated operators. Induction over feedback events establishes identical trajectories. The feature map is held fixed in this statement; the redundancy under study is the gated representation of the calibration operator.
+
+The recorded floating-point checks use tolerance $2\times10^{-6}\max(1,x)$ for the relevant loss or bound. The original small-grid main/extension study recorded 13,435 active QUART steps; every descent and displacement check passed, with a largest displacement-to-budget ratio of 1.000000522. Expanded-study checks are reported in S4 and the accompanying evidence audit. Every ratio, before/after loss and step fraction is supplied in Source Data.
+
+\section{Data, chronology and target availability}
+\subsection{EIA-930}
+Observed Demand (MW) is selected for PJM, MISO, CISO, NYIS, ISNE, ERCO and SWPP. The original hourly archive spans 2023-01-01 01:00 through 2026-07-01 00:00, inclusive, using end-of-hour UTC timestamps. Training ends at 2025-01-01 01:00 exclusive and source validation at 2026-01-01 01:00 exclusive. Calibration selection uses the latter half of the validation interval. The main test covers the first half of 2026.
+
+The main benchmark periods were also inspected during exploratory development of calibration mechanisms. Their results characterise the developed method across settings; the original post-lock extension supplied a fresh temporal evaluation for its original configurations. The expanded configurations revisit both periods and are explicitly exploratory.
+
+The independent extension appends 2026-07-01 01:00 through 2026-09-01 00:00, 1,488 rows and seven regions. Its observed fraction is 0.9967358. The original archive is not refreshed or overwritten, and training means and standard deviations are verified unchanged. All 60 original small-grid configuration selections were locked before the second-half EIA file was downloaded at 2026-09-23 17:19 UTC (24 September locally). The lock, provider URL, response metadata, file digests and preparation script accompany the results.
+
+\subsection{ECL and Ausgrid}
+ECL uses MT\_001 through MT\_016 in fixed source order. Four quarter-hour power observations are averaged into hourly kW; an incomplete hour is unavailable. The prepared series spans 2011-01-01 01:00 through 2015-01-01 00:00. The chronological training boundary is 2013-10-19 17:00, and the validation boundary is 2014-03-14 19:00, both exclusive.
+
+Ausgrid uses general-consumption rows for customer identifiers 001 through 016. Two half-hour energies are summed into each hourly interval, measured in kWh per hour-long interval. The archive spans 2010-07-01 01:00 through 2013-07-01 00:00. Training ends at 2012-08-06 05:00 and validation at 2012-11-23 19:00. Customer 002 has 1,944 missing hourly entries; the other selected customers have none. Fixed source-order selection is independent of test completeness.
+
+\subsection{Input processing, scoring and feedback support}
+Each hourly axis is retained. Input gaps use past-only forward filling; leading incomplete contexts are excluded. Channel-wise standardisation uses observed training values. Calendar covariates are sine/cosine pairs for hour, weekday and day of year. The MASE denominator for channel $j$ is the mean observed training-pair difference $|y_{t,j}-y_{t-24,j}|$.
+
+Main scoring retains every observed forecast-target entry, with identical masks across methods. It never substitutes a filled value for a missing target. The error numerator and observed count are stored separately at every daily origin. Source Data report available target fractions, complete-block counts and observed entries after the first potential feedback event.
+
+The distinction is material in the Ausgrid week-ahead validation segment. Although 95.0\% of target entries are observed, only six of 49 daily horizons are completely observed. None occurs after the first matured forecast could update the model. Complete-block scoring alone would therefore have no post-feedback evaluation support in that segment. The observed-entry protocol was fixed before rescoring calibration candidates. Complete-block scores are retained as a sensitivity analysis without changing any update trajectory.
+
+\section{Sources, comparators and implementation}
+\subsection{Frozen source checkpoints}
+DLinear follows the Time-Series-Library reference implementation with moving-average length 25 and temporal maps shared across channels. StableShift combines a learned daily/seven-day seasonal mixture, shared linear trend/residual mappings and a causal TCN correction. The TCN has width 128, four dilation levels (1/2/4/8), two kernel-three convolutions per level and dropout 0.1. The trained feature branch includes rank-eight factors, a stable projection, a recent-24-hour projection and a linear--GELU--linear prediction head. Every component remains frozen during the calibration study.
+
+StableShift input conditioning uses a 25 h local median filter, replaces deviations exceeding six median absolute deviations (with a 0.20 standardised-unit floor), and clips loads to $[-6,6]$. This uses only the available 336 h context. Source training used AdamW with weight decay $10^{-4}$, batch size 32, gradient clipping at one and learning rates 0.001/0.0003. Training ran for at most 30 epochs, with patience six and selection by original-unit validation MAE. The original source-selection period is retained, and test or extension outcomes never select checkpoints.
+
+Original EIA training used an RTX 4060 Laptop GPU, and the archived ECL/Ausgrid source fits used V100/V100S devices. All new calibration runs use Python 3.12.10, PyTorch 2.6.0+cu124 and NumPy 2.2.6 on the RTX 4060 Laptop GPU, with four CPU threads and a half-device-memory limit. Source hashes are checked unchanged after each run.
+
+\Needspace{15\baselineskip}
+\subsection{Controlled COSA implementation}
+The released source is pinned to commit\par\smallskip
+{\footnotesize\ttfamily 527c0feb9e997dd85af485ee027616b446e4ae77}\par\smallskip
+at \url{https://github.com/bigbases/COSA_ICLR2026}. We use the reviewed \texttt{SimpleOutputAdapter} class with a linear map, variable-wise coefficients and gates, context length five, Xavier weight initialisation at gain 0.1, zero biases and zero gates. An algebraically identical vectorisation of its linear forward path is checked against the released implementation at both initial and trained nonzero gates.
+
+Updates use Adam with zero optimiser weight decay, an explicit $10^{-4}$ squared-parameter penalty, native within-event adaptive learning rates and clipping to $\max(0.05,\min(0.5,\ell))$. The original small-grid study tested starting rates 0.0003/0.001 and step budgets one/five. The strengthening study crosses 0.0003/0.001/0.003/0.005 with 1/5/10/20 steps. The validation-only amendment adds 50 steps at the initial winning rate if 20 wins. It also tries rate 0.01 at the initial winning step budget if 0.005 wins, without recursive extension. The loss-history stopping rule is retained. Every active configuration uses the same daily origins and fully matured earlier forecast windows as QUART. Native period scheduling, partial-horizon updates and retrospective prediction replacement are outside this controlled protocol.
+
+The exact pinned \texttt{LICENSE} is Creative Commons Attribution--NonCommercial--ShareAlike 4.0, whereas its README describes a different license. The supplied provenance retains the actual license file and attribution; no unrestricted-MIT claim is made. The original TAFAS-derived files retain their own notices.
+
+\subsection{Operator implementations and state}
+The feature dimension is $H+6$: $H$ current source outputs, five observed-history means and an intercept. QUART and NLMS store $dH(H+6)$ effective coefficients. The released gated linear class has the same affine function family plus one gate per channel. All calibration states and optimisers reset at the start of each evaluation period. This includes the independent extension. The maturity rule is defined in observation time. Historical publication timestamps and as-of versions of revised load values are not reconstructed.
+
+The primary QUART budget is $\rho=0.05$. Expanded QUART, NLMS and historical clipping select $\eta$ from 0.005/0.02/0.05/0.2/0.4/0.8/1, together with a disabled policy. Selection uses observed-entry MAE on the second half of the original validation period, separately by dataset/horizon/source/seed. Ties prefer disabled and then the actual recorded candidate index. Historical clipping scales the same proposal using the stored forecast and displacement $[D_jz_j]$, without the current query. Matched NLMS and historical clipping retain QUART's selected $\eta$. Every declared $\rho$ is reported, both at the primary selected $\eta$ and with validation selection within that budget. None is chosen by testing outcomes.
+
+The original small-grid study's 60 selections and its EIA data lock remain byte-identical. Expanded validation operators were checked against all eight corresponding old QUART/NLMS candidate metrics per configuration at relative tolerance $2\times10^{-5}$ and absolute tolerance $10^{-7}$. COSA's original four candidate records are reused exactly; additional candidates use the same controlled module. Batched evaluation measures throughput; individual-adapter cost is assessed separately with scalar timing.
+
+At origin $t$, the five context means use intervals $[t-H-24k,t-24k)$, $k=0,\ldots,4$. A historical interval with no observed entry contributes zero; otherwise its mean pools only observed standardised loads. These context values are available within the source look-back range. Eligible feedback from origin $s$ satisfies $s+H\leq t$, and the largest consumed label index is explicitly checked below $t$. Stored features are those of the earlier issued source forecast. The current target mask never determines whether an update is taken.
+
+Calibration timing includes the adaptive loop, outcome scoring and prediction transfer, but excludes common source inference. The expanded study uses a separate scalar implementation, one warm-up and three synchronised repetitions for every primary method on all 12 seed-11 setting streams. Method order rotates. Scalar scores are checked against batched operator scores at the declared replay tolerances. Both methods are timed with the same cached source predictions on the same device, with synchronization at the timed boundaries. Active-pair runtime summaries exclude validation-selected disabled policies. Memory records likewise concern this cached calibration evaluation, not total source-model deployment.
+
+\section{Expanded-study estimands and complete benchmark results}
+\subsection{Paired ratio estimation}
+At each daily origin, absolute, squared and channel-scaled observed error sums are recorded separately from observed counts. Pooled MAE is the absolute-error sum divided by the count; RMSE is the square root of the squared-error ratio; MASE uses training-only seasonal scales. Five source seeds are pooled. Every method has identical origins and target masks. All consumed adaptation-label indices precede the current origin. Geometry records retain before/after observed feedback MSE, raw and realised current-query displacement, both budget scales, and the retained proposal fraction.
+
+There are 5,000 crossed seed/circular calendar-block draws, with seven-day blocks primary and 14/28-day sensitivity. Seed identities are drawn with replacement. Calendar draws are shared within each dataset across methods, architectures and horizons; unavailable horizon-ending slots have zero numerator/count. Every draw recomputes ratios. Intervals are pointwise percentile 95\% intervals conditional on fixed entities, sources and recorded calibration trajectories. The bootstrap does not resimulate calibration state, account for development selection or establish entity-population uncertainty. A null-centred approximation uses
+\[
+ p=\frac{1+\sum_{b=1}^{5000}\mathbf1\{|\Delta_b-\widehat\Delta|\geq|\widehat\Delta|\}}{5001}.
+\]
+Holm families are separate for each block duration and phase. The original benchmark has 72 frozen/COSA/NLMS MAE/RMSE tests, 48 matched-mechanism tests and 24 independently tuned historical tests. EIA re-evaluation has 24/16/8, and unused-entity transfer 48/32/16. MASE is secondary in families of half these sizes. Macro effects are equal-setting means of relative errors, with shared within-dataset draws preserving cell dependence. Macro intervals are pointwise and do not establish multiplicity-adjusted superiority across settings.
+
+\subsection{Selection and search boundaries}
+The strengthening protocol was locked before new testing on 9 October 2026. A validation-only implementation check motivated the separately preserved boundary amendment; it preceded every new test and unused-entity result. All 60 final configurations were then hashed and locked at \texttt{2026-10-09T11:21:43.493260+00:00}. Expanded COSA evaluated 16--17 active candidates per source configuration. QUART selected $\eta=1$ in 12 configurations, and COSA selected 50 steps in 5 or initial rate 0.01 in 0. These counts leave a finite-search boundary. Disabled policies remain included in every accuracy comparison.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Expanded-study absolute MAE on all original settings, pooling five seeds. Units are MW (EIA), kW (ECL) and kWh per hourly interval (Ausgrid). History denotes independently selected historical-feedback clipping.}
+\input{tables/test_absolute_mae.tex}
+\end{table}
+\subsection{All primary original-benchmark MAE contrasts}
+The original benchmark had informed method development. The following results are exploratory re-evaluations with expanded validation selection. Percent differences are relative to the named comparator; intervals are pointwise and Holm $p$ uses the full MAE/RMSE family.
+{\footnotesize\input{tables/test_primary.tex}}
+\subsection{All matched and independently tuned historical controls}
+Matched controls retain the selected QUART step size. The independently tuned control has its own validation-selected step. Both are retained even when their directions differ.
+{\footnotesize\input{tables/test_matched_mechanism.tex}}
+{\footnotesize\input{tables/test_independently_tuned_history.tex}}
+
+\subsection{Secondary RMSE outcomes}
+MAE and RMSE can respond differently to calibration. On the original Ausgrid 24 h DLinear setting, QUART reduced MAE but increased RMSE by 0.67\% relative to frozen forecasting. On new ECL entities at 24 h with StableShift, RMSE was 15.03\% higher than controlled COSA and 14.88\% higher than NLMS. Table~\ref{tab:secondary_rmse_adverse} retains all adverse RMSE contrasts meeting the declared Holm threshold against frozen or independently selected comparator policies in the primary seven-day analysis, across all three evaluation phases. Complete secondary contrasts remain in Source Data.
+
+\begin{table}[htbp]
+\centering\footnotesize
+\caption{Adverse secondary RMSE contrasts in the primary seven-day analysis. Positive differences indicate higher QUART RMSE. Intervals are pointwise paired 95\% intervals from the existing 5,000 seed/calendar-block draws. Holm adjustment uses each contrast's declared MAE/RMSE family: 72 tests for the benchmark primary comparison, 24 for benchmark historical clipping and 48 for new-entity primary comparisons. Comparator configurations and the budget are unchanged.}
+\label{tab:secondary_rmse_adverse}
+\input{tables/secondary_rmse_adverse.tex}
+\end{table}
+\FloatBarrier
+
+\section{Unused-entity transfer and budget sensitivity}
+\subsection{Fixed cohorts and source reuse}
+ECL MT\_101--MT\_116 and Ausgrid general-consumption customers 101--116 were fixed before cohort preparation, without filtering by test coverage or performance. The membership audit checks all existing prepared entity lists; there is no overlap with source fitting, calibration selection or previous scored cohorts. Public raw archives were already present, and earlier generic preparation had read raw tables containing other entities. This evaluation does not claim the values had never been downloaded or opened. Cohort preparation followed the final 60-configuration selection lock.
+
+The same archived dataset/horizon/source/seed checkpoint is reused with ascending-ID positional mapping. DLinear's temporal maps are channel-shared; the convolutional source also has cross-channel structure learned on the original positions. No model is retrained and no calibration hyperparameter is selected using new-cohort outcomes. Means, standard deviations and MASE scales use the new cohort's chronological training portion only. Calibration initialises at zero and uses the original daily, fully matured feedback protocol in its chronological test portion. The historical calendar is the same as the original dataset. The evaluation tests fixed-cohort entity transfer on the original calendar using archived source models.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Absolute MAE for all eight unused-entity settings, with five archived source seeds. Units are kW for ECL and kWh per hourly interval for Ausgrid.}
+\input{tables/withheld_absolute_mae.tex}
+\end{table}
+\FloatBarrier
+{\footnotesize\input{tables/withheld_primary.tex}}
+{\footnotesize\input{tables/withheld_matched_mechanism.tex}}
+{\footnotesize\input{tables/withheld_independently_tuned_history.tex}}
+
+Ten fixed ECL channels have constant-zero training values. The pre-existing unit-standard-deviation fallback is retained for their normalisation, so the transfer setting also tests this degenerate training regime. All 16 channels remain in predictions, feedback, MAE and RMSE. MASE is secondary and pools only the six channels with positive training seasonal scales, using a separately stored \texttt{mase\_observed\_count}; all 16 Ausgrid scales are positive. This calculation-only amendment was documented after cohort preparation but before any cohort prediction or score. Cohort IDs and locked configurations were unchanged. The scale values, constant-channel list and amendment hash are retained.
+
+\subsection{Complete budget records}
+All $\rho\in\{0.01,0.025,0.05,0.1,0.2\}$ are retained at the primary selected $\eta$ and with validation-selected $\eta$ for that budget. The primary $\rho=0.05$ never changes in response to testing. The curves are descriptive, with five-seed observed-entry pooled scores and equal-setting dataset means. A no-update policy has zero displacement; active-update quantiles and clipping fractions condition on an enabled recurrence. The full \texttt{budget\_profiles.csv}, aggregate metrics and update geometry also provide tails, disabled-policy records and setting-level heterogeneity.
+
+\subsection{Budget interpretation in original units}
+Let $s_j$ be the training-only standardisation scale of channel $j$, including the unit-scale fallback for constant training channels, and let $s_{\max}=\max_j s_j$. A standardised forecast change $\Delta_t$ corresponds to $[s_j\Delta_{t,j}]_j$ in the original units. The single-update bound therefore gives the joint-output analytical envelope
+\[
+ \rms([s_j\Delta_{t,j}]_j)\leq s_{\max}\rms(\Delta_t)
+ \leq U_t,\qquad U_t=s_{\max}B_t.
+\]
+Table~\ref{tab:budget_unit_examples} applies this conversion to the recorded primary-budget events. The median envelope on the original EIA cohort is approximately 1,385 MW; on the original Ausgrid cohort it is 0.0601 kWh per hourly interval (approximately 60.1 Wh). The same $\rho$ yields different physical envelopes because training scales and current source trajectories differ across cohorts.
+
+\begin{table}[htbp]
+\centering\footnotesize
+\caption{Analytical original-unit envelopes for the primary $\rho=0.05$ budget. $s_{\max}$ is the largest training scaling coefficient; $B_t$ is standardised and $U_t=s_{\max}B_t$ uses the stated original unit. Medians and P99 values pool all active QUART events within each cohort across horizons, sources and seeds. They describe the analytical envelopes, not measured physical-unit displacement. Disabled policies contribute no update events.}
+\label{tab:budget_unit_examples}
+\input{tables/budget_unit_examples.tex}
+\end{table}
+
+The measured quantity in the update records is the standardised RMS displacement; for example, its original-EIA median is 0.0050, compared with a median budget of 0.05. Converting a desired joint physical-unit tolerance $\tau$ into $B_t\leq\tau/s_{\max}$ supplies a conservative budget specification. The recorded experiments retain their original budgets. This interpretation concerns one update at a fixed query and does not impose an individual-channel limit or an accumulated change between issuance times.
+\FloatBarrier
+
+\subsection{Block sensitivity and aggregate effects}
+Every original, EIA and unused-entity contrast is retained for 7/14/28-day blocks in the corresponding paired and macro comparison files. The following table summarizes seven-day mean MAE effects across all settings; secondary metrics and longer-block intervals remain machine-readable.
+{\footnotesize\input{tables/expanded_macro_mae.tex}}
+
+\paragraph{Block-length sensitivity on new entities.}
+The equal-setting mean relative MAE difference between QUART and NLMS was $+2.04\%$ for all three block lengths (Table~\ref{tab:block_length_sensitivity}). The seven-day interval was above zero, whereas the 14- and 28-day intervals included zero. All four Ausgrid setting-level point estimates favoured QUART; the number meeting the primary family's Holm threshold was four, three and one for 7-, 14- and 28-day blocks, respectively. Longer blocks therefore preserve the estimated directions while weakening evidence for multiplicity-adjusted setting-level differences. The same eight settings, fixed configurations and primary budget underlie each block-length analysis.
+
+\begin{table}[htbp]
+\centering\small
+\caption{New-entity QUART--NLMS mean relative MAE difference under all recorded block lengths. The same eight settings receive equal weights. Brackets give pointwise paired 95\% intervals conditional on the evaluated cohorts, fixed sources and recorded adaptation trajectories; these macro intervals are not multiplicity-adjusted setting-level tests.}
+\label{tab:block_length_sensitivity}
+\input{tables/block_length_sensitivity.tex}
+\end{table}
+\FloatBarrier
+
+\section{EIA re-evaluation and original locked temporal evidence}
+\subsection{Expanded configurations on the existing EIA extension}
+July--August 2026 EIA had already been inspected for the original study. Evaluation with the new validation-selected configurations is exploratory; it is not a second untouched temporal test. States reset to zero. The same 20 source/seed/horizon configurations, archived source predictions, normalisation, contexts and observed-target masks are used.
+{\footnotesize\input{tables/independent_primary.tex}}
+{\footnotesize\input{tables/independent_matched_mechanism.tex}}
+{\footnotesize\input{tables/independent_independently_tuned_history.tex}}
+
+\subsection{Preserved original configuration-locked experiment}
+The original smaller-grid selections were locked before July--August retrieval on 23 September 2026 UTC. The original records remain byte-identical after all language and naming revisions. For the original 24 h StableShift selection, QUART MAE decreased from 1,716 to 1,555 MW, $-9.37\%$ with pointwise interval $[-14.42,-5.05]\%$ and Holm $p=0.028$. Its original COSA contrast was $-2.25\%$ with interval $[-3.87,-0.63]\%$ and adjusted $p=0.352$. The original equal-setting QUART/NLMS MAE contrast was near zero, with an interval spanning zero. Only nine of 855 original active QUART updates were clipped. These findings retain their original exposure status and support calibration over frozen forecasting without independently establishing the query component's accuracy advantage.
+{\footnotesize\input{tables/independent_main_comparisons.tex}}
+
+\section{Preserved forecast-equivalent initialisation experiment}
+The original gated adapter initialises every gate to zero. Multiplying its residual weights and biases by 0.1 or 10 therefore preserves every initial forecast. The original native-scale selected optimiser settings, regularisation and nominal step budget remain fixed under each intervention. The resulting forecasts can diverge after feedback; the experiment tests representation-sensitive trajectories, rather than equivalence of the regularised objectives or superiority under the expanded grid.
+{\footnotesize\input{tables/test_coordinate_comparisons.tex}}
+{\footnotesize\input{tables/independent_coordinate_comparisons.tex}}
+
+
+\section{Source Data and reproduction}
+\paragraph{AI-assisted implementation and figures.} Analysis and figure scripts were prepared with OpenAI Codex from OpenAI (CLI 0.162.0-alpha.2). The archived scripts, Source Data and drawing dependencies specify the computational workflow; figure values are derived from the recorded data.
+
+\paragraph{Study provenance.} Expanded-grid temporal comparisons revisit periods inspected during development; the earlier smaller-grid extension retains its original configuration-lock status. Cohort IDs and all 60 selected configurations were fixed before new-entity extraction and scoring. Historical clipping, budget profiles and bootstrap families follow the preserved study protocols. The post-hoc current-query summaries use recorded trajectories without new calibration selection or inferential tests. Intervals condition on the evaluated cohorts, archived sources and realised trajectories; they do not account for development exposure or resimulate adaptation states. The ECL MASE amendment preceded cohort scoring and uses a separate six-channel denominator. The primary budget is a common design choice in standardised coordinates, rather than an optimised physical-unit tolerance. Exact amendments, timestamps and hashes are supplied in Source Data.
+
+
+QUART is the manuscript name for the calibration rule archived as QORC, \texttt{QNC} and \texttt{query\_expanded}. QUART v0.4.0 provides the current manuscript, Source Data, figure scripts and reproduction materials at \url{https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/quart-v0.4.0}. QORC v0.3.0 remains available as the preceding numerical release. The recurrence, configurations, checkpoints and numerical evidence are unchanged.
+
+The historical data manifest's legacy label-policy field describes the source-training window interface. Calibration retains all observed target entries and never removes a whole forecast solely for missing future labels. Original manifests, checkpoints, locks and scientific records are preserved with their hashes.
+
+Phase-prefixed Source Data files contain \texttt{forecast\_windows}, \texttt{run\_metrics}, \texttt{aggregate\_metrics}, \texttt{paired\_comparisons}, \texttt{macro\_comparisons}, \texttt{update\_geometry} and \texttt{geometry\_summary}. Their prefixes are \texttt{test}, \texttt{independent} and \texttt{withheld}; \texttt{independent} is a retained internal path name and does not imply that new configurations were independently tested. \texttt{selected\_configurations.csv}, \texttt{budget\_profiles.csv}, \texttt{runtime\_repetitions.csv}, \texttt{runtime\_summary.csv} and \texttt{evidence\_audit.json} supply decisions, budgets, scalar timings and verification. Original small-grid evidence is supplied under an explicitly labelled \texttt{legacy\_} prefix.
+
+Reproduction materials include all 60 source checkpoints, prepared original and new-cohort data, locked selections, per-origin evidence, evaluation/analysis/figure scripts and required third-party notices. The selected replay script regenerates a study cell and checks its metrics at the declared tolerances. Prepared new-cohort arrays suffice for score replay; repeating raw preparation additionally requires the public provider archives whose hashes and access route are recorded. Neither route retrains a source model. Source Data arithmetic, selection hashes, causal indices, common masks, feedback descent and QUART displacement limits were audited. The authors have reviewed and approved the manuscript and retain responsibility for its scientific content.
+\end{document}

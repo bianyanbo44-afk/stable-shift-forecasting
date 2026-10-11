@@ -1,0 +1,24 @@
+\begin{longtable}{lllp{.22\textwidth}rp{.09\textwidth}}
+\caption{EIA re-evaluation: QUART primary contrasts. Relative MAE differences with pointwise paired 95\% intervals.}\label{tab:independent_primary}\\
+\toprule
+Dataset & $H$ & Source & Comparator & MAE difference (\%) [95\% CI] & Holm $p$\\
+\midrule
+\endfirsthead
+\toprule
+Dataset & $H$ & Source & Comparator & MAE difference (\%) [95\% CI] & Holm $p$\\
+\midrule
+\endhead
+EIA & 24 & DLinear & Frozen & $-2.03$ [$ -3.41, -0.85 $] & 0.014\\
+EIA & 24 & DLinear & COSA & $-0.10$ [$ -0.78, +0.66 $] & 1.000\\
+EIA & 24 & DLinear & NLMS & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 24 & StableShift & Frozen & $-9.37$ [$ -14.65, -5.06 $] & 0.046\\
+EIA & 24 & StableShift & COSA & $-1.38$ [$ -2.61, -0.12 $] & 0.653\\
+EIA & 24 & StableShift & NLMS & $-0.05$ [$ -0.70, +0.59 $] & 1.000\\
+EIA & 168 & DLinear & Frozen & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 168 & DLinear & COSA & $+0.73$ [$ +0.10, +2.08 $] & 1.000\\
+EIA & 168 & DLinear & NLMS & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+EIA & 168 & StableShift & Frozen & $-2.75$ [$ -5.02, -1.05 $] & 0.353\\
+EIA & 168 & StableShift & COSA & $-1.05$ [$ -3.10, +0.54 $] & 1.000\\
+EIA & 168 & StableShift & NLMS & $+0.00$ [$ +0.00, +0.00 $] & 1.000\\
+\bottomrule
+\end{longtable}

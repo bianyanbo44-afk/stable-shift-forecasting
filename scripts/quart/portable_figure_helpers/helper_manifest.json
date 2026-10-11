@@ -1,0 +1,25 @@
+{
+  "package": "nature-figure",
+  "package_version": "2.8.0",
+  "copied_helper_sha256": {
+    "audit_panel_alignment.py": "43958e6b49d897f326ff64e73cbed0bf057e17c06533b5b57d3dededf8111e76",
+    "audit_pdf_text.py": "11b8f3ec50bc13e2bd8561eeb7cd204307f4ce5a70ac57fa24c809ce1b9c252c",
+    "audit_figure_collisions.py": "841ede7dcaefa3ab11576b5ba52375d1678a71f77d39f553d5464e81b0699283",
+    "validate_figure.py": "c548e180d31fc1557cbfcd452ab78c7a969273a80b311068aa80acfe86ecfd90"
+  },
+  "local_python_dependency_modules": {
+    "audit_panel_alignment.py": [],
+    "audit_pdf_text.py": [],
+    "audit_figure_collisions.py": [],
+    "validate_figure.py": []
+  },
+  "external_versions": {
+    "numpy": "2.5.3",
+    "pandas": "2.2.3",
+    "matplotlib": "3.11.1",
+    "Pillow": "10.2.0",
+    "PyMuPDF": "1.27.2.3"
+  },
+  "source_license_status": "README references repository MIT; full LICENSE/NOTICE and copyright-holder identity absent from local installation",
+  "source_readme_preserved": true
+}

@@ -1,17 +1,18 @@
 cff-version: 1.2.0
-message: Please cite this version when using the QORC data or reproducibility materials.
+message: Please cite this version when using the QUART data or reproducibility materials.
 type: dataset
-title: 'QORC expanded evaluation: Source data and reproducibility materials'
+title: 'QUART forecast revision control: Source data and reproducibility materials'
 authors:
-- family-names: Bian
-  given-names: Yanbo
-  affiliation: Beijing Jiaotong University, Weihai International Academy
-version: 0.3.0
-date-released: '2026-10-10'
+  - family-names: Bian
+    given-names: Yanbo
+    affiliation: Beijing Jiaotong University, Weihai International Academy
+version: 0.4.0
+date-released: '2026-10-12'
 repository-code: https://github.com/bianyanbo44-afk/stable-shift-forecasting
-url: https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/qorc-v0.3.0
+url: https://github.com/bianyanbo44-afk/stable-shift-forecasting/releases/tag/quart-v0.4.0
 keywords:
-- electricity-demand forecasting
-- online calibration
-- delayed feedback
-- QORC
+  - electricity-demand forecasting
+  - online calibration
+  - delayed feedback
+  - forecast revision control
+  - QUART
